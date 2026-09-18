@@ -38,3 +38,10 @@ Visual direction inspired by the first 30 pages of *The Orange Economy: An Infin
 Contact: bw@circleplus.xyz. The additional personal photograph was supplied by BW. Circle+ mark: https://www.linkedin.com/company/circle-plus/. Combine mark and solar/compute visual direction: https://asiyetajwa.github.io/combine/. The personal photograph does not assert a Y Combinator affiliation.
 
 The Circle+ open-source inspiration is BW’s stated connection to Social Capital’s 8-ball project: https://medium.com/swlh/diligence-at-social-capital-epilogue-introducing-the-8-ball-and-gaap-for-startups-7ab215c378bc. Album artwork and album links were retrieved from Spotify’s public pages/oEmbed metadata; artwork remains the property of its rights holders.
+
+
+## Identity and reading shelf
+
+The personal mark is a vector reconstruction of the supplied logo, with stronger strokes and an orange background. The three reading photographs and Founder Mode photograph were supplied by BW and optimized for the web. Books shown: *Made in America*, *Hard Drive*, and *Bloomberg by Bloomberg*.
+
+Twitter profile: https://x.com/founderalias. Legacy Twitter bird icon from Font Awesome Free, under CC BY 4.0: https://fontawesome.com/license/free. Source: https://github.com/FortAwesome/Font-Awesome/blob/6.x/svgs/brands/twitter.svg. The bird retains its original geometry and inherits the site’s color.
