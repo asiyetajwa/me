@@ -44,4 +44,7 @@ The Circle+ open-source inspiration is BW’s stated connection to Social Capita
 
 The personal mark is a vector reconstruction of the supplied logo, with stronger strokes and an orange background. The three reading photographs and Founder Mode photograph were supplied by BW and optimized for the web. Books shown: *Made in America*, *Hard Drive*, and *Bloomberg by Bloomberg*.
 
-Twitter profile: https://x.com/founderalias. Legacy Twitter bird icon from Font Awesome Free, under CC BY 4.0: https://fontawesome.com/license/free. Source: https://github.com/FortAwesome/Font-Awesome/blob/6.x/svgs/brands/twitter.svg. The bird retains its original geometry and inherits the site’s color.
+Twitter profile: https://x.com/founderalias.
+
+
+Substack angel investment added at BW’s direction. Official wordmark from https://substack.com/brand and https://substack.com/img/substack_wordmark.png, displayed without changing its color or proportions.
