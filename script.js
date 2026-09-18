@@ -36,7 +36,7 @@
   copy.addEventListener('click', async () => {
     clearTimeout(resetStatus);
     try {
-      await navigator.clipboard.writeText('bw@thebsc.info');
+      await navigator.clipboard.writeText('bw@circleplus.xyz');
       status.textContent = 'Email copied.';
     } catch {
       status.textContent = 'Select the address to copy, or open it to send an email.';
