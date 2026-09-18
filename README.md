@@ -48,3 +48,10 @@ Twitter profile: https://x.com/founderalias.
 
 
 Substack angel investment added at BW’s direction. Official wordmark from https://substack.com/brand and https://substack.com/img/substack_wordmark.png, displayed without changing its color or proportions.
+
+
+## Places and flags
+
+The flat Kenya and United States flags are unmodified Twemoji v14.0.2 graphics by Twitter, Inc. and other contributors, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Source: https://github.com/twitter/twemoji/tree/v14.0.2/assets/svg; files 1f1f0-1f1ea.svg and 1f1fa-1f1f8.svg.
+
+Google Maps links use a geographic coordinate for Kilifi Creek (-3.63629, 39.85218) and a representative coordinate for the San Francisco Bay Area (37.77239, -122.42349), with zoom levels appropriate to each place. Coordinate references: https://mapcarta.com/12729808 and https://www.geonames.org/10630414/san-francisco-bay-area.html.
