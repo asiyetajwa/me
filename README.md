@@ -27,4 +27,8 @@ Prepared from BW Simiyu's LinkedIn profile and public posts, Solo profile, suppl
 
 Angel investments in Mercury and Customer.io are from the supplied résumé. The company marks identify those investments; they do not imply endorsement or a company role. Mercury and Customer.io vector logos were obtained from their official public websites. The Dribble mark is from its public site. Brand marks remain the property of their owners. Dribble reach is historical, as reported at its 2.0 launch. Circle+'s investment-activity figure describes its historical dataset, not capital raised or managed by BW.
 
-DM Sans, DM Mono and Instrument Serif are distributed under the SIL Open Font License. License texts are included in `FONT-LICENSES.txt`.
+DM Sans, DM Mono, Barlow Condensed and Instrument Serif are distributed under the SIL Open Font License. License texts are included in `FONT-LICENSES.txt`.
+
+## September 2026 redesign
+
+Visual direction inspired by the first 30 pages of *The Orange Economy: An Infinite Opportunity*: orange, black and white; condensed typography; oversized figures; circular portraits and icons; and editorial callouts. The site uses original layouts and illustrations, not reproduced pages or assets from the book. Reference: https://webimages.iadb.org/publications/english/document/The-Orange-Economy-An-Infinite-Opportunity.pdf

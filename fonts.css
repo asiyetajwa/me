@@ -1,4 +1,5 @@
 @font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('DMSans-opsz-wght.ttf') format('truetype')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url('DMMono-Regular.ttf') format('truetype')}
-@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('InstrumentSerif-Regular.ttf') format('truetype')}
-@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('InstrumentSerif-Italic.ttf') format('truetype')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:400;font-display:swap;src:url('BarlowCondensed-Regular.ttf') format('truetype')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('BarlowCondensed-SemiBold.ttf') format('truetype')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url('BarlowCondensed-Bold.ttf') format('truetype')}

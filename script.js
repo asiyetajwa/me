@@ -24,7 +24,7 @@
 
   const clock = document.getElementById('sf-time');
   const updateClock = () => {
-    clock.textContent = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()) + ' LOCAL TIME';
+    clock.textContent = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()) + ' SF LOCAL TIME';
   };
   updateClock();
   setInterval(updateClock, 60_000);
@@ -55,3 +55,4 @@
   window.addEventListener('resize', updateProgress);
   updateProgress();
 })();
+
