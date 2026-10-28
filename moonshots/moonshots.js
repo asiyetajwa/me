@@ -5,11 +5,11 @@
 (() => {
   'use strict';
   const BASE = 'moonshots/';
-  // Each file links to its film on YouTube; a film not yet up shows as coming soon. Tags name the brand it was built for.
+  // Each file links to its film on YouTube. Tags name the brand it was built for.
   const FILES = [
     { id: 'pawzoo', name: 'Pawzoo', tag: 'For Amazon · PayPal · NVIDIA', kind: 'Pet-care agent',
       line: 'Watches your dog’s day on your home cameras, speaks up first, and pays for refills with PayPal only after you approve the exact total.',
-      films: [['Watch the Amazon Film', 'https://youtu.be/TU6OOYvhF2o'], ['Watch the PayPal Film', 'https://youtu.be/rDtK80juuAk']] },
+      films: [['Watch the Film', 'https://youtu.be/TU6OOYvhF2o']] },
     { id: 'apprentice', name: 'Apprentice', tag: 'For NVIDIA', kind: 'Model trainer',
       line: 'Teaches a small open model one job, proves it learned on examples it never saw, and ships it only if it wins: 74% to 87% on a $1 budget.',
       films: [['Watch the Film', 'https://youtu.be/PvEZV1q-UCQ']] },
