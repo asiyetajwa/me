@@ -10,7 +10,7 @@
 .ms-tip { position: absolute; right: 8px; bottom: 128px; z-index: 3; font: 400 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; background: var(--ink); color: #fff8f1; padding: 8px 10px 7px; white-space: nowrap; opacity: 0; transform: translateY(6px); transition: opacity .2s, transform .2s; pointer-events: none; }
 .ms-tip::after { content: ''; position: absolute; right: 36px; top: 100%; border: 6px solid transparent; border-top-color: var(--ink); }
 .ms-tip i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); margin-right: 7px; vertical-align: 1px; }
-.portrait-badge.ms-trigger:hover ~ .ms-tip, .portrait-badge.ms-trigger:focus-visible ~ .ms-tip, .portrait-badge.ms-tip-on ~ .ms-tip { opacity: 1; transform: none; }
+.portrait-badge.ms-trigger:hover ~ .ms-tip, .portrait-badge.ms-trigger:focus-visible ~ .ms-tip { opacity: 1; transform: none; }
 @media (max-width: 800px) { .ms-tip { right: 0; bottom: 88px; font-size: 9px; } .ms-tip::after { right: 26px; } }
 @media (max-width: 600px) { .ms-tip { bottom: 92px; } }
 @media (prefers-reduced-motion: reduce) { .portrait-badge.ms-flick, .portrait-badge.ms-flick svg, .portrait-badge.ms-flick svg path:last-child { animation: none; } .ms-tip { transition: none; } }
@@ -69,7 +69,7 @@
 
 @media (max-width: 700px) {
   .ms-title h2 { font-size: 48px; }
-  .ms-chip { font-size: 8px; padding: 4px 6px 3px; left: 6px; bottom: 6px; }
+  .ms-chip { font-size: 7px; line-height: 1.35; padding: 3px 6px; left: 5px; bottom: 5px; right: 5px; width: max-content; max-width: calc(100% - 10px); white-space: normal; }
   .ms-file { top: auto; bottom: 0; right: 0; left: 0; transform: none; width: 100%; box-shadow: none; border-width: 2px 0 0; max-height: 78%; overflow: auto; }
   .ms-file h3 { font-size: 38px; }
   .ms-close { width: 44px; height: 44px; font-size: 22px; }

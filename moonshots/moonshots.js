@@ -1,7 +1,7 @@
 // My Moonshots: an easter egg. Tap the lightbulb on the hero portrait (or type "moon") and five hackathon builds
 // orbit my head. Hover a file to slow the orbit, tap it to open it. Nothing here loads until the egg is opened.
-// Three breadcrumbs lead to it: the bulb flickers once per visit, it shows a clue on hover (or on a first tap on a
-// phone), and the browser console has a note for anyone who looks.
+// Three breadcrumbs lead to it: the bulb flickers once per visit, it shows a clue on hover, and the browser console
+// has a note for anyone who looks. Section 3's See Them Orbit link opens it too.
 (() => {
   'use strict';
   const BASE = 'moonshots/';
@@ -9,21 +9,21 @@
   const FILES = [
     { id: 'pawzoo', name: 'Pawzoo', tag: 'For Amazon · PayPal · NVIDIA', kind: 'Pet-care agent',
       line: 'Watches your dog’s day on your home cameras, speaks up first, and pays for refills with PayPal only after you approve the exact total.',
-      films: [['Watch the Film', 'https://youtu.be/TU6OOYvhF2o']] },
+      films: [['Watch Demo', 'https://youtu.be/TU6OOYvhF2o']] },
     { id: 'apprentice', name: 'Apprentice', tag: 'For NVIDIA', kind: 'Model trainer',
       line: 'Teaches a small open model one job, proves it learned on examples it never saw, and ships it only if it wins: 74% to 87% on a $1 budget.',
-      films: [['Watch the Film', 'https://youtu.be/PvEZV1q-UCQ']] },
+      films: [['Watch Demo', 'https://youtu.be/PvEZV1q-UCQ']] },
     { id: 'airlock', name: 'Airlock', tag: 'For NVIDIA', kind: 'Private assistant',
       line: 'Seals every secret on your device before anything reaches the cloud, with a receipt of exactly what left. 1,083 of 1,170 planted secrets held against a red team.',
-      films: [['Watch the Film', 'https://youtu.be/cZM7GBF7MQY']] },
+      films: [['Watch Demo', 'https://youtu.be/cZM7GBF7MQY']] },
     { id: 'windtunnel', name: 'Wind Tunnel', tag: 'For NVIDIA', kind: 'Robot test track',
       line: 'A test track for robot policies, with no robot. The model proposes fixes and the simulator keeps only what helps: pass rate from 36.5% to 73.5%.',
-      films: [['Watch the Film', 'https://youtu.be/N_AFv_H6oro']] },
+      films: [['Watch Demo', 'https://youtu.be/N_AFv_H6oro']] },
     { id: 'consumed', name: 'Consumed', tag: 'For Meta', kind: 'Social app',
       line: 'Spotify Wrapped, but every day, for everything you listen to, read and eat. Each item comes back hand-painted, and your day cracks open as one card for your story.',
-      films: [['Watch the Film', 'https://youtu.be/xpzTUJv_nhA']] },
+      films: [['Watch Demo', 'https://youtu.be/xpzTUJv_nhA']] },
   ];
-  const TURN = 14; // seconds per revolution
+  const TURN = 28; // seconds per revolution: slow enough to read each file as it passes
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
   const el = (tag, cls, html) => { const d = document.createElement(tag); if (cls) d.className = cls; if (html) d.innerHTML = html; return d; };
@@ -36,7 +36,7 @@
   badge.setAttribute('aria-label', 'Open My Moonshots');
 
   // Breadcrumb 2: the clue.
-  const tip = el('span', 'ms-tip', '<i></i>One bright idea. Or five. →');
+  const tip = el('span', 'ms-tip', '<i></i>One bright idea, or maybe 5?');
   tip.id = 'ms-tip';
   tip.setAttribute('role', 'tooltip');
   badge.setAttribute('aria-describedby', 'ms-tip');
@@ -63,7 +63,7 @@
     root.innerHTML = `<div class="ms-title"><p>Easter egg · 05 files</p><h2 id="ms-heading">MY <span>MOONSHOTS.</span></h2></div>
       <button class="ms-close" type="button" aria-label="Close My Moonshots">×</button>
       <div class="ms-stage"></div>
-      <p class="ms-hint">${matchMedia('(pointer: coarse)').matches ? 'Tap a file to open it' : 'Click a file to open it · Esc to close'}</p>
+      <p class="ms-hint">${matchMedia('(hover: none)').matches || navigator.maxTouchPoints > 0 ? 'Tap a file to open it' : 'Click a file to open it · Esc to close'}</p>
       <aside class="ms-file" hidden aria-live="polite"><button class="ms-back" type="button" aria-label="Close this file">×</button><img alt=""><div class="ms-file-body"><p class="ms-kicker"></p><h3></h3><p class="ms-line"></p><div class="ms-links"></div></div></aside>`;
     document.body.appendChild(root);
     stage = root.querySelector('.ms-stage');
@@ -108,12 +108,16 @@
 
   function measure() {
     const W = innerWidth, H = innerHeight, narrow = W < 700;
-    const headH = Math.min(H * (narrow ? 0.46 : 0.6), W * (narrow ? 0.9 : 0.5));
+    // On a phone the cards are smaller, the head sits lower, and the back of the ring rides clear above the head, so
+    // the face is never buried under a pile of cards.
+    const headH = narrow ? Math.min(H * 0.4, W * 0.8) : Math.min(H * 0.6, W * 0.5);
     const headW = headH * 440 / 615;
-    const cardW = narrow ? Math.min(W * 0.46, 220) : Math.max(180, Math.min(W * 0.21, 400));
-    const cx = W / 2, headTop = H * (narrow ? 0.56 : 0.55) - headH * 0.45;
-    geo = { W, H, cx, headH, headW, headTop, cardW, cardH: cardW * 9 / 16, eyeY: headTop + headH * 0.47,
-      RX: narrow ? W * 0.3 : Math.min(W * 0.36, 760), RZ: (narrow ? W * 0.3 : Math.min(W * 0.36, 760)) * 0.68, F: Math.max(W, 900) * 0.95 };
+    const cardW = narrow ? Math.min(W * 0.33, 160) : Math.max(180, Math.min(W * 0.21, 400));
+    const cardH = cardW * 9 / 16;
+    const cx = W / 2, headTop = narrow ? H * 0.64 - headH * 0.45 : H * 0.55 - headH * 0.45;
+    const RX = narrow ? W * 0.29 : Math.min(W * 0.36, 760);
+    geo = { W, H, cx, headH, headW, headTop, cardW, cardH, eyeY: headTop + headH * (narrow ? 0.5 : 0.47),
+      backY: narrow ? headTop - cardH * 0.75 : headTop - 10, RX, RZ: RX * (narrow ? 0.95 : 0.68), F: Math.max(W, 900) * 0.95, turn: narrow ? 24 : 36 };
     head.style.width = `${String(headW)}px`;
     cards.forEach((c) => { c.style.width = `${String(geo.cardW)}px`; c.style.height = `${String(geo.cardH)}px`; });
     const u = Math.min(W / 1920, H / 1080);
@@ -123,9 +127,9 @@
   }
 
   function project(th) {
-    const { cx, RX, RZ, F, eyeY, headTop } = geo;
+    const { cx, RX, RZ, F, eyeY, backY } = geo;
     const x = Math.sin(th) * RX, z = Math.cos(th) * RZ, s = F / (F - z);
-    const backY = headTop - 10, c = Math.cos(th);
+    const c = Math.cos(th);
     return { x: cx + x * s, y: backY + (eyeY - backY) * (c + 1) / 2, z, s };
   }
 
@@ -161,7 +165,7 @@
     cards.forEach((c, i) => {
       const th = angle + (i / cards.length) * Math.PI * 2, p = project(th), depth = (p.z / geo.RZ + 1) / 2;
       const lift = hovering === i ? 1.08 : 1;
-      c.style.transform = `translate(${String(p.x - cardW / 2)}px, ${String(p.y - cardH / 2 + bob * 0.3)}px) scale(${String(p.s * (0.82 + 0.18 * depth) * lift)}) perspective(1400px) rotateY(${String(Math.sin(th) * -36)}deg) rotateX(${String((1 - depth) * 10)}deg)`;
+      c.style.transform = `translate(${String(p.x - cardW / 2)}px, ${String(p.y - cardH / 2 + bob * 0.3)}px) scale(${String(p.s * (0.82 + 0.18 * depth) * lift)}) perspective(1400px) rotateY(${String(Math.sin(th) * -geo.turn)}deg) rotateX(${String((1 - depth) * 10)}deg)`;
       c.style.zIndex = String(p.z >= 0 ? 100 + Math.round(p.z) : 10 + Math.round(p.z / 10 + 50));
       c.style.filter = `brightness(${String(0.82 + 0.18 * depth)}) blur(${String((1 - depth) * 1.2)}px)`;
     });
@@ -194,15 +198,24 @@
     cards[i].focus();
   }
 
-  function open() {
+  // The egg opens out of whatever opened it (the bulb, or Section 3's link), or the middle of the screen when that
+  // is out of view, and shrinks back into it.
+  let origin = badge;
+  function centerOf(el) {
+    const r = el.getBoundingClientRect();
+    const seen = r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth;
+    return seen ? [r.left + r.width / 2, r.top + r.height / 2] : [innerWidth / 2, innerHeight / 2];
+  }
+
+  function open(from) {
     if (!root) build();
     if (!root.hidden) return;
+    origin = from instanceof HTMLElement ? from : badge;
     returnFocus = document.activeElement;
     measure();
     root.hidden = false;
     document.documentElement.style.overflow = 'hidden';
-    const r = badge.getBoundingClientRect();
-    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    const [x, y] = centerOf(origin);
     if (!reduced.matches) root.animate([{ clipPath: `circle(0px at ${String(x)}px ${String(y)}px)` }, { clipPath: `circle(150vmax at ${String(x)}px ${String(y)}px)` }], { duration: 750, easing: 'cubic-bezier(.6,0,.2,1)' });
     speed = (Math.PI * 2) / TURN * 3; // a little spin-up as it opens
     last = 0;
@@ -213,21 +226,14 @@
   function close() {
     if (!root || root.hidden) return;
     hideFile();
-    const r = badge.getBoundingClientRect();
-    const x = r.left + r.width / 2, y = r.top + r.height / 2;
-    const done = () => { root.hidden = true; cancelAnimationFrame(raf); document.documentElement.style.overflow = ''; (returnFocus instanceof HTMLElement ? returnFocus : badge).focus(); };
+    const [x, y] = centerOf(origin);
+    const done = () => { root.hidden = true; cancelAnimationFrame(raf); document.documentElement.style.overflow = ''; (returnFocus instanceof HTMLElement ? returnFocus : origin).focus({ preventScroll: true }); };
     if (reduced.matches) { done(); return; }
     root.animate([{ clipPath: `circle(150vmax at ${String(x)}px ${String(y)}px)` }, { clipPath: `circle(0px at ${String(x)}px ${String(y)}px)` }], { duration: 550, easing: 'cubic-bezier(.6,0,.2,1)' }).finished.then(done, done);
   }
 
-  // On a touch screen the first tap shows the clue and the second opens the egg.
-  const coarse = matchMedia('(hover: none)');
-  badge.addEventListener('click', () => {
-    if (coarse.matches && !badge.classList.contains('ms-tip-on')) { badge.classList.add('ms-tip-on'); return; }
-    badge.classList.remove('ms-tip-on');
-    open();
-  });
-  document.addEventListener('click', (e) => { if (!badge.contains(e.target)) badge.classList.remove('ms-tip-on'); });
+  badge.addEventListener('click', () => open());
+  document.querySelectorAll('[data-moonshots-open]').forEach((b) => b.addEventListener('click', () => open(b)));
   badge.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
   // Typing "moon" anywhere opens it too.
   let typed = '';

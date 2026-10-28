@@ -12,7 +12,8 @@ Plain HTML, CSS and JavaScript. No build step, tracking, API keys, dependencies 
 - Styling and responsive layouts: `style.css`
 - Keyboard-accessible theory tabs, local time and email copy: `script.js`
 - Locally hosted typefaces: `fonts.css` and the font files
-- My Moonshots easter egg: `moonshots/` (tap the lightbulb on the hero portrait, type "moon", or open `#moonshots`). Project text and film links are in the `FILES` list at the top of `moonshots/moonshots.js`; bump the `?v=` on its two tags in `index.html` after editing.
+- Section 3 is a two-slide carousel: A. Working Moonshots (the five hackathon builds, with demo links) and B. Working Theories. It moves only by its arrows, its A/B labels, a swipe or the arrow keys (`script.js`). Its project text is in `index.html`.
+- My Moonshots easter egg: `moonshots/` (tap the lightbulb on the hero portrait, Section 3's See Them Orbit link, type "moon", or open `#moonshots`). The egg's project text and demo links are in the `FILES` list at the top of `moonshots/moonshots.js`; keep them in step with Section 3, and bump the `?v=` on the tags in `index.html` after editing.
 
 ## Sources and editorial scope
 
