@@ -108,22 +108,22 @@
 
   function measure() {
     const W = innerWidth, H = innerHeight, narrow = W < 700;
-    // A portrait phone keeps the desktop's tilted ring (across the face at the front, over the head at the back),
-    // scaled down: a smaller head and smaller cards, so the ring fits the screen width.
+    // The cards are the show; the head is a small anchor. The ring is tilted the same way on every screen: across the
+    // face at the front, round the back of the head, where the cards fade out completely.
     let geoNext;
     if (narrow) {
-      const headH = Math.min(W * 0.8, H * 0.44);
-      const cardW = Math.max(112, Math.min(W * 0.31, 150)), cardH = cardW * 9 / 16;
-      const headTop = H * 0.56 - headH * 0.45;
-      geoNext = { headH, headW: headH * 440 / 615, headTop, cardW, cardH,
-        eyeY: headTop + headH * 0.6, backY: headTop - cardH * 0.25, RX: W * 0.34, RZ: W * 0.3, F: W * 2.2, turn: 30 };
+      const headH = Math.min(W * 0.48, H * 0.26);
+      const cardW = Math.max(112, Math.min(W * 0.34, 156)), cardH = cardW * 9 / 16;
+      const headTop = H * 0.5 - headH * 0.5;
+      geoNext = { headH, headW: headH * 440 / 615, headTop, cardW, cardH, fade: 0.32,
+        eyeY: headTop + headH * 0.95, backY: headTop - headH * 0.1, RX: W * 0.33, RZ: W * 0.4, F: W * 1.7, turn: 26 };
     } else {
-      const headH = Math.min(H * 0.6, W * 0.5);
-      const cardW = Math.max(180, Math.min(W * 0.21, 400)), cardH = cardW * 9 / 16;
-      const headTop = H * 0.55 - headH * 0.45;
-      const RX = Math.min(W * 0.36, 760);
+      const headH = Math.min(H * 0.42, W * 0.3);
+      const cardW = Math.max(220, Math.min(W * 0.24, 440)), cardH = cardW * 9 / 16;
+      const headTop = H * 0.55 - headH * 0.5;
+      const RX = Math.min(W * 0.33, 700);
       geoNext = { headH, headW: headH * 440 / 615, headTop, cardW, cardH,
-        eyeY: headTop + headH * 0.47, backY: headTop - 10, RX, RZ: RX * 0.68, F: Math.max(W, 900) * 0.95, turn: 36 };
+        eyeY: headTop + headH * 0.56, backY: headTop + headH * 0.1, RX, RZ: RX * 0.68, F: Math.max(W, 900) * 0.95, turn: 34 };
     }
     geo = { W, H, cx: W / 2, narrow, ...geoNext };
     const { headW } = geo;
@@ -170,13 +170,18 @@
     });
     const arc = (a, b) => Array.from({ length: 81 }, (_, k) => { const p = project(a + (b - a) * k / 80); return `${k ? 'L' : 'M'}${String(p.x)},${String(p.y + cardH * 0.62 * p.s + bob * 0.3)}`; }).join(' ');
     ringFront.setAttribute('d', arc(-Math.PI / 2, Math.PI / 2));
-    ringBack.setAttribute('d', arc(Math.PI / 2, Math.PI * 1.5));
+    ringBack.removeAttribute('d');
     cards.forEach((c, i) => {
       const th = angle + (i / cards.length) * Math.PI * 2, p = project(th), depth = (p.z / geo.RZ + 1) / 2;
       const lift = hovering === i ? 1.08 : 1;
       c.style.transform = `translate(${String(p.x - cardW / 2)}px, ${String(p.y - cardH / 2 + bob * 0.3)}px) scale(${String(p.s * (0.82 + 0.18 * depth) * lift)}) perspective(1400px) rotateY(${String(Math.sin(th) * -geo.turn)}deg) rotateX(${String((1 - depth) * 10)}deg)`;
       c.style.zIndex = String(p.z >= 0 ? 100 + Math.round(p.z) : 10 + Math.round(p.z / 10 + 50));
-      c.style.filter = `brightness(${String(0.82 + 0.18 * depth)}) blur(${String((1 - depth) * 1.2)}px)`;
+      c.style.filter = `brightness(${String(0.82 + 0.18 * depth)})`;
+      // Past the sides a card fades out as it goes behind the head, and is gone at the back.
+      const k = Math.min(1, Math.max(0, (depth - (geo.fade ?? 0.18)) / 0.3)), vis = k * k * (3 - 2 * k);
+      c.style.opacity = String(vis * (openFile !== null && openFile !== i ? 0.35 : 1));
+      c.style.visibility = vis < 0.02 ? 'hidden' : '';
+      c.style.pointerEvents = vis < 0.5 ? 'none' : '';
     });
   }
 
