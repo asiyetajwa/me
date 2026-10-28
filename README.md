@@ -12,6 +12,7 @@ Plain HTML, CSS and JavaScript. No build step, tracking, API keys, dependencies 
 - Styling and responsive layouts: `style.css`
 - Keyboard-accessible theory tabs, local time and email copy: `script.js`
 - Locally hosted typefaces: `fonts.css` and the font files
+- My Moonshots easter egg: `moonshots/` (tap the lightbulb on the hero portrait, type "moon", or open `#moonshots`). Project text and film links are in the `FILES` list at the top of `moonshots/moonshots.js`; bump the `?v=` on its two tags in `index.html` after editing.
 
 ## Sources and editorial scope
 
