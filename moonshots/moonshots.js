@@ -108,16 +108,15 @@
 
   function measure() {
     const W = innerWidth, H = innerHeight, narrow = W < 700;
-    // A portrait phone gets its own shape: a smaller head mid-screen and an upright ring, so the cards loop around
-    // it (above the head at the back, beside it at the sides, below the chin at the front) and never cover the face.
+    // A portrait phone keeps the desktop's tilted ring (across the face at the front, over the head at the back),
+    // scaled down: a smaller head and smaller cards, so the ring fits the screen width.
     let geoNext;
     if (narrow) {
-      const headH = Math.min(W * 0.6, H * 0.32);
-      const cardW = Math.max(118, Math.min(W * 0.34, 150)), cardH = cardW * 9 / 16;
-      const headTop = H * 0.5 - headH / 2;
+      const headH = Math.min(W * 0.8, H * 0.44);
+      const cardW = Math.max(112, Math.min(W * 0.31, 150)), cardH = cardW * 9 / 16;
+      const headTop = H * 0.56 - headH * 0.45;
       geoNext = { headH, headW: headH * 440 / 615, headTop, cardW, cardH,
-        eyeY: headTop + headH + cardH * 0.62, backY: headTop - cardH * 0.62,
-        RX: W * 0.31, RZ: W * 0.24, F: W * 3.2, turn: 18 };
+        eyeY: headTop + headH * 0.6, backY: headTop - cardH * 0.25, RX: W * 0.34, RZ: W * 0.3, F: W * 2.2, turn: 30 };
     } else {
       const headH = Math.min(H * 0.6, W * 0.5);
       const cardW = Math.max(180, Math.min(W * 0.21, 400)), cardH = cardW * 9 / 16;
@@ -169,7 +168,7 @@
       d.style.transform = `translate(${String(rnd(i, 3) * W + Math.sin(t + i) * 12)}px, ${String(y * (H + 40) - 20)}px)`;
       d.style.opacity = String((0.25 + rnd(i, 4) * 0.55) * Math.sin(y * Math.PI));
     });
-    const arc = (a, b) => Array.from({ length: 81 }, (_, k) => { const p = project(a + (b - a) * k / 80); return `${k ? 'L' : 'M'}${String(p.x)},${String(p.y + (geo.narrow ? 0 : cardH * 0.62 * p.s) + bob * 0.3)}`; }).join(' ');
+    const arc = (a, b) => Array.from({ length: 81 }, (_, k) => { const p = project(a + (b - a) * k / 80); return `${k ? 'L' : 'M'}${String(p.x)},${String(p.y + cardH * 0.62 * p.s + bob * 0.3)}`; }).join(' ');
     ringFront.setAttribute('d', arc(-Math.PI / 2, Math.PI / 2));
     ringBack.setAttribute('d', arc(Math.PI / 2, Math.PI * 1.5));
     cards.forEach((c, i) => {
