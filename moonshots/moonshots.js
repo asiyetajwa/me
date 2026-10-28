@@ -108,16 +108,26 @@
 
   function measure() {
     const W = innerWidth, H = innerHeight, narrow = W < 700;
-    // On a phone the cards are smaller, the head sits lower, and the back of the ring rides clear above the head, so
-    // the face is never buried under a pile of cards.
-    const headH = narrow ? Math.min(H * 0.4, W * 0.8) : Math.min(H * 0.6, W * 0.5);
-    const headW = headH * 440 / 615;
-    const cardW = narrow ? Math.min(W * 0.33, 160) : Math.max(180, Math.min(W * 0.21, 400));
-    const cardH = cardW * 9 / 16;
-    const cx = W / 2, headTop = narrow ? H * 0.64 - headH * 0.45 : H * 0.55 - headH * 0.45;
-    const RX = narrow ? W * 0.29 : Math.min(W * 0.36, 760);
-    geo = { W, H, cx, headH, headW, headTop, cardW, cardH, eyeY: headTop + headH * (narrow ? 0.5 : 0.47),
-      backY: narrow ? headTop - cardH * 0.75 : headTop - 10, RX, RZ: RX * (narrow ? 0.95 : 0.68), F: Math.max(W, 900) * 0.95, turn: narrow ? 24 : 36 };
+    // A portrait phone gets its own shape: a smaller head mid-screen and an upright ring, so the cards loop around
+    // it (above the head at the back, beside it at the sides, below the chin at the front) and never cover the face.
+    let geoNext;
+    if (narrow) {
+      const headH = Math.min(W * 0.6, H * 0.32);
+      const cardW = Math.max(118, Math.min(W * 0.34, 150)), cardH = cardW * 9 / 16;
+      const headTop = H * 0.5 - headH / 2;
+      geoNext = { headH, headW: headH * 440 / 615, headTop, cardW, cardH,
+        eyeY: headTop + headH + cardH * 0.62, backY: headTop - cardH * 0.62,
+        RX: W * 0.31, RZ: W * 0.24, F: W * 3.2, turn: 18 };
+    } else {
+      const headH = Math.min(H * 0.6, W * 0.5);
+      const cardW = Math.max(180, Math.min(W * 0.21, 400)), cardH = cardW * 9 / 16;
+      const headTop = H * 0.55 - headH * 0.45;
+      const RX = Math.min(W * 0.36, 760);
+      geoNext = { headH, headW: headH * 440 / 615, headTop, cardW, cardH,
+        eyeY: headTop + headH * 0.47, backY: headTop - 10, RX, RZ: RX * 0.68, F: Math.max(W, 900) * 0.95, turn: 36 };
+    }
+    geo = { W, H, cx: W / 2, narrow, ...geoNext };
+    const { headW } = geo;
     head.style.width = `${String(headW)}px`;
     cards.forEach((c) => { c.style.width = `${String(geo.cardW)}px`; c.style.height = `${String(geo.cardH)}px`; });
     const u = Math.min(W / 1920, H / 1080);
@@ -159,7 +169,7 @@
       d.style.transform = `translate(${String(rnd(i, 3) * W + Math.sin(t + i) * 12)}px, ${String(y * (H + 40) - 20)}px)`;
       d.style.opacity = String((0.25 + rnd(i, 4) * 0.55) * Math.sin(y * Math.PI));
     });
-    const arc = (a, b) => Array.from({ length: 81 }, (_, k) => { const p = project(a + (b - a) * k / 80); return `${k ? 'L' : 'M'}${String(p.x)},${String(p.y + cardH * 0.62 * p.s + bob * 0.3)}`; }).join(' ');
+    const arc = (a, b) => Array.from({ length: 81 }, (_, k) => { const p = project(a + (b - a) * k / 80); return `${k ? 'L' : 'M'}${String(p.x)},${String(p.y + (geo.narrow ? 0 : cardH * 0.62 * p.s) + bob * 0.3)}`; }).join(' ');
     ringFront.setAttribute('d', arc(-Math.PI / 2, Math.PI / 2));
     ringBack.setAttribute('d', arc(Math.PI / 2, Math.PI * 1.5));
     cards.forEach((c, i) => {
