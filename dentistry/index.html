@@ -509,7 +509,7 @@ legend,.f-label{display:block;font-size:13px;font-weight:500;color:var(--ink-2);
 
 /* ---------- footer ---------- */
 footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative;overflow:hidden}
-.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:80px 0 40px;position:relative;z-index:1}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:80px;padding-bottom:40px;position:relative;z-index:1}
 .f-brand .brand b{font-size:30px}
 .f-brand .brand img{width:52px}
 .f-brand p{color:var(--ink-2);margin:22px 0 0;max-width:34ch;font-size:15px}
@@ -676,6 +676,45 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
   .hx-proof p{white-space:normal}
   .hx-proof p:first-of-type{flex:1;min-width:0}
 }
+/* ---------- mobile fine tuning: keep the desktop composition at phone width ---------- */
+@media (max-width:760px){
+  .hx-tag{font-size:10px;letter-spacing:.06em;white-space:nowrap;padding:6px 11px;gap:8px}
+  .hx h1{margin:18px 0 18px}
+  .hx-proof{flex-wrap:wrap;gap:14px 12px;margin-top:24px}
+  .hx-proof p:first-of-type{flex:1 1 0}
+  .hx-proof p:last-of-type{flex-basis:100%;padding-top:12px;border-top:1px solid var(--line)}
+  .hx-proof p:last-of-type br{display:none}
+  .hx-proof p:last-of-type b::after{content:" · "}
+  .hx-art{height:500px}
+  .hx-arch{width:76%;height:450px}
+  .hx-tooth{width:42%;left:0;bottom:4px}
+  .hx-view small{display:block;font-size:11.5px}
+  .hx-quote{display:block;right:0;bottom:22px;width:56%;padding:12px 14px;border-radius:14px}
+  .hx-quote p{font-size:15px;margin:4px 0 6px}
+  .hx-quote small{font-size:11px}
+  .hx-bar{grid-template-columns:1fr 1fr;padding:6px;gap:0}
+  .hx-field{padding:12px 12px}
+  .hx-field:nth-child(1),.hx-field:nth-child(4){grid-column:1 / -1}
+  .hx-field:nth-child(2){border-right:1px solid var(--line)}
+  .hx-chips button{flex:1;padding:8px 6px;font-size:13px}
+  .hx-go{grid-column:1 / -1;margin-top:6px}
+  .hx-under{flex-direction:row;justify-content:center;align-items:center;gap:6px 16px;padding-left:0;font-size:12.5px}
+  .stat-grid{grid-template-columns:repeat(3,1fr);gap:12px;padding:32px 0}
+  .stat{display:block}
+  .stat b{font-size:36px}
+  .stat p{margin-top:8px;font-size:12.5px}
+  .about-imgs>div:nth-child(2) .cap{max-width:58%;font-size:10px;letter-spacing:.06em}
+  .cap-where{display:block;margin-top:2px;padding-left:26px}
+  .cap-dot{display:none}
+  .hyg{justify-items:center;text-align:left}
+  .hyg>*{justify-self:stretch}
+  .hyg .seal{justify-self:center;width:180px;height:180px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:30px 20px;padding-top:52px;padding-bottom:32px}
+  .f-brand,.f-grid>.f-col:nth-child(2){grid-column:1 / -1}
+  .f-brand p{max-width:none}
+  .f-bottom .wrap{align-items:center;text-align:center;font-size:10.5px}
+  .close-band .mono{letter-spacing:.06em;font-size:10.5px}
+}
 </style>
 </head>
 <body>
@@ -811,7 +850,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
         <span class="dots-patch" aria-hidden="true"></span>
         <div class="rv">
           <div class="frame"><img src="assets/img/treatment-room.jpg" alt="A bright treatment room at Family Dentistry, The Waterfront Karen, with a dental chair beside a large window over the water" width="900" height="900" loading="lazy"><span class="room-chip"><i></i>Treatment room</span></div>
-          <div class="cap"><b>01</b> A room with a view · The Waterfront, Karen</div>
+          <div class="cap"><b>01</b> A room with a view<span class="cap-where"><span class="cap-dot"> · </span>The Waterfront, Karen</span></div>
         </div>
         <div class="rv" style="--d:.15s">
           <div class="frame" id="portraitCard"><img src="assets/img/dentist-at-work.jpg" alt="A Family Dentistry Nairobi dentist examining a patient in the chair" width="840" height="933" loading="lazy"></div>
