@@ -219,7 +219,7 @@ section{position:relative}
 .about-imgs{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
 .about-imgs>div:first-child img{aspect-ratio:4/5;object-fit:cover}
 .about-imgs>div:last-child{margin-top:96px}
-.about-imgs>div:last-child img{aspect-ratio:3/4;object-fit:cover;object-position:62% 50%}
+.about-imgs>div:last-child img{aspect-ratio:3/4;object-fit:cover;object-position:68% 30%}
 .cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;padding-left:4px}
 .about-copy h2{margin-bottom:26px}
 .about-copy .lede{margin-bottom:36px}
@@ -272,10 +272,10 @@ section{position:relative}
 .ba-copy li svg{flex:none;margin-top:3px;color:var(--peri)}
 
 /* ---------- team band (after Rondah's founder card) ---------- */
-.team-band{position:relative;border-radius:22px;overflow:hidden;min-height:440px;display:flex;align-items:center;border:1px solid var(--line)}
-.team-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 40%}
-.team-band::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(250,248,244,.96) 34%,rgba(250,248,244,.55) 58%,rgba(250,248,244,0) 80%);z-index:1}
-.team-band .inner{position:relative;z-index:2;padding:56px;max-width:600px}
+.team-band{position:relative;border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.15fr .85fr;align-items:stretch;border:1px solid var(--line);background:linear-gradient(120deg,#fff 0%,var(--bg) 60%,var(--peri-3) 100%)}
+.team-band .photo{position:relative;margin:14px;border-radius:16px;overflow:hidden;min-height:420px;border:1px solid var(--peri-2)}
+.team-band .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 22%}
+.team-band .inner{position:relative;z-index:2;padding:56px;max-width:640px;align-self:center}
 .team-band .eyebrow{border-color:var(--line-2);margin-bottom:34px}
 .team-band h2{font-size:clamp(32px,3.6vw,48px);margin-bottom:22px}
 .team-band .two{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:30px;color:var(--ink-2);font-size:15px}
@@ -469,10 +469,8 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
   .about-imgs>div:last-child{margin-top:48px}
   .pillars{grid-template-columns:1fr}
   .t-body>div{padding-left:0}
-  .team-band{min-height:0;align-items:flex-end}
-  .team-band img{position:relative;height:280px}
-  .team-band{flex-direction:column}
-  .team-band::before{background:linear-gradient(180deg,rgba(250,248,244,0) 0,rgba(250,248,244,0) 200px,var(--bg) 280px)}
+  .team-band{grid-template-columns:1fr}
+  .team-band .photo{order:-1;min-height:280px;margin:10px 10px 0}
   .team-band .inner{padding:8px 24px 32px}
   .team-band .two{grid-template-columns:1fr;gap:12px}
   .steps{grid-template-columns:1fr}
@@ -627,8 +625,8 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
           <div class="cap">Our clinic · Lavington</div>
         </div>
         <div class="rv" style="--d:.1s">
-          <div class="frame"><img src="assets/img/dentist-hands.jpg" alt="A dentist preparing instruments for treatment" width="1518" height="797" loading="lazy"></div>
-          <div class="cap">Prepared for every patient</div>
+          <div class="frame"><img src="assets/img/checkup.jpg" alt="A Family Dentistry dentist carrying out a check-up" width="800" height="800" loading="lazy"></div>
+          <div class="cap">Gentle, unhurried care</div>
         </div>
       </div>
       <div class="about-copy">
@@ -771,7 +769,6 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="team-band rv">
-      <img src="assets/img/dentist-hands.jpg" alt="A Family Dentistry Nairobi dentist at work" loading="lazy">
       <div class="inner">
         <div class="eyebrow"><span class="mono">// Dr. Wala &amp; Associates</span><span class="eb-mark">[ <i></i> ]</span></div>
         <h2>The same trusted team, <em>for generations.</em></h2>
@@ -781,6 +778,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
         </div>
         <a class="btn btn-primary" href="#book" data-track="book-team">Meet Us in Person <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
       </div>
+      <div class="photo"><img src="assets/img/dentist-treatment.jpg" alt="A Family Dentistry Nairobi dentist treating a patient" width="720" height="960" loading="lazy"></div>
     </div>
   </div>
 </section>
