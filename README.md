@@ -57,3 +57,7 @@ Substack angel investment added at BW’s direction. Official wordmark from http
 The flat Kenya and United States flags are unmodified Twemoji v14.0.2 graphics by Twitter, Inc. and other contributors, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Source: https://github.com/twitter/twemoji/tree/v14.0.2/assets/svg; files 1f1f0-1f1ea.svg and 1f1fa-1f1f8.svg.
 
 Google Maps links use a geographic coordinate for Kilifi Creek (-3.63629, 39.85218) and a representative coordinate for the San Francisco Bay Area (37.77239, -122.42349), with zoom levels appropriate to each place. Coordinate references: https://mapcarta.com/12729808 and https://www.geonames.org/10630414/san-francisco-bay-area.html.
+
+## Family Dentistry Nairobi concept (`dentistry/`)
+
+A proposed landing page redesign for Family Dentistry Nairobi, published at https://asiyetajwa.github.io/me/dentistry/ for client review. It is self-contained (its own fonts, images and inline CSS/JS) and marked `noindex` so it does not compete with the clinic's live site in search. Photos are the clinic's own, colour-graded to the page palette with one shared recipe (the before and after smile photo was graded as a single frame, so the comparison stays honest). The tooth mark is redrawn as SVG from the clinic's logo.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" fill="none">
+  <defs>
+    <linearGradient id="fdSwooshL" x1="16" y1="22" x2="46" y2="8" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7F8EF0" stop-opacity="0"/>
+      <stop offset=".35" stop-color="#7F8EF0"/>
+      <stop offset="1" stop-color="#5FBF97"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 8) scale(1.35)">
+    <path d="M33 25.5C35.2 21.4 36.4 16.6 34.4 13.8 32.4 11.2 29.2 12.4 27 15.2 24.8 12.2 19.8 10.8 15.6 13 10.6 15.6 9.6 21.4 11.2 27.4 12.4 31.8 13.8 36.6 14.4 42.5" stroke="#12143A" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.5 23.5C20.5 14.5 33 6.5 41.5 7.6 46.5 8.3 44.2 14 36.8 22.4" stroke="url(#fdSwooshL)" stroke-width="1.7" stroke-linecap="round"/>
+    <g stroke="#12143A" stroke-width="1.15" stroke-linecap="round"><path d="M24.2 21.2v2.6M24.2 30.6v2.6M18.6 27.2h2.6M27.2 27.2h2.6M20.3 23.3l1.7 1.7M26.4 29.4l1.7 1.7M28.1 23.3l-1.7 1.7M22 29.4l-1.7 1.7"/></g>
+    <circle cx="24.2" cy="27.2" r="2.3" fill="#3E9C78"/>
+  </g>
+  <text x="82" y="44" font-family="Newsreader, Georgia, serif" font-size="32" letter-spacing="-.3" fill="#0B0F6E">Family Dentistry</text>
+  <text x="84" y="64" font-family="Geist Mono, ui-monospace, monospace" font-size="10" letter-spacing="3.4" fill="#6C6E82">NAIROBI · DR. WALA &amp; ASSOCIATES</text>
+</svg>
