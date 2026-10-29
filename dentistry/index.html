@@ -216,12 +216,23 @@ section{position:relative}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.about-imgs{position:relative;padding-bottom:250px}
-.about-imgs>div:first-child{width:78%}
-.about-imgs>div:first-child img{aspect-ratio:4/5;object-fit:cover;object-position:46% 50%}
-.about-imgs>div:last-child{position:absolute;right:0;bottom:0;width:42%}
-.about-imgs>div:last-child .frame{background:#fff;padding:8px;box-shadow:0 30px 60px -24px rgba(18,20,58,.35)}
+.about-imgs{position:relative;padding-bottom:250px;isolation:isolate}
+/* the room: an offset hairline frame and a patch of dots behind it, a frosted label on it */
+.about-imgs>div:nth-child(2){position:relative;width:78%}
+.about-imgs>div:nth-child(2)::before{content:"";position:absolute;inset:-18px 18px 46px -18px;border:1px solid var(--peri-2);border-radius:26px;z-index:-1}
+.about-imgs>div:nth-child(2) img{aspect-ratio:4/5;object-fit:cover;object-position:46% 50%;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.about-imgs>div:nth-child(2) .frame{overflow:hidden}
+.about-imgs>div:nth-child(2):hover img{transform:scale(1.03)}
+.dots-patch{position:absolute;right:-6px;top:-30px;width:200px;height:200px;z-index:-1;background-image:radial-gradient(var(--peri) 1.2px,transparent 1.5px);background-size:14px 14px;opacity:.45;-webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent);mask-image:radial-gradient(closest-side,#000 55%,transparent)}
+.room-chip{position:absolute;top:22px;left:22px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);border:1px solid rgba(255,255,255,.85);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);box-shadow:0 8px 20px -10px rgba(18,20,58,.35)}
+.room-chip i{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 3px rgba(62,156,120,.18)}
+/* the portrait: a white-matted card at a slight angle that settles on hover and drifts as you scroll */
+.about-imgs>div:last-child{position:absolute;right:0;bottom:0;width:42%;z-index:2}
+.about-imgs>div:last-child .frame{background:#fff;padding:9px;border-color:#fff;box-shadow:0 2px 6px rgba(18,20,58,.06),0 40px 70px -28px rgba(18,20,58,.45);transform:translateY(var(--drift,0px)) rotate(2.2deg);transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s}
+.about-imgs>div:last-child .frame:hover{transform:translateY(calc(var(--drift,0px) - 6px)) rotate(0deg);box-shadow:0 2px 6px rgba(18,20,58,.06),0 50px 80px -28px rgba(18,20,58,.5)}
 .about-imgs>div:last-child img{aspect-ratio:4/5;object-fit:cover;object-position:72% 22%;border-radius:10px}
+.about-imgs .cap b{font-weight:500;color:#3F49C9;margin-right:8px}
+@media (prefers-reduced-motion:reduce){.about-imgs>div:last-child .frame{transform:rotate(2.2deg)}}
 .cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;padding-left:4px}
 .about-copy h2{margin-bottom:26px}
 .about-copy .lede{margin-bottom:36px}
@@ -469,6 +480,10 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
   .stat{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:16px}
   .stat p{margin:0}
   .about-imgs{padding-bottom:160px}
+  .about-imgs>div:nth-child(2)::before{inset:-10px 10px 40px -10px}
+  .dots-patch{right:-8px;top:-20px;width:130px;height:130px}
+  .room-chip{top:14px;left:14px}
+  .about-imgs>div:nth-child(2) .cap{max-width:54%;line-height:1.5}
   .pillars{grid-template-columns:1fr}
   .t-body>div{padding-left:0}
   .team-band{grid-template-columns:1fr}
@@ -622,13 +637,14 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
     <div class="eyebrow rv"><span class="mono">// The practice</span><span class="eb-mark">[ <i></i> ]</span></div>
     <div class="about-grid" style="margin-top:64px">
       <div class="about-imgs">
+        <span class="dots-patch" aria-hidden="true"></span>
         <div class="rv">
-          <div class="frame"><img src="assets/img/treatment-room.jpg" alt="A bright treatment room at Family Dentistry Nairobi, with a dental chair beside a large window over the water" width="900" height="900" loading="lazy"></div>
-          <div class="cap">A room with a view · Lavington</div>
+          <div class="frame"><img src="assets/img/treatment-room.jpg" alt="A bright treatment room at Family Dentistry Nairobi, with a dental chair beside a large window over the water" width="900" height="900" loading="lazy"><span class="room-chip"><i></i>Treatment room</span></div>
+          <div class="cap"><b>01</b> A room with a view · Waterfront</div>
         </div>
-        <div class="rv" style="--d:.1s">
-          <div class="frame"><img src="assets/img/dentist-portrait.jpg" alt="A Family Dentistry Nairobi dentist in the clinic's blue coat, focused on treating a patient" width="1000" height="1238" loading="lazy"></div>
-          <div class="cap">Gentle, unhurried care</div>
+        <div class="rv" style="--d:.15s">
+          <div class="frame" id="portraitCard"><img src="assets/img/dentist-portrait.jpg" alt="A Family Dentistry Nairobi dentist in the clinic's blue coat, focused on treating a patient" width="1000" height="1238" loading="lazy"></div>
+          <div class="cap"><b>02</b> Gentle, unhurried care</div>
         </div>
       </div>
       <div class="about-copy">
@@ -1102,6 +1118,15 @@ document.documentElement.classList.add('js');
   var mb=$('#menuBtn'),dr=$('#drawer');
   mb.addEventListener('click',function(){var o=dr.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
   $$('#drawer a').forEach(function(a){a.addEventListener('click',function(){dr.classList.remove('open');mb.setAttribute('aria-expanded','false')})});
+
+  /* ---- the practice: the portrait card drifts a little faster than the room as you scroll ---- */
+  (function(){
+    var card=document.getElementById('portraitCard');
+    if(!card||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var ticking=false;
+    function drift(){ticking=false;var r=card.getBoundingClientRect(),c=r.top+r.height/2-window.innerHeight/2;card.style.setProperty('--drift',Math.max(-28,Math.min(28,-c*0.06)).toFixed(1)+'px')}
+    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(drift)}},{passive:true});drift();
+  })();
 
   /* ---- reveal ---- */
   if('IntersectionObserver' in window){
