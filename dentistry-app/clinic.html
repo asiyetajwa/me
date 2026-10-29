@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Family Dentistry · Clinic</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23E9DCFB'/%3E%3Cpath d='M19 26c-1-9 6-13 12-10 1 .6 2 .6 3 0 6-3 13 1 12 10-1 6-3 9-3.5 15-.5 6-.6 11-3.5 14-2 2-4 0-4.6-3.5-.7-3.4-1.4-6-2.4-6s-1.7 2.6-2.4 6c-.6 3.5-2.6 5.5-4.6 3.5-3-3-3-8-3.5-14-.5-6-2.5-9-3.5-15z' fill='%23fff'/%3E%3C/svg%3E">
+<script src="assets/teeth.js"></script>
+<style>
+@font-face{font-family:"Inter";src:url(assets/inter-variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--bg:#EFEFEF;--win:#FAFAFA;--card:#FFFFFF;--line:#ECECEC;--line-2:#E2E2E2;--sel:#EFEFEF;--ink:#1C1C1E;--ink-2:#3A3A3C;--muted:#8E8E93;--faint:#AEAEB2;--blue:#3D9BF0;--red:#F04438;
+--y-bg:#FFF4D2;--y-bd:#F6E2A6;--y-tx:#B7791F;--g-bg:#E7F7E9;--g-bd:#C9ECCD;--g-tx:#2F9E4F;--n-bg:#F2F2F4;--n-bd:#E5E5EA;--n-tx:#8E8E93;--r-bg:#FFE7E7;--r-bd:#FBCACA;--r-tx:#E5484D;--p-bg:#F4EAFE;--p-bd:#E5D3FB;--p-tx:#A35BE0;--b-bg:#E8F2FE;--b-bd:#CFE2FB;--b-tx:#2F7FD8;
+--font:"Inter",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--spring:cubic-bezier(.2,.8,.2,1);--soft:0 1px 2px rgba(0,0,0,.03),0 8px 24px -16px rgba(0,0,0,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;letter-spacing:-.006em;-webkit-font-smoothing:antialiased;min-height:100vh;padding:28px;display:grid;place-items:center}
+body.embed{padding:0;display:block}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;letter-spacing:inherit}
+input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:10px}
+.win{position:relative;width:min(1400px,100%);height:min(900px,calc(100vh - 56px));background:var(--win);border-radius:30px;box-shadow:0 0 0 1px rgba(0,0,0,.04),0 40px 80px -40px rgba(0,0,0,.25);display:grid;grid-template-columns:300px 1fr;grid-template-rows:auto 1fr;overflow:hidden}
+body.embed .win{width:100%;height:100vh;border-radius:0;box-shadow:none}
+.chrome{display:flex;align-items:center;gap:8px;padding:22px 26px 14px}
+.chrome i{width:13px;height:13px;border-radius:50%;background:#E2E2E2}
+.chrome .tog{margin-left:auto;width:22px;height:18px;border-radius:5px;box-shadow:inset 0 0 0 1.6px #9B9BA0;position:relative}
+.chrome .tog::before{content:"";position:absolute;left:4px;top:4px;bottom:4px;width:5px;border-radius:1.5px;background:#9B9BA0}
+.side{grid-row:2;margin:0 0 22px 22px;padding:12px;background:var(--card);border-radius:22px;box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.side::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 8px 14px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.appicon{width:36px;height:36px;border-radius:11px;flex:none;overflow:hidden;display:block;background:linear-gradient(145deg,#F1E7FD,#D8C1F6);box-shadow:0 4px 10px -4px rgba(163,91,224,.45)}
+.brand b{display:block;font-size:16px;font-weight:600;letter-spacing:-.02em}
+.brand small{font-size:12px;color:var(--muted)}
+.nav button{display:flex;align-items:center;gap:14px;width:100%;height:48px;padding:0 12px;border-radius:13px;font-size:15.5px;font-weight:450;color:var(--ink-2);letter-spacing:-.015em}
+.nav button:hover{background:#F6F6F6}
+.nav button[aria-current=page]{background:var(--sel);color:var(--ink)}
+.nav svg{width:21px;height:21px;flex:none;color:#4A4A4E}
+.nav .chev{margin-left:auto;width:16px;height:16px;opacity:0}
+.nav button[aria-current=page] .chev{opacity:1}
+.nav .rd{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--red)}
+.nav .cnt{margin-left:auto;font-size:12.5px;color:var(--muted);font-weight:500}
+.orb{width:26px;height:26px;border-radius:50%;flex:none;background:conic-gradient(from 210deg,#7FAEEE,#B994EA,#F7B9C7,#F9DE85,#AEE3CB,#7FAEEE);box-shadow:inset 0 0 0 5px rgba(28,28,30,.92)}
+.me{margin-top:auto;position:relative;z-index:1;display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:#F7F7F8}
+.me b{display:block;font-size:14px;font-weight:550}
+.me span{font-size:12px;color:var(--muted)}
+.av{width:56px;height:56px;border-radius:50%;flex:none;display:block}
+.av.sm{width:38px;height:38px}
+.av.xs{width:30px;height:30px}
+main{grid-column:2;grid-row:1 / 3;overflow-y:auto;padding:0 34px 40px;scrollbar-width:none}
+.crumb{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;height:66px;padding-top:12px;font-size:16px;color:var(--muted);background:linear-gradient(180deg,var(--win) 70%,rgba(250,250,250,0))}
+.crumb b{color:var(--ink);font-weight:500}
+.crumb svg{width:14px;height:14px;color:var(--faint)}
+.crumb .sp{flex:1}
+.new{height:40px;padding:0 14px 0 12px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:550;box-shadow:0 8px 18px -10px rgba(0,0,0,.5);transition:transform .2s var(--spring)}
+.new:active{transform:scale(.97)}
+h1{font-size:28px;font-weight:550;letter-spacing:-.03em}
+h2{font-size:19px;font-weight:550;letter-spacing:-.025em}
+.sub{font-size:14px;color:var(--muted);margin-top:4px}
+.tag{display:inline-flex;align-items:center;gap:5px;height:25px;padding:0 9px;border-radius:7px;font-size:12.5px;font-weight:500;background:var(--n-bg);color:var(--n-tx);box-shadow:inset 0 0 0 1px var(--n-bd);white-space:nowrap}
+.tag.y{background:var(--y-bg);color:var(--y-tx);box-shadow:inset 0 0 0 1px var(--y-bd)}
+.tag.g{background:var(--g-bg);color:var(--g-tx);box-shadow:inset 0 0 0 1px var(--g-bd)}
+.tag.r{background:var(--r-bg);color:var(--r-tx);box-shadow:inset 0 0 0 1px var(--r-bd)}
+.tag.p{background:var(--p-bg);color:var(--p-tx);box-shadow:inset 0 0 0 1px var(--p-bd)}
+.tag.b{background:var(--b-bg);color:var(--b-tx);box-shadow:inset 0 0 0 1px var(--b-bd)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.verified{display:inline-block;width:16px;height:16px;vertical-align:-3px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.m{background:var(--card);border-radius:20px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);padding:16px}
+.m .k{font-size:13px;color:var(--muted)}
+.m b{display:block;font-size:32px;font-weight:600;letter-spacing:-.04em;margin-top:6px;font-variant-numeric:tabular-nums}
+.m .tag{margin-top:8px}
+.cols{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;margin-top:26px;align-items:start}
+.date{font-size:19px;font-weight:550;letter-spacing:-.025em;margin:0 2px 12px;display:flex;align-items:baseline;gap:10px}
+.date span{font-size:13px;color:var(--muted);font-weight:450;letter-spacing:0}
+.feed{display:grid;gap:14px}
+.post{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;width:100%;text-align:left}
+.pcard{background:var(--card);border-radius:20px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);overflow:hidden;transition:box-shadow .25s,opacity .4s,transform .4s var(--spring)}
+.post.on .pcard{box-shadow:inset 0 0 0 1.5px #D9C2F7,0 10px 28px -16px rgba(163,91,224,.45)}
+.post.urg .pcard{box-shadow:inset 0 0 0 1.5px var(--r-bd),0 10px 28px -16px rgba(229,72,77,.4)}
+.post.gone{opacity:0;transform:translateX(24px)}
+.pcard .in{padding:13px 15px 12px}
+.who{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;white-space:nowrap}
+.who .h{font-weight:400;color:var(--faint);font-size:13.5px;overflow:hidden;text-overflow:ellipsis}
+.who .age{margin-left:auto;font-weight:400;color:var(--faint);font-size:13px}
+.pcard p{margin-top:5px;font-size:14.5px;line-height:1.45;color:#6E6E73}
+.pcard .ft{padding:9px 15px 11px;border-top:1px solid var(--line)}
+.reply{padding:12px 15px 14px;border-top:1px solid var(--line);background:#FCFCFC}
+.reply .lbl{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.reply textarea{width:100%;min-height:76px;margin-top:6px;border:0;resize:vertical;font-size:14.5px;line-height:1.5;background:transparent;outline:none;color:var(--ink-2)}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{height:38px;padding:0 14px;border-radius:11px;font-size:13.5px;font-weight:550;display:inline-flex;align-items:center;gap:7px;transition:transform .2s var(--spring);text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn.k{background:var(--ink);color:#fff}
+.btn.l{background:#fff;box-shadow:inset 0 0 0 1px var(--line-2)}
+.btn.r{background:var(--r-tx);color:#fff}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.list{background:var(--card);border-radius:20px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);padding:6px}
+.li{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px}
+.li:hover{background:#F8F8F8}
+.li .tx{flex:1;min-width:0}
+.li b{display:block;font-size:14.5px;font-weight:550}
+.li .s{display:block;font-size:13px;color:var(--muted)}
+.li select{height:36px;border-radius:10px;border:0;box-shadow:inset 0 0 0 1px var(--line-2);background:#fff;padding:0 8px;font-size:13.5px}
+.audit{list-style:none}
+.audit li{display:flex;gap:12px;padding:10px;font-size:13.5px;color:var(--ink-2);border-radius:12px;animation:pop .4s var(--spring)}
+.audit time{flex:none;width:44px;color:var(--faint);font-size:12.5px;font-variant-numeric:tabular-nums}
+.audit b{font-weight:550;color:var(--ink)}
+@keyframes pop{0%{transform:scale(.94);opacity:0}100%{transform:none;opacity:1}}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;margin-top:2px}
+.tbl th{text-align:left;font-size:12.5px;font-weight:500;color:var(--muted);padding:6px 12px 8px}
+.tbl td{padding:10px 12px;font-size:14px;border-top:1px solid var(--line);vertical-align:middle}
+.tbl tr:hover td{background:#FAFAFB}
+.tbl .who2{display:flex;align-items:center;gap:10px}
+.tbl .who2 b{display:block;font-weight:550}
+.tbl .who2 span{font-size:12.5px;color:var(--muted)}
+.pipe{display:flex;gap:3px}
+.pipe i{width:20px;height:6px;border-radius:9px;background:#EBEBED}
+.pipe i.on{background:#9ED9B0}
+.pipe i.cur{background:#D8C1F6}
+.done-q{padding:16px;border-radius:18px;background:var(--g-bg);box-shadow:inset 0 0 0 1px var(--g-bd);color:var(--g-tx);font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;animation:pop .5s var(--spring)}
+/* builder */
+.scrim{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.16);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:absolute;top:12px;right:12px;bottom:12px;width:min(780px,calc(100% - 24px));z-index:21;background:var(--win);border-radius:24px;box-shadow:0 30px 60px -20px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.05);display:grid;grid-template-columns:1fr 290px;overflow:hidden;transform:translateX(105%);transition:transform .5s var(--spring)}
+.drawer.on{transform:none}
+.build{overflow-y:auto;padding:22px 24px 30px;scrollbar-width:none}
+.steps{display:flex;gap:5px;margin:14px 0 4px}
+.steps i{flex:1;height:5px;border-radius:9px;background:#EBEBED;transition:background .4s}
+.steps i.on{background:var(--ink)}
+.blk{margin-top:14px;padding:16px;border-radius:20px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line),var(--soft)}
+.blk h3{font-size:15px;font-weight:600;display:flex;align-items:center;gap:9px}
+.num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:600}
+.blk.lock{opacity:.45;pointer-events:none}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.f label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}
+.f input,.f select{width:100%;height:40px;border-radius:11px;border:0;box-shadow:inset 0 0 0 1px var(--line-2);background:#fff;padding:0 11px;font-size:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{height:34px;padding:0 12px;border-radius:10px;background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);font-size:13.5px;font-weight:500;transition:all .2s var(--spring)}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;box-shadow:none}
+.est .l{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.est .l span{color:#6E6E73}
+.est .tot{display:flex;justify-content:space-between;padding-top:10px;font-size:16px;font-weight:600}
+.draft{margin-top:12px;min-height:110px;padding:13px;border-radius:14px;background:#F7F7F8;font-size:14.5px;line-height:1.55;white-space:pre-wrap;color:var(--ink-2)}
+.guard{display:flex;gap:8px;margin-top:10px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.prev{background:#F2F2F3;padding:22px 18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;border-left:1px solid var(--line)}
+.prev .k{font-size:12px;color:var(--muted)}
+.lockn{padding:12px;border-radius:18px;background:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px var(--line);display:flex;gap:10px;align-items:center}
+.lockn b{display:block;font-size:13px;font-weight:600}
+.lockn span{font-size:12.5px;color:var(--ink-2)}
+.wa{padding:12px;border-radius:18px;background:#E9E4DC}
+.bub{background:#fff;border-radius:14px 14px 14px 4px;padding:10px 12px;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.bub a{color:var(--b-tx);font-weight:500;word-break:break-all}
+.bub small{display:block;text-align:right;font-size:11px;color:var(--muted);margin-top:4px}
+.toast{position:absolute;left:50%;bottom:22px;z-index:40;transform:translate(-50%,160%);display:flex;align-items:center;gap:10px;height:46px;padding:0 16px 0 10px;border-radius:14px;background:var(--ink);color:#fff;font-size:14px;font-weight:500;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);transition:transform .5s var(--spring)}
+.toast.on{transform:translate(-50%,0)}
+.toast i{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-style:normal}
+@media (max-width:1100px){.metrics{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.drawer{grid-template-columns:1fr}.prev{display:none}}
+@media (max-width:760px){body{padding:0}.win{grid-template-columns:1fr;height:auto;min-height:100vh;border-radius:0}.side,.chrome{display:none}main{grid-column:1;padding:0 16px 40px}}
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="tog"></span></div>
+  <aside class="side">
+    <div class="brand"><span class="appicon" data-tooth="lilac happy" data-bare></span><span><b>Family Dentistry</b><small>Clinic · Lavington</small></span></div>
+    <nav class="nav">
+      <button><span class="orb"></span>Ask Companion<svg style="margin-left:auto;width:19px;height:19px;color:#8E8E93" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Today<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.5 4 4.5v14c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-14c-4 0-6.5.5-8 2z"/><path d="M12 6.5v14"/></svg>Journeys<span class="cnt">21</span></button>
+      <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Questions<span class="rd" id="qdot"></span></button>
+      <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Approvals<span class="cnt">1</span></button>
+      <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>Requests</button>
+      <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Approved content</button>
+      <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Audit trail</button>
+    </nav>
+    <div class="me"><span class="av xs" data-tooth="rose wink"></span><span><b>Grace K.</b><span>Treatment coordinator</span></span></div>
+  </aside>
+
+  <main>
+    <div class="crumb"><span>Home</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg><b>Today</b><span class="sp"></span><button class="new" id="newBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New journey</button></div>
+    <h1 id="todayT">Today</h1>
+    <p class="sub">Good morning, Grace. Pilot demo with fictional patients only.</p>
+
+    <div class="metrics">
+      <div class="m"><span class="k">Plans opened</span><b>86%</b><span class="tag g">18 of 21 this month</span></div>
+      <div class="m"><span class="k">Next steps requested</span><b>9</b><span class="tag y">within 7 days</span></div>
+      <div class="m"><span class="k">Questions waiting</span><b id="mQ">3</b><span class="tag r">1 urgent</span></div>
+      <div class="m"><span class="k">First reply</span><b>42 min</b><span class="tag b">median, working hours</span></div>
+    </div>
+
+    <div class="cols">
+      <section>
+        <p class="date">Questions <span>Routed by topic and urgency</span></p>
+        <div class="feed" id="queue"></div>
+      </section>
+      <section>
+        <p class="date">Visit requests <span>Booked only when you confirm</span></p>
+        <div class="list" id="reqs"></div>
+        <p class="date" style="margin-top:24px">Audit trail <span>Every edit, approval and send</span></p>
+        <div class="list"><ul class="audit" id="audit"></ul></div>
+      </section>
+    </div>
+
+    <p class="date" style="margin-top:28px">Journeys <span>Draft, approved, sent, opened, requested, booked</span></p>
+    <div class="list"><table class="tbl" id="tbl"><thead><tr><th>Patient</th><th>Plan</th><th>Dentist</th><th>Progress</th><th>Last activity</th></tr></thead><tbody></tbody></table></div>
+  </main>
+
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="New journey">
+    <div class="build">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span class="tag p">New journey</span><button class="btn l" id="closeB">Close</button></div>
+      <h1 style="margin-top:12px;font-size:24px">From consultation to a plan Amani understands</h1>
+      <div class="steps" id="steps"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="blk"><h3><span class="num">1</span>Patient and dentist</h3>
+        <div class="fields">
+          <div class="f"><label for="f1">Patient reference</label><input id="f1" value="FD-20481 · Amani W."></div>
+          <div class="f"><label for="f2">Responsible dentist</label><select id="f2"><option>Dr. Wala</option><option>Dr. Sonali</option></select></div>
+          <div class="f"><label for="f3">Tooth</label><input id="f3" value="Lower left first molar (36)"></div>
+          <div class="f"><label for="f4">Channel</label><select id="f4"><option>WhatsApp</option><option>SMS</option></select></div>
+        </div></div>
+      <div class="blk"><h3><span class="num">2</span>Procedures, in order</h3>
+        <div class="chips" id="procs">
+          <button class="chip" aria-pressed="true" data-p="Root canal treatment, back tooth" data-c="28000">Root canal, molar</button>
+          <button class="chip" aria-pressed="true" data-p="Core build-up" data-c="8000">Core build-up</button>
+          <button class="chip" aria-pressed="true" data-p="Porcelain-fused crown" data-c="45000">Crown</button>
+          <button class="chip" aria-pressed="true" data-p="X-rays during treatment" data-c="3000">X-rays</button>
+          <button class="chip" aria-pressed="false" data-p="Implant" data-c="180000">Implant</button>
+          <button class="chip" aria-pressed="false" data-p="Scale and polish" data-c="6000">Scale and polish</button>
+        </div>
+        <div class="est" id="est" style="margin-top:12px"></div>
+        <p class="guard">Prices come from the clinic's price list. The patient sees an estimate, with what is included, excluded and could change.</p></div>
+      <div class="blk"><h3><span class="num">3</span>Plain-language explanation</h3>
+        <div class="draft" id="draft">Press Draft. Companion writes only from Dr. Wala's plan above and the clinic's approved content.</div>
+        <div class="tags" id="srcs" style="margin-top:10px"></div>
+        <div class="btns"><button class="btn l" id="draftBtn">Draft</button></div>
+        <p class="guard">No diagnosis, prognosis or new advice. If something is missing, the draft says the team will clarify instead of guessing.</p></div>
+      <div class="blk lock" id="b4"><h3><span class="num">4</span>Dentist approval, then send</h3>
+        <div id="apprv"></div>
+        <div class="btns"><button class="btn k" id="askAppr">Send to Dr. Wala for approval</button><button class="btn l" id="sendBtn" disabled>Send secure link</button></div></div>
+    </div>
+    <div class="prev">
+      <span class="k">What Amani receives</span>
+      <div class="lockn"><span class="appicon" data-tooth="lilac happy" data-bare style="width:32px;height:32px;border-radius:9px"></span><span><b>Family Dentistry</b><span>You have a new message from the clinic.</span></span></div>
+      <span class="k">Previews never show treatment details.</span>
+      <div class="wa"><div class="bub">Hi Amani, Dr. Wala has prepared your treatment plan. Open it here, it is private to you:<br><a href="./" target="_blank" rel="noopener">fdn.care/p/7Kq2-Xw9</a><small>Link expires 30 Nov</small></div></div>
+      <span class="tag" id="prevA" style="align-self:flex-start">Waiting for approval</span>
+    </div>
+  </aside>
+  <div class="toast" id="toast"><i>✓</i><span id="toastT"></span></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+if(new URLSearchParams(location.search).has('embed'))document.body.classList.add('embed');
+var VER='<svg class="verified" viewBox="0 0 24 24"><path d="M12 1.5l2.6 1.9 3.2-.2 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.2L12 22.5l-2.6-1.9-3.2.2-1-3L2.6 16l1-3-1-3 2.6-1.9 1-3 3.2.2z" fill="#3D9BF0"/><path d="m7.8 12 2.8 2.8 5.6-5.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$('#todayT').textContent='Today, '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long'});
+function now(){return new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}
+function toast(t){$('#toastT').textContent=t;var e=$('#toast');e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},2600)}
+function log(h,t){var li=document.createElement('li');li.innerHTML='<time>'+(t||now())+'</time><span>'+h+'</span>';$('#audit').prepend(li)}
+log('<b>Amani W.</b> opened her plan and sealed it as read','09:03');log('<b>Grace</b> sent Amani W. a secure link by WhatsApp','08:14');log('<b>Dr. Wala</b> approved Amani W.\'s plan, version 2','08:12');
+
+var Q=[
+  {id:2,who:'Brian O.',ref:'FD-20377',t:'mint wince bandage',q:'My cheek is swollen since yesterday and it\'s getting bigger.',age:'3 min',urgent:true,tags:[['r','Urgent symptom'],['','To Dr. Wala'],['','Gum treatment']]},
+  {id:1,who:'Amani W.',ref:'FD-20481',t:'lilac happy',q:'Can I pay in instalments?',age:'12 min',tags:[['b','Payments'],['g','To reception'],['','Root canal + crown']],draft:'Yes, you can pay per visit as you go, by M-Pesa or card. For insurance, send a photo of your card and I\'ll start the pre-approval.',src:'Payment policy v1'},
+  {id:3,who:'Wanjiku M.',ref:'FD-20402',t:'peach wow',q:'Is the implant the same price if I need a bone graft?',age:'48 min',tags:[['p','Treatment detail'],['y','To Dr. Sonali'],['','Implant']],draft:'A bone graft is not part of your approved plan, so I won\'t guess the price. Dr. Sonali will check your scan and confirm it at your next visit.',src:'Implant plan v1 · missing detail'}
+];
+var sel=2;
+function renderQ(){
+  var el=$('#queue');$('#mQ').textContent=Q.length;$('#qdot').hidden=!Q.length;
+  if(!Q.length){el.innerHTML='<div class="done-q"><span class="av xs" data-tooth="sage proud"></span>All caught up. Every question has an owner and an answer.</div>';Teeth.mount(el);return}
+  el.innerHTML=Q.map(function(q){var on=q.id===sel;
+    return '<button class="post '+(on?'on ':'')+(q.urgent?'urg':'')+'" data-id="'+q.id+'"><span class="av" data-tooth="'+q.t+'"></span><div class="pcard"><div class="in"><div class="who">'+q.who+'<span class="h">· '+q.ref+'</span><span class="age">'+q.age+'</span></div><p>'+q.q+'</p></div><div class="ft tags">'+q.tags.map(function(t){return '<span class="tag '+t[0]+'">'+t[1]+'</span>'}).join('')+'</div>'+
+    (on?(q.urgent?'<div class="reply"><span class="lbl" style="color:var(--r-tx)">Escalated. No automated reply was sent.</span><p style="margin-top:6px;font-size:14px;line-height:1.5;color:var(--ink-2)">Brian was told to call the clinic now and Dr. Wala has been alerted. Record the outcome once you have spoken.</p><div class="btns"><a class="btn r" href="tel:+254722784882">Call Brian</a><span class="btn l" data-act="resolve" role="button" tabindex="0">Spoke to him, seen today</span></div></div>'
+      :'<div class="reply"><span class="lbl">'+VER+' Suggested reply from approved content only</span><textarea aria-label="Reply">'+q.draft+'</textarea><div class="tags"><span class="tag g">Source: '+q.src+'</span></div><div class="btns"><span class="btn k" data-act="send" role="button" tabindex="0">Send reply</span><span class="btn l" data-act="esc" role="button" tabindex="0">Escalate to dentist</span></div></div>'):'')+
+    '</div></button>'}).join('');
+  Teeth.mount(el);
+  $$('.post',el).forEach(function(b){b.addEventListener('click',function(e){if(e.target.closest('[data-act],textarea,a'))return;sel=+b.dataset.id;renderQ()})});
+  $$('[data-act]',el).forEach(function(b){b.addEventListener('click',function(){
+    var q=Q.filter(function(x){return x.id===sel})[0];
+    if(b.dataset.act==='esc'){log('<b>Grace</b> escalated '+q.who+'\'s question to the dentist');toast('Sent to the dentist');return}
+    log('<b>Grace</b> '+(b.dataset.act==='resolve'?'recorded the outcome for':'answered')+' '+q.who+(q.src?', source: '+q.src:''));
+    toast(b.dataset.act==='resolve'?'Outcome recorded':'Reply sent to '+q.who);
+    $('.post.on').classList.add('gone');
+    setTimeout(function(){Q=Q.filter(function(x){return x.id!==sel});sel=Q.length?Q[0].id:0;renderQ()},380);
+  })});
+}
+renderQ();
+
+var R=[{who:'Amani W.',t:'lilac happy',v:'Visit 1 · Root canal, part one · 90 min',want:'Tue, morning'},{who:'Peter N.',t:'sky calm',v:'Crown fit · 45 min',want:'Sat, midday'}];
+function renderR(){
+  $('#reqs').innerHTML=R.map(function(r,i){return '<div class="li"><span class="av sm" data-tooth="'+r.t+(r.ok?' badge':'')+'"></span><span class="tx"><b>'+r.who+(r.ok?' · '+r.ok:' asked for '+r.want)+'</b><span class="s">'+(r.ok?'Booked. The patient now sees it as confirmed.':r.v)+'</span></span>'+(r.ok?'<span class="tag g">Booked</span>':'<select aria-label="Time"><option>09:30</option><option>10:00</option><option>11:15</option></select><button class="btn k" data-i="'+i+'">Confirm</button>')+'</div>'}).join('');
+  Teeth.mount($('#reqs'));
+  $$('#reqs button').forEach(function(b){b.addEventListener('click',function(){var r=R[+b.dataset.i];r.ok=r.want.split(',')[0]+' '+b.previousElementSibling.value;log('<b>Grace</b> booked '+r.who+', '+r.ok+', in the clinic calendar');toast(r.who+' is booked');renderR()})});
+}
+renderR();
+
+var J=[
+  {who:'Amani W.',ref:'FD-20481',t:'lilac happy',plan:'Root canal + crown',dr:'Dr. Wala',stage:4,st:['y','Requested visit 1'],last:'Sealed as read · 09:03'},
+  {who:'Wanjiku M.',ref:'FD-20402',t:'peach wow',plan:'Implant, upper right',dr:'Dr. Sonali',stage:3,st:['p','Opened, has a question'],last:'Asked about grafts · 48 min'},
+  {who:'Brian O.',ref:'FD-20377',t:'mint wince bandage',plan:'Gum treatment',dr:'Dr. Wala',stage:5,st:['r','Aftercare, urgent'],last:'Reported swelling · 3 min'},
+  {who:'Peter N.',ref:'FD-20355',t:'sky calm',plan:'Crown, upper left',dr:'Dr. Sonali',stage:4,st:['y','Requested crown fit'],last:'Chose Saturday · 1 h'},
+  {who:'Halima A.',ref:'FD-20490',t:'lemon sleepy',plan:'Whitening consultation',dr:'Dr. Wala',stage:1,st:['','Waiting for approval'],last:'Drafted by Grace · 10 min'}
+];
+$('#tbl tbody').innerHTML=J.map(function(j){return '<tr><td><span class="who2"><span class="av xs" data-tooth="'+j.t+'"></span><span><b>'+j.who+'</b><span>'+j.ref+'</span></span></span></td><td>'+j.plan+'</td><td>'+j.dr+'</td><td><div class="pipe">'+[0,1,2,3,4,5].map(function(i){return '<i class="'+(i<j.stage?'on':i===j.stage?'cur':'')+'"></i>'}).join('')+'</div><span class="tag '+j.st[0]+'" style="margin-top:6px">'+j.st[1]+'</span></td><td style="color:var(--muted)">'+j.last+'</td></tr>'}).join('');
+Teeth.mount(document);
+
+var drawer=$('#drawer'),scrim=$('#scrim');
+function openB(){drawer.classList.add('on');scrim.classList.add('on')}
+function closeB(){drawer.classList.remove('on');scrim.classList.remove('on')}
+$('#newBtn').addEventListener('click',openB);$('#closeB').addEventListener('click',closeB);scrim.addEventListener('click',closeB);
+function est(){var on=$$('#procs .chip[aria-pressed=true]'),t=0;$('#est').innerHTML=on.map(function(c){t+=+c.dataset.c;return '<div class="l"><span>'+c.dataset.p+'</span><b>'+(+c.dataset.c).toLocaleString('en-US')+'</b></div>'}).join('')+'<div class="tot"><span>Estimate</span><span>KSh '+t.toLocaleString('en-US')+'</span></div>'}
+$$('#procs .chip').forEach(function(c){c.addEventListener('click',function(){c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true');est()})});est();
+function stepTo(n){$$('#steps i').forEach(function(s,i){s.classList.toggle('on',i<n)})}
+var TEXT='Your lower left back tooth has an inflamed nerve. Dr. Wala recommends saving it with a root canal over two visits, then protecting it with a crown.\n\nThere are four visits over about six weeks. You will be numb for the treatment visits, and you can ask for a pause at any time.\n\nThe estimate is about KSh 84,000. It is not a final bill, and Dr. Wala will ask you before anything changes.';
+$('#draftBtn').addEventListener('click',function(){
+  var d=$('#draft'),i=0;d.textContent='';stepTo(3);this.disabled=true;
+  (function ty(){d.textContent=TEXT.slice(0,i);i+=3;if(i<=TEXT.length+3)setTimeout(ty,12);else{
+    $('#srcs').innerHTML=[['g','Dr. Wala\'s plan, 28 Oct'],['p','Root canal guide v3'],['y','Crown guide v2'],['b','Price list, Oct 2026']].map(function(s){return '<span class="tag '+s[0]+'">'+s[1]+'</span>'}).join('');
+    $('#b4').classList.remove('lock');log('<b>Companion</b> drafted FD-20481\'s explanation from 4 approved sources');
+  }})();
+});
+$('#askAppr').addEventListener('click',function(){var b=this;b.disabled=true;b.textContent='Waiting for Dr. Wala…';
+  setTimeout(function(){$('#apprv').innerHTML='<div class="li" style="margin-top:8px;background:var(--g-bg);box-shadow:inset 0 0 0 1px var(--g-bd)"><span class="av xs" data-tooth="sage proud badge"></span><span class="tx"><b style="color:var(--g-tx)">Approved by Dr. Wala at '+now()+'</b><span class="s">Version 2 locked</span></span></div>';Teeth.mount($('#apprv'));b.textContent='Approved';$('#sendBtn').disabled=false;$('#prevA').className='tag g';$('#prevA').textContent='Approved by Dr. Wala';log('<b>Dr. Wala</b> approved FD-20481, version 2');stepTo(4)},1600)});
+$('#sendBtn').addEventListener('click',function(){this.disabled=true;this.textContent='Sent';log('<b>Grace</b> sent FD-20481 a secure link by WhatsApp, expiring 30 Nov');toast('Secure link sent to Amani');setTimeout(closeB,900)});
+if(location.hash==='#new')openB();
+})();
+</script>
+</body>
+</html>

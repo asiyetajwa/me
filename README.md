@@ -61,3 +61,7 @@ Google Maps links use a geographic coordinate for Kilifi Creek (-3.63629, 39.852
 ## Family Dentistry Nairobi concept (`dentistry/`)
 
 A proposed landing page redesign for Family Dentistry Nairobi, published at https://asiyetajwa.github.io/me/dentistry/ for client review. It is self-contained (its own fonts, images and inline CSS/JS) and marked `noindex` so it does not compete with the clinic's live site in search. Photos are the clinic's own, colour-graded with one shared recipe and a blue tint (navy shadows, periwinkle mids, blue-white highlights; skin takes half the tint) (the before and after smile photo was graded as a single frame, so the comparison stays honest). The tooth mark is redrawn as SVG from the clinic's logo.
+
+## Family Dentistry app mockup (`dentistry-app/`)
+
+A clickable mockup of the Family Dentistry treatment companion, published at https://asiyetajwa.github.io/me/dentistry-app/ for client review: the patient app (`index.html`, demo year of birth 1991), the clinic dashboard (`clinic.html`) and an overview with the demo film (`overview.html`). Every patient, plan and price is fictional, and the pages are marked `noindex`. Source and the film project live outside this repo.

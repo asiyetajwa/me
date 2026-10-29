@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FAFAFA">
+<title>Family Dentistry</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23E9DCFB'/%3E%3Cpath d='M19 26c-1-9 6-13 12-10 1 .6 2 .6 3 0 6-3 13 1 12 10-1 6-3 9-3.5 15-.5 6-.6 11-3.5 14-2 2-4 0-4.6-3.5-.7-3.4-1.4-6-2.4-6s-1.7 2.6-2.4 6c-.6 3.5-2.6 5.5-4.6 3.5-3-3-3-8-3.5-14-.5-6-2.5-9-3.5-15z' fill='%23fff'/%3E%3C/svg%3E">
+<script src="assets/teeth.js"></script>
+<style>
+@font-face{font-family:"Inter";src:url(assets/inter-variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{
+  --bg:#EFEFEF;--win:#FAFAFA;--card:#FFFFFF;--line:#ECECEC;--line-2:#E2E2E2;--sel:#EFEFEF;
+  --ink:#1C1C1E;--ink-2:#3A3A3C;--muted:#8E8E93;--faint:#AEAEB2;
+  --blue:#3D9BF0;--red:#F04438;
+  --y-bg:#FFF4D2;--y-bd:#F6E2A6;--y-tx:#B7791F;
+  --g-bg:#E7F7E9;--g-bd:#C9ECCD;--g-tx:#2F9E4F;
+  --n-bg:#F2F2F4;--n-bd:#E5E5EA;--n-tx:#8E8E93;
+  --r-bg:#FFE7E7;--r-bd:#FBCACA;--r-tx:#E5484D;
+  --p-bg:#F4EAFE;--p-bd:#E5D3FB;--p-tx:#A35BE0;
+  --b-bg:#E8F2FE;--b-bd:#CFE2FB;--b-tx:#2F7FD8;
+  --font:"Inter",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --spring:cubic-bezier(.2,.8,.2,1);
+  --soft:0 1px 2px rgba(0,0,0,.03),0 8px 24px -16px rgba(0,0,0,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;letter-spacing:-.006em;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;letter-spacing:inherit}
+input{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:10px}
+[hidden]{display:none!important}
+
+/* ---------- window ---------- */
+#app{position:relative;height:100dvh;background:var(--win);display:flex;flex-direction:column;overflow:hidden}
+.chrome{display:none}
+.side{display:none}
+.main{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
+
+/* top bar (phones) */
+.bar{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 10px}
+.appicon{width:36px;height:36px;border-radius:11px;flex:none;overflow:hidden;display:block;box-shadow:0 0 0 1px rgba(0,0,0,.04),0 4px 10px -4px rgba(163,91,224,.45)}
+.appname{font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.appname small{display:block;font-size:12px;font-weight:450;color:var(--muted);letter-spacing:0}
+.bar .sp{flex:1}
+.ib{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none;color:var(--ink-2);background:var(--card);box-shadow:inset 0 0 0 1px var(--line);transition:transform .2s var(--spring)}
+.ib:active{transform:scale(.92)}
+.ib svg{width:19px;height:19px}
+#sound .off{display:none}#sound[aria-pressed=false] .on{display:none}#sound[aria-pressed=false] .off{display:inline}
+.seg{display:flex;gap:2px;margin:0 16px 4px;padding:3px;border-radius:13px;background:#EBEBED}
+.seg button{flex:1;height:34px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--muted);position:relative;transition:color .2s}
+.seg button[aria-current=page]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08),0 0 0 .5px rgba(0,0,0,.04)}
+.seg .dot{position:absolute;top:7px;right:12px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+
+/* views */
+.views{position:relative;flex:1;min-height:0}
+.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:14px 16px 130px;scrollbar-width:none;transition:transform .4s var(--spring),opacity .3s}
+.view::-webkit-scrollbar{display:none}
+.view[data-pos=left]{transform:translateX(-24%);opacity:0;pointer-events:none}
+.view[data-pos=right]{transform:translateX(24%);opacity:0;pointer-events:none}
+.crumb{display:none}
+.hello{font-size:13.5px;color:var(--muted);font-weight:450}
+h1{font-size:27px;font-weight:550;letter-spacing:-.03em;line-height:1.15;margin-top:2px}
+h2{font-size:21px;font-weight:550;letter-spacing:-.025em;line-height:1.2}
+h3{font-size:16px;font-weight:600;letter-spacing:-.015em}
+.date{font-size:20px;font-weight:550;letter-spacing:-.025em;margin:26px 2px 12px}
+.muted{color:var(--muted)}
+.fade{position:sticky;bottom:-130px;height:70px;margin-top:-40px;background:linear-gradient(180deg,rgba(250,250,250,0),var(--win));pointer-events:none}
+
+/* pastel tags, after the reference */
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:7px;font-size:12.5px;font-weight:500;background:var(--n-bg);color:var(--n-tx);box-shadow:inset 0 0 0 1px var(--n-bd);white-space:nowrap}
+.tag.y{background:var(--y-bg);color:var(--y-tx);box-shadow:inset 0 0 0 1px var(--y-bd)}
+.tag.g{background:var(--g-bg);color:var(--g-tx);box-shadow:inset 0 0 0 1px var(--g-bd)}
+.tag.r{background:var(--r-bg);color:var(--r-tx);box-shadow:inset 0 0 0 1px var(--r-bd)}
+.tag.p{background:var(--p-bg);color:var(--p-tx);box-shadow:inset 0 0 0 1px var(--p-bd)}
+.tag.b{background:var(--b-bg);color:var(--b-tx);box-shadow:inset 0 0 0 1px var(--b-bd)}
+.verified{display:inline-block;width:17px;height:17px;vertical-align:-3px;flex:none}
+
+/* feed rows: a tooth avatar beside a card */
+.post{display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:start;text-align:left;width:100%}
+.av{width:62px;height:62px;border-radius:50%;flex:none;display:block}
+.av.sm{width:42px;height:42px}
+.av.xs{width:24px;height:24px}
+.pcard{background:var(--card);border-radius:20px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);overflow:hidden;transition:transform .25s var(--spring),box-shadow .25s}
+.post:active .pcard{transform:scale(.985)}
+.pcard .in{padding:14px 15px 13px}
+.who{display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:15.5px;font-weight:600;letter-spacing:-.015em;min-width:0}
+.who .h{font-weight:400;color:var(--faint);font-size:14px;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.who .bd{margin-left:auto;flex:none}
+.pcard p{margin-top:6px;font-size:14.5px;line-height:1.45;color:#6E6E73}
+.pcard .ft{padding:10px 15px 12px;border-top:1px solid var(--line)}
+.post.next .pcard{box-shadow:inset 0 0 0 1.5px #D9C2F7,0 10px 28px -16px rgba(163,91,224,.45)}
+.post.done .pcard{opacity:.62}
+
+/* cards */
+.card{background:var(--card);border-radius:22px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);padding:16px}
+.row{display:flex;align-items:center;gap:12px}
+.list{background:var(--card);border-radius:22px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);padding:6px}
+.li{display:flex;align-items:center;gap:12px;width:100%;padding:10px;border-radius:14px;text-align:left;transition:background .2s}
+.li:hover{background:#F6F6F6}
+.li b{display:block;font-size:15px;font-weight:550;letter-spacing:-.015em}
+.li .s{display:block;font-size:13px;color:var(--muted)}
+.li .chev{margin-left:auto;color:var(--faint);flex:none}
+.li .ib{margin-left:auto}
+.summary{display:grid;grid-template-columns:62px 1fr;gap:12px;margin-top:16px}
+
+/* estimate */
+.total{display:flex;align-items:baseline;gap:6px;margin-top:4px}
+.total b{font-size:38px;font-weight:600;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.total span{font-size:14px;color:var(--muted);font-weight:500}
+.lines{margin-top:12px}
+.ln{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.ln span{color:#6E6E73}
+.ln b{font-weight:550;font-variant-numeric:tabular-nums}
+.mini-seg{display:flex;gap:2px;padding:3px;border-radius:11px;background:#F1F1F3;margin-top:12px}
+.mini-seg button{flex:1;height:30px;border-radius:9px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.mini-seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.segl{list-style:none;margin-top:10px;display:grid;gap:7px}
+.segl li{display:flex;gap:9px;font-size:14px;line-height:1.4;color:var(--ink-2)}
+.segl li i{flex:none;width:7px;height:7px;border-radius:50%;margin-top:7px}
+.note-y{display:flex;gap:8px;margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--y-bg);box-shadow:inset 0 0 0 1px var(--y-bd);color:#8A5A0C;font-size:13px;line-height:1.45}
+
+/* read and seal */
+.hold{position:relative;margin-top:14px;width:100%;height:52px;border-radius:15px;background:var(--ink);color:#fff;font-weight:550;font-size:15px;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none}
+.hold .fill{position:absolute;inset:0;background:linear-gradient(90deg,#B994EA,#7FAEEE);transform-origin:left;transform:scaleX(0)}
+.hold span{position:relative}
+.sealed{display:none;align-items:center;gap:10px;margin-top:12px}
+.seal.done .hold{display:none}
+.seal.done .sealed{display:flex;animation:pop .6s var(--spring)}
+@keyframes pop{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.03)}100%{transform:none;opacity:1}}
+.quiz{margin-top:14px}
+.qq{font-size:14.5px;font-weight:600;margin-bottom:8px}
+.opts{display:grid;gap:6px}
+.opt{text-align:left;padding:12px 13px;border-radius:13px;background:#F7F7F8;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:500;transition:all .2s var(--spring)}
+.opt.right{background:var(--g-bg);color:var(--g-tx);box-shadow:inset 0 0 0 1px var(--g-bd)}
+.opt.wrong{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+
+/* dock */
+.dock{position:absolute;left:0;right:0;bottom:0;z-index:8;display:flex;gap:8px;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(250,250,250,0),var(--win) 38%)}
+.cta{flex:1;min-width:0;height:58px;border-radius:18px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:12px;padding:0 8px 0 18px;text-align:left;box-shadow:0 12px 26px -12px rgba(0,0,0,.45);transition:transform .2s var(--spring),background .3s}
+.cta:active{transform:scale(.98)}
+.cta .t{flex:1;min-width:0;line-height:1.2}
+.cta .t b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cta .t small{display:block;font-size:12.5px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cta .ic{width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none}
+.cta.wait{background:#3A3A3C}
+.cta.ok{background:#2F9E4F}
+.dock .ib{width:58px;height:58px;border-radius:18px}
+.dots i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#fff;margin:0 1.5px;animation:blk 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes blk{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+/* sheets */
+.scrim{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.18);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:21;max-height:92%;overflow-y:auto;background:var(--win);border-radius:28px 28px 0 0;box-shadow:0 -10px 40px -10px rgba(0,0,0,.18);padding:10px 18px calc(22px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .45s var(--spring);scrollbar-width:none}
+.sheet.on{transform:none}
+.grab{width:38px;height:5px;border-radius:9px;background:#DADADD;margin:0 auto 16px}
+.pages{display:flex;gap:2px;padding:3px;border-radius:12px;background:#EBEBED;margin-top:14px;overflow-x:auto;scrollbar-width:none}
+.pages button{flex:1;white-space:nowrap;height:32px;padding:0 10px;border-radius:9px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.pages button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.layer{margin-top:14px;min-height:260px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 18px 18px;background:var(--card);border-radius:24px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);animation:pop .45s var(--spring);cursor:pointer;width:100%}
+.layer .av{width:96px;height:96px}
+.layer h3{margin-top:14px;font-size:19px;font-weight:600}
+.layer p{margin-top:8px;font-size:15px;line-height:1.5;color:#6E6E73;max-width:34ch}
+.layer .tag{margin-top:auto}
+.days{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:14px -18px 0;padding:2px 18px 6px}
+.day{flex:none;width:62px;height:74px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:all .2s var(--spring)}
+.day small{font-size:11.5px;color:var(--muted);font-weight:500}
+.day b{font-size:21px;font-weight:600;letter-spacing:-.03em}
+.day[aria-pressed=true]{background:var(--ink);color:#fff;box-shadow:none;transform:translateY(-2px)}
+.day[aria-pressed=true] small{color:rgba(255,255,255,.65)}
+.day:disabled{opacity:.4}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{height:38px;padding:0 15px;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:500;transition:all .2s var(--spring)}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;box-shadow:none}
+.lbl{display:block;margin-top:18px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.big{display:grid;place-items:center;width:100%;height:54px;border-radius:16px;background:var(--ink);color:#fff;font-weight:600;font-size:15.5px;margin-top:20px;text-decoration:none;transition:opacity .2s,transform .2s var(--spring)}
+.big:active{transform:scale(.98)}
+.big:disabled{opacity:.3}
+.big.lite{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.honest{display:flex;gap:8px;margin-top:12px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.hint{margin-top:12px;text-align:center;font-size:12.5px;color:var(--faint)}
+
+/* ask */
+.thread{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.msg{max-width:86%;padding:11px 14px;border-radius:18px;font-size:14.5px;line-height:1.45;animation:pop .4s var(--spring) both}
+.msg.me{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:6px}
+.msg.them{align-self:flex-start;background:#fff;box-shadow:inset 0 0 0 1px var(--line);border-bottom-left-radius:6px;color:var(--ink-2)}
+.msg .by{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.msg .src{margin-top:9px}
+.ticket{align-self:stretch;padding:13px;border-radius:18px;background:#fff;box-shadow:inset 0 0 0 1px var(--line),var(--soft);animation:pop .4s var(--spring) both}
+.ticket .row{align-items:flex-start}
+.ticket b{font-size:14.5px;font-weight:600}
+.ticket p{font-size:13.5px;line-height:1.45;color:#6E6E73;margin-top:2px}
+.status{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+.urgent{align-self:stretch;padding:14px;border-radius:18px;background:var(--r-bg);box-shadow:inset 0 0 0 1px var(--r-bd);animation:pop .4s var(--spring) both}
+.urgent b{font-size:15.5px;font-weight:600;color:#B42318}
+.urgent p{font-size:13.5px;line-height:1.45;color:#7A271A;margin-top:3px}
+.urgent a{display:grid;place-items:center;height:46px;border-radius:13px;background:var(--r-tx);color:#fff;font-weight:600;text-decoration:none;margin-top:11px}
+.sugg{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:14px -16px 0;padding:0 16px 2px}
+.sugg button{flex:none}
+.typing{align-self:flex-start;padding:13px 15px;border-radius:18px;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+.typing i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--faint);margin:0 2px;animation:blk 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.composer{position:absolute;left:0;right:0;bottom:0;z-index:8;display:flex;gap:8px;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(250,250,250,0),var(--win) 34%)}
+.composer input{flex:1;min-width:0;height:52px;border-radius:16px;border:0;background:#fff;box-shadow:inset 0 0 0 1px var(--line-2),var(--soft);padding:0 16px;font-size:15px;outline:none}
+.composer input:focus{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.composer button{width:52px;height:52px;border-radius:16px;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none}
+.orb{width:30px;height:30px;border-radius:50%;flex:none;background:conic-gradient(from 210deg,#7FAEEE,#B994EA,#F7B9C7,#F9DE85,#AEE3CB,#7FAEEE);box-shadow:inset 0 0 0 5px rgba(28,28,30,.92)}
+
+/* aftercare */
+.sleep{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:18px;padding:28px 20px 22px;background:var(--card);border-radius:26px;box-shadow:inset 0 0 0 1px var(--line),var(--soft)}
+.sleep .av{width:140px;height:140px;cursor:pointer}
+.sleep h2{margin-top:14px}
+.sleep p{margin-top:8px;font-size:14.5px;line-height:1.5;color:#6E6E73;max-width:30ch}
+.streak{display:flex;gap:6px;margin-top:4px}
+.streak span{flex:1;height:44px;border-radius:13px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;font-size:12px;font-weight:550;color:var(--faint);transition:all .3s var(--spring)}
+.streak span.on{background:var(--g-bg);color:var(--g-tx);box-shadow:inset 0 0 0 1px var(--g-bd)}
+.streak span.today{background:var(--p-bg);color:var(--p-tx);box-shadow:inset 0 0 0 1.5px #D9C2F7}
+.task{display:flex;gap:12px;align-items:center;width:100%;padding:10px;border-radius:14px;text-align:left;transition:background .2s,opacity .3s}
+.task:hover{background:#F6F6F6}
+.task .ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)}
+.task .ico svg{width:20px;height:20px}
+.task .tx{flex:1;min-width:0}
+.task .tx b{display:block;font-size:14.5px;font-weight:550}
+.task .tx span{display:block;font-size:13px;color:var(--muted);line-height:1.4}
+.task .ck{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line-2);display:grid;place-items:center;color:transparent;flex:none;transition:all .25s var(--spring)}
+.task.done .ck{background:var(--g-tx);color:#fff;box-shadow:none;transform:scale(1.06)}
+.task.done .tx b{text-decoration:line-through;text-decoration-color:var(--faint);color:var(--muted)}
+.feel{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:4px}
+.feel button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px 9px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-size:12px;font-weight:500;color:var(--ink-2);line-height:1.2;transition:all .2s var(--spring)}
+.feel button .av{width:46px;height:46px}
+.feel button[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--ink);transform:translateY(-2px)}
+
+/* gate */
+.gate{position:absolute;inset:0;z-index:30;background:var(--win);display:flex;flex-direction:column;transition:opacity .5s,transform .5s var(--spring)}
+.gate.gone{opacity:0;transform:scale(1.03);pointer-events:none}
+.gbody{flex:1;min-height:0;overflow-y:auto;padding:calc(22px + env(safe-area-inset-top,0px)) 22px 20px;display:flex;flex-direction:column;scrollbar-width:none}
+.gtop{display:flex;align-items:center;gap:10px}
+.ghero{display:flex;justify-content:center;margin:22px 0 8px}
+.ghero .av{width:124px;height:124px}
+.gbody h1.c{font-size:30px;text-align:center}
+.gbody .lead{text-align:center;color:#6E6E73;font-size:15px;line-height:1.5;margin-top:6px}
+.code{display:flex;gap:8px;margin-top:20px}
+.code span{flex:1;height:58px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);display:grid;place-items:center;font-size:26px;font-weight:600;transition:all .2s var(--spring)}
+.code span.f{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.code.bad{animation:shake .4s}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.pad button{height:50px;border-radius:15px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-size:20px;font-weight:500;display:grid;place-items:center;transition:transform .15s var(--spring),background .2s}
+.pad button:active{transform:scale(.95);background:var(--sel)}
+.qbox{margin-top:10px;background:#fff;border-radius:20px;box-shadow:inset 0 0 0 1px var(--line),var(--soft);padding:6px;animation:pop .4s var(--spring)}
+.qbox .qh{display:flex;align-items:center;gap:8px;padding:8px 8px 6px;font-size:14.5px;font-weight:600}
+.num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:600;flex:none}
+.qline{display:flex;align-items:center;gap:9px;padding:10px 8px;font-size:14px;color:var(--faint)}
+.qline .num{background:#EBEBED;color:var(--muted)}
+.qline.done{color:var(--ink-2)}
+.qline.done .num{background:var(--g-bg);color:var(--g-tx)}
+.qline.done b{font-weight:600;color:var(--ink)}
+.gfoot{display:flex;align-items:center;gap:12px;padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.ring{position:relative;width:38px;height:38px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:10.5px;font-weight:600}
+.gfoot p{flex:1;font-size:13.5px;color:var(--ink-2)}
+.gfoot .go{height:42px;padding:0 18px;border-radius:13px;background:#E5E5EA;color:#fff;font-weight:600;transition:background .3s}
+.gfoot .go.ready{background:var(--ink)}
+.thanks{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px}
+.thanks .av{width:120px;height:120px}
+.thanks h1{margin-top:18px;font-size:30px}
+.thanks p{margin-top:10px;font-size:16px;line-height:1.5;color:#6E6E73;min-height:3em;max-width:30ch}
+.gate.thank .gbody,.gate.thank .gfoot{display:none}
+.gate.thank .thanks{display:flex}
+
+/* banner */
+.banner{position:absolute;left:10px;right:10px;top:calc(8px + env(safe-area-inset-top,0px));z-index:40;display:flex;gap:10px;align-items:center;padding:11px 13px;border-radius:20px;background:rgba(255,255,255,.82);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 14px 34px -14px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.7);transform:translateY(-140%);transition:transform .55s var(--spring)}
+.banner.on{transform:none}
+.banner b{display:block;font-size:13.5px;font-weight:600}
+.banner span{font-size:13px;color:var(--ink-2)}
+.banner small{margin-left:auto;align-self:flex-start;font-size:12px;color:var(--muted)}
+canvas.confetti{position:absolute;inset:0;z-index:50;pointer-events:none}
+
+/* ---------- wider screens: the window from the reference ---------- */
+@media (min-width:900px){
+  body{padding:28px;display:grid;place-items:center;min-height:100vh}
+  #app{width:min(1180px,100%);height:min(820px,calc(100vh - 56px));border-radius:30px;box-shadow:0 0 0 1px rgba(0,0,0,.04),0 40px 80px -40px rgba(0,0,0,.25);display:grid;grid-template-columns:330px 1fr;grid-template-rows:auto 1fr}
+  .chrome{display:flex;align-items:center;gap:8px;padding:22px 26px 14px;grid-column:1;grid-row:1}
+  .chrome i{width:13px;height:13px;border-radius:50%;background:#E2E2E2;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)}
+  .chrome .tog{margin-left:auto;width:22px;height:18px;border-radius:5px;box-shadow:inset 0 0 0 1.6px #9B9BA0;position:relative}
+  .chrome .tog::before{content:"";position:absolute;left:4px;top:4px;bottom:4px;width:5px;border-radius:1.5px;background:#9B9BA0}
+  .side{display:flex;flex-direction:column;grid-column:1;grid-row:2;margin:0 0 22px 22px;padding:12px;background:var(--card);border-radius:22px;box-shadow:inset 0 0 0 1px var(--line);position:relative;overflow:hidden}
+  .side::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none}
+  .side .brand{display:flex;align-items:center;gap:10px;padding:6px 8px 14px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .nav button{display:flex;align-items:center;gap:14px;width:100%;height:50px;padding:0 12px;border-radius:13px;font-size:16px;font-weight:450;color:var(--ink-2);letter-spacing:-.015em;transition:background .2s}
+  .nav button:hover{background:#F6F6F6}
+  .nav button[aria-current=page]{background:var(--sel);color:var(--ink)}
+  .nav button svg{width:22px;height:22px;flex:none;color:#4A4A4E}
+  .nav button .chev{margin-left:auto;width:16px;height:16px;opacity:0}
+  .nav button[aria-current=page] .chev{opacity:1}
+  .nav button .rd{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--red)}
+  .nav button .rd+.chev{margin-left:8px}
+  .nav .askrow .orb{width:26px;height:26px}
+  .nav .askrow .srch{margin-left:auto;width:20px;height:20px;color:#8E8E93}
+  .bar,.seg{display:none}
+  .main{grid-column:2;grid-row:1 / 3}
+  .crumb{display:flex;align-items:center;gap:12px;padding:22px 34px 0;font-size:16px;color:var(--muted);height:64px}
+  .crumb b{color:var(--ink);font-weight:500}
+  .crumb svg{width:14px;height:14px;color:var(--faint)}
+  .view{padding:18px 34px 130px}
+  .wrapw{max-width:640px}
+  h1{font-size:30px}
+  .dock{padding:16px 34px 24px}
+  .dock .cta{max-width:574px;flex:none;width:100%}
+  .composer{padding:16px 34px 24px}
+  .composer input{flex:none;width:574px}
+  .sheet{left:50%;right:auto;bottom:auto;top:50%;width:440px;max-height:86%;border-radius:28px;transform:translate(-50%,-44%) scale(.96);opacity:0;pointer-events:none;transition:transform .45s var(--spring),opacity .3s}
+  .sheet.on{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}
+  .gate{border-radius:30px}
+  .gbody,.gfoot{max-width:440px;margin:0 auto;width:100%}
+  .gfoot{border-top:0}
+  .banner{left:auto;right:20px;width:360px}
+}
+body.embed{padding:0}
+body.embed #app{width:100%;height:100vh;border-radius:0;box-shadow:none}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="app" data-view="plan">
+
+  <!-- private link, then three quick questions -->
+  <section class="gate" id="gate" aria-label="Open your plan">
+    <div class="gbody" id="gbody"></div>
+    <div class="gfoot" id="gfoot">
+      <div class="ring"><svg width="38" height="38"><circle cx="19" cy="19" r="16" fill="none" stroke="#EBEBED" stroke-width="3.5"/><circle id="ringArc" cx="19" cy="19" r="16" fill="none" stroke="#1C1C1E" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="100.5" stroke-dashoffset="100.5" style="transition:stroke-dashoffset .5s"/></svg><b id="ringTxt">0/3</b></div>
+      <p id="ringLine">A quick privacy check first.</p>
+      <button class="go" id="goBtn">Open</button>
+    </div>
+    <div class="thanks"><span class="av" data-tooth="lilac proud sparkle"></span><h1>Thank you, Amani.</h1><p id="thxLine"></p></div>
+  </section>
+
+  <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="tog"></span></div>
+
+  <aside class="side" aria-label="Family Dentistry">
+    <div class="brand"><span class="appicon" data-tooth="lilac happy" data-bare style="background:linear-gradient(145deg,#F1E7FD,#D8C1F6)"></span><span class="appname">Family Dentistry<small>Lavington, Nairobi</small></span></div>
+    <nav class="nav">
+      <button class="askrow" data-go="ask"><span class="orb"></span>Ask<svg class="srch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button data-go="plan" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.5 4 4.5v14c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-14c-4 0-6.5.5-8 2z"/><path d="M12 6.5v14"/></svg>My plan<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <button data-go="visits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17M15.5 14.5v4M13.5 16.5h4"/></svg>Visits<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <button data-go="care"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>Aftercare<span class="rd" id="careDot" hidden></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="bar">
+      <span class="appicon" data-tooth="lilac happy" data-bare style="background:linear-gradient(145deg,#F1E7FD,#D8C1F6)"></span>
+      <span class="appname">Family Dentistry<small>Your treatment plan</small></span>
+      <span class="sp"></span>
+      <button class="ib" id="sound" aria-pressed="true" aria-label="Sound">
+        <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+        <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
+      </button>
+    </header>
+    <nav class="seg" aria-label="Sections">
+      <button data-go="plan" aria-current="page">Plan</button>
+      <button data-go="visits">Visits</button>
+      <button data-go="ask">Ask</button>
+      <button data-go="care">Care<i class="dot" id="careDot2" hidden></i></button>
+    </nav>
+    <div class="crumb"><span>Home</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg><b id="crumbT">My plan</b></div>
+
+    <div class="views">
+      <!-- PLAN -->
+      <section class="view" id="v-plan" data-pos="center"><div class="wrapw">
+        <p class="hello" id="hello">Hi Amani</p>
+        <h1>Your plan, 28 October</h1>
+        <div class="summary">
+          <span class="av" data-tooth="lilac happy crown"></span>
+          <div class="pcard"><div class="in">
+            <div class="who">Dr. Wala <svg class="verified" viewBox="0 0 24 24"><path d="M12 1.5l2.6 1.9 3.2-.2 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.2L12 22.5l-2.6-1.9-3.2.2-1-3L2.6 16l1-3-1-3 2.6-1.9 1-3 3.2.2z" fill="#3D9BF0"/><path d="m7.8 12 2.8 2.8 5.6-5.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="h">@approved · your dentist</span></div>
+            <p>Save your lower left back tooth with a root canal, then protect it with a crown. Every word here was checked by Dr. Wala.</p>
+          </div><div class="ft tags"><span class="tag y">4 visits</span><span class="tag g">About 6 weeks</span><span class="tag">1 tooth</span><span class="tag p">Approved</span></div></div>
+        </div>
+
+        <p class="date">Next step</p>
+        <button class="post next" id="nextPost"></button>
+
+        <p class="date" id="estimate">The estimate</p>
+        <div class="card">
+          <span class="muted" style="font-size:13px">Estimated total</span>
+          <div class="total"><b id="tot">0</b><span>KSh</span></div>
+          <span class="muted" style="font-size:13.5px">Likely between KSh 80,000 and 92,000</span>
+          <div class="lines">
+            <div class="ln"><span>Root canal treatment, back tooth</span><b>28,000</b></div>
+            <div class="ln"><span>Core build-up</span><b>8,000</b></div>
+            <div class="ln"><span>Porcelain-fused crown</span><b>45,000</b></div>
+            <div class="ln"><span>X-rays during treatment</span><b>3,000</b></div>
+          </div>
+          <div class="mini-seg" role="group" aria-label="Estimate details"><button aria-pressed="true" data-seg="in">Included</button><button aria-pressed="false" data-seg="out">Not included</button><button aria-pressed="false" data-seg="change">Could change</button></div>
+          <ul class="segl" id="segl"></ul>
+          <div class="note-y"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span>An estimate, not a final bill. Dr. Wala will ask you before anything changes, and you only pay for what is done.</span></div>
+        </div>
+
+        <p class="date" id="sealT">Before your first visit</p>
+        <div class="card seal" id="seal">
+          <div class="row"><span class="av sm" data-tooth="sky calm" id="sealAv"></span><div><h3>I've read my plan</h3><p class="muted" style="font-size:13.5px;margin-top:2px">Press and hold to let your care team know.</p></div></div>
+          <button class="hold" id="hold"><span class="fill" id="holdFill"></span><span id="holdTxt">Press and hold</span></button>
+          <div class="sealed"><span class="tag g">Read and sealed</span><span class="muted" style="font-size:13.5px">Dr. Wala's team can see it.</span></div>
+          <div class="quiz" id="quiz" hidden></div>
+        </div>
+
+        <p class="date">Your care team</p>
+        <div class="list">
+          <div class="li"><span class="av sm" data-tooth="sage happy"></span><span><b>Dr. Wala <svg class="verified" viewBox="0 0 24 24"><path d="M12 1.5l2.6 1.9 3.2-.2 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.2L12 22.5l-2.6-1.9-3.2.2-1-3L2.6 16l1-3-1-3 2.6-1.9 1-3 3.2.2z" fill="#3D9BF0"/><path d="m7.8 12 2.8 2.8 5.6-5.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span class="s">Your dentist</span></span></div>
+          <div class="li"><span class="av sm" data-tooth="rose wink"></span><span><b>Grace</b><span class="s">Treatment coordinator · reception</span></span><a class="ib" href="tel:+254722784882" aria-label="Call the clinic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a></div>
+        </div>
+        <p class="honest" style="margin-top:14px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>This private link is just for you and expires on 30 November. Sample journey, fictional patient.</p>
+      </div></section>
+
+      <!-- VISITS -->
+      <section class="view" id="v-visits" data-pos="right"><div class="wrapw">
+        <p class="hello">4 visits, about 6 weeks</p>
+        <h1>Your visits</h1>
+        <div id="feed"></div>
+        <div class="fade"></div>
+      </div></section>
+
+      <!-- ASK -->
+      <section class="view" id="v-ask" data-pos="right" style="padding-bottom:110px"><div class="wrapw">
+        <div class="row"><span class="orb" style="width:34px;height:34px"></span><h1 style="font-size:26px;margin:0">Ask</h1></div>
+        <p class="muted" style="margin-top:8px;font-size:14.5px;line-height:1.45">Answers come only from your approved plan. Anything else goes straight to your care team.</p>
+        <div class="sugg" id="sugg"><button class="tag y">Will it hurt?</button><button class="tag g">How long is visit 1?</button><button class="tag p">Can I pay in instalments?</button><button class="tag b">Can I eat before?</button><button class="tag">Can I work after?</button></div>
+        <div class="thread" id="thread">
+          <div class="msg them"><span class="by"><span class="av xs" data-tooth="rose wink"></span>Family Dentistry</span>Hi <span class="nm">Amani</span>, ask anything about your plan. If it needs a person, Grace or Dr. Wala will reply here.</div>
+        </div>
+      </div></section>
+
+      <!-- AFTERCARE -->
+      <section class="view" id="v-care" data-pos="right"><div class="wrapw" id="care"></div></section>
+    </div>
+
+    <div class="dock" id="dock">
+      <button class="cta" id="cta"><span class="t"><b id="ctaT">Request Visit 1</b><small id="ctaS">Root canal, part one · 90 min</small></span><span class="ic" id="ctaI"></span></button>
+      <a class="ib" href="tel:+254722784882" aria-label="Call the clinic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a>
+    </div>
+    <form class="composer" id="composer" hidden><input id="askIn" placeholder="Ask about your plan" autocomplete="off" aria-label="Your question"><button aria-label="Send"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <section class="sheet" id="sheetV" aria-label="Visit details"></section>
+  <section class="sheet" id="sheetR" aria-label="Request a visit"></section>
+  <div class="banner" id="banner"><span class="appicon" data-tooth="lilac happy" data-bare style="width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,#F1E7FD,#D8C1F6)"></span><span><b>Family Dentistry</b><span id="bannerT">You have a new message</span></span><small>now</small></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var app=$('#app'),EMBED=new URLSearchParams(location.search).has('embed');
+if(EMBED)document.body.classList.add('embed');
+var VER='<svg class="verified" viewBox="0 0 24 24"><path d="M12 1.5l2.6 1.9 3.2-.2 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.2L12 22.5l-2.6-1.9-3.2.2-1-3L2.6 16l1-3-1-3 2.6-1.9 1-3 3.2.2z" fill="#3D9BF0"/><path d="m7.8 12 2.8 2.8 5.6-5.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function check(s){return '<svg width="'+(s||14)+'" height="'+(s||14)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'}
+
+/* ---------- state ---------- */
+var S={name:'Amani',nerves:'Calm',lang:'English',channel:'WhatsApp',sealed:false,quiz:0,req:null,visit1:false,checks:{},feel:null,sound:true};
+var KEY='familydentistry:v1';
+if(!EMBED){try{var raw=localStorage.getItem(KEY);if(raw)Object.assign(S,JSON.parse(raw))}catch(e){}}
+function save(){if(EMBED)return;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+/* ---------- soft synthesised sounds ---------- */
+var ac=null;
+function ctx(){if(!ac){try{ac=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(ac&&ac.state==='suspended')ac.resume();return ac}
+function tone(f,t,d,type,v,slide){var a=ctx();if(!a||!S.sound)return;var o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,a.currentTime+t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,a.currentTime+t+d);g.gain.setValueAtTime(0,a.currentTime+t);g.gain.linearRampToValueAtTime(v||.12,a.currentTime+t+.01);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+t+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t);o.stop(a.currentTime+t+d+.05)}
+var sfx={
+  tap:function(){tone(1200,0,.04,'sine',.06)},
+  pop:function(){tone(660,0,.11,'sine',.13,330)},
+  bloop:function(){tone(440,0,.09,'sine',.1,880);tone(880,.07,.12,'sine',.08,660)},
+  chime:function(){tone(784,0,.45,'sine',.09);tone(1175,.09,.55,'sine',.07);tone(1568,.18,.6,'sine',.05)},
+  send:function(){tone(520,0,.08,'sine',.09,1040)},
+  seal:function(){tone(220,0,.22,'sine',.18,110);tone(1046,.12,.45,'sine',.07);tone(1318,.2,.5,'sine',.06)},
+  wake:function(){tone(392,0,.12,'sine',.1,523);tone(523,.12,.12,'sine',.1,659);tone(659,.24,.3,'sine',.1,1046)},
+  alert:function(){tone(698,0,.16,'triangle',.07);tone(698,.22,.16,'triangle',.07)}
+};
+function buzz(p){try{if(navigator.userActivation&&!navigator.userActivation.hasBeenActive)return;navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+$('#sound').addEventListener('click',function(){S.sound=!S.sound;this.setAttribute('aria-pressed',S.sound);save();if(S.sound)sfx.pop()});
+
+/* ---------- pastel confetti ---------- */
+function confetti(x,y){
+  var c=document.createElement('canvas');c.className='confetti';app.appendChild(c);
+  var r=app.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=r.width*d;c.height=r.height*d;var g=c.getContext('2d');g.scale(d,d);
+  var cols=['#D8C1F6','#BFDBA6','#AEE3CB','#FBC6A8','#F9DE85','#B9D5FA','#F7B9C7','#3D9BF0'],P=[];
+  for(var i=0;i<80;i++){var a=-Math.PI/2+(Math.random()-.5)*2,s=5+Math.random()*8;P.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r:Math.random()*6,vr:(Math.random()-.5)*.3,w:5+Math.random()*5,c:cols[i%cols.length],o:Math.random()<.4})}
+  var t=0;(function f(){t++;g.clearRect(0,0,r.width,r.height);P.forEach(function(p){p.vy+=.28;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;g.save();g.translate(p.x,p.y);g.rotate(p.r);g.globalAlpha=Math.max(0,1-t/100);g.fillStyle=p.c;if(p.o){g.beginPath();g.arc(0,0,p.w/2,0,7);g.fill()}else g.fillRect(-p.w/2,-p.w/3,p.w,p.w/1.5);g.restore()});if(t<100)requestAnimationFrame(f);else c.remove()})();
+}
+function rel(el){var a=app.getBoundingClientRect(),b=el.getBoundingClientRect();return [b.left-a.left+b.width/2,b.top-a.top+b.height/2]}
+function squish(el){if(!el)return;var s=el.querySelector('svg');if(s){s.classList.remove('tt-squish');void s.getBoundingClientRect();s.classList.add('tt-squish')}}
+function setTooth(el,v){if(!el)return;el.dataset.tooth=v;Teeth.mount(el.parentNode)}
+
+/* ---------- the dentist-approved plan ---------- */
+var VISITS=[
+  {id:1,t:'Root canal, part one',d:'90 min',when:'This week or next',tint:'lilac',mood:'happy',tags:[['y','Numbing'],['r','Root canal'],['','90 min']],sum:'Dr. Wala gently clears the inflamed nerve and cleans the canals.',
+   L:[['What happens','Dr. Wala numbs the tooth, gently removes the inflamed nerve from inside it, cleans the canals and places a soothing dressing.','happy'],['How it feels','You will be numb, so it should feel like a long filling. Raise your hand any time for a pause.','calm'],['Before you come','Eat a normal meal beforehand and take your usual medicines. Bring your insurance card if you have one.','wink'],['Afterwards','The tooth may feel tender for a few days. Your aftercare wakes up in the app as soon as the visit is done.','sleepy']]},
+  {id:2,t:'Root canal, part two',d:'60 min',when:'1 to 2 weeks later',tint:'sage',mood:'happy',tags:[['y','Numbing'],['g','Seal and rebuild'],['','60 min']],sum:'The canals are sealed for good and the tooth is rebuilt inside.',
+   L:[['What happens','The canals are filled and sealed for good, then the tooth is rebuilt from the inside with a strong core.','happy'],['How it feels','Usually quicker and easier than the first visit. You will be numb again.','calm'],['Before you come','Nothing special. Tell us if the tooth has been sore since visit one.','wink'],['Afterwards','Chew on the other side until your crown is fitted.','calm']]},
+  {id:3,t:'Crown preparation',d:'75 min',when:'Soon after',tint:'peach',mood:'wink',tags:[['b','Measuring'],['p','Temporary crown'],['','75 min']],sum:'Your tooth is shaped and measured, and you leave with a temporary crown.',
+   L:[['What happens','The tooth is shaped and measured for your crown. You leave with a temporary crown so it stays protected.','happy'],['How it feels','Numb and comfortable. The temporary crown can feel a little different at first.','wow'],['Before you come','Nothing special.','wink'],['Afterwards','Avoid sticky foods like toffee or gum on that side.','calm']]},
+  {id:4,t:'Fit your crown',d:'45 min',when:'About 2 weeks later',tint:'lemon',mood:'proud',acc:'crown',tags:[['y','Crown fit'],['g','Often no numbing'],['','45 min']],sum:'Your permanent crown is fitted and polished so your bite feels natural.',
+   L:[['What happens','The temporary comes off and your permanent crown is fitted and polished so your bite feels natural.','proud'],['How it feels','Often no numbing is needed. The shortest visit of the four.','happy'],['Before you come','Nothing special.','wink'],['Afterwards','Brush and floss it like your other teeth. It is built to last for many years.','proud']]},
+  {id:5,t:'Six-month check-up',d:'30 min',when:'Spring 2027',tint:'sky',mood:'calm',tags:[['b','Check-up'],['','30 min']],sum:'A check of the crown and the rest of your smile, with a clean.',
+   L:[['What happens','A check of your crown and the rest of your smile, with a clean.','happy'],['How it feels','Quick and easy.','calm'],['Before you come','Nothing special.','wink'],['Afterwards','See you in six months.','proud']]}
+];
+var SEG={
+  in:[['#2F9E4F','All four visits listed above'],['#2F9E4F','X-rays taken during treatment'],['#2F9E4F','The temporary crown'],['#2F9E4F','A bite check after the crown is fitted']],
+  out:[['#E5484D','Painkillers or medicines from a pharmacy'],['#E5484D','Treatment on any other tooth'],['#E5484D','Your insurer decides what they cover. Grace can help with the pre-approval form.']],
+  change:[['#E0A100','If the tooth has an extra canal, add about KSh 6,000'],['#E0A100','A full ceramic crown instead, add KSh 10,000 (your choice)'],['#E0A100','Dr. Wala will always ask you first']]
+};
+var ANSWERS=[
+  {k:/hurt|pain(ful)?\b|sore|feel/i,a:'You will be numb during each visit, so it should feel like a long filling. You can raise your hand any time for a pause. Some tenderness for a few days afterwards is normal.',src:'Visit guide'},
+  {k:/long|duration|visit 1|first visit/i,a:'Visit 1 takes about 90 minutes. Visit 2 is about 60, crown preparation about 75, and fitting the crown about 45.',src:'Your plan'},
+  {k:/eat|food|breakfast|lunch/i,a:'Yes, eat a normal meal before you come. Afterwards, wait until the numbness wears off, then choose soft foods that day.',src:'Visit guide'},
+  {k:/work|office|school|drive/i,a:'Most people go back to work or school the same day. The numbness lasts 2 to 3 hours.',src:'Visit guide'},
+  {k:/cost|price|how much|total|ksh|estimate/i,a:'The estimate is about KSh 84,000, likely between 80,000 and 92,000. It is not a final bill, and Dr. Wala will ask you before anything changes.',src:'Your estimate'}
+];
+var URGENT=/swell|swollen|bleed|fever|can'?t (open|swallow|breathe)|severe|unbearable|pus|face/i;
+
+/* ---------- gate ---------- */
+var gate=$('#gate'),gbody=$('#gbody'),code='',step=0;
+var ICON='<span class="appicon" data-tooth="lilac happy" data-bare style="background:linear-gradient(145deg,#F1E7FD,#D8C1F6)"></span>';
+var QS=[
+  {k:'lang',q:'Which language suits you?',o:[['English','',''],['Kiswahili','Tutatumia Kiswahili','']]},
+  {k:'nerves',q:'How do you feel about your treatment?',o:[['Calm','','sage calm'],['A little nervous','That\'s normal','lemon wow'],['Very nervous','We\'ll go gently','sky sad']]},
+  {k:'channel',q:'Where should reminders go?',o:[['WhatsApp','Previews never show treatment details',''],['SMS','Previews never show treatment details','']]}
+];
+var LINES=['A quick privacy check first.','Nice to meet you properly.','We\'ll match how we explain things.','Last one.','All set.'];
+function ring(n){$('#ringArc').style.strokeDashoffset=100.5-100.5*(n/3);$('#ringTxt').textContent=n+'/3';$('#ringLine').textContent=LINES[Math.min(n+1,4)]}
+function renderCode(mood){
+  gbody.innerHTML='<div class="gtop">'+ICON+'<span class="appname">Family Dentistry<small>Private link</small></span></div>'+
+  '<div class="ghero"><span class="av" data-tooth="lilac '+(mood||'happy')+' sparkle" id="gAv"></span></div><h1 class="c">Hi Amani</h1><p class="lead">Dr. Wala has prepared your treatment plan. To keep it private, enter your year of birth.</p>'+
+  '<div class="code" id="code">'+[0,1,2,3].map(function(i){return '<span class="'+(i===code.length?'f':'')+'">'+(code[i]||'')+'</span>'}).join('')+'</div>'+
+  '<div class="pad">'+[1,2,3,4,5,6,7,8,9,'',0,'del'].map(function(k){return k===''?'<span></span>':'<button data-k="'+k+'" aria-label="'+(k==='del'?'Delete':k)+'">'+(k==='del'?'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H9l-6 7 6 7h12z"/><path d="m17 9-6 6M11 9l6 6"/></svg>':k)+'</button>'}).join('')+'</div>'+
+  '<p class="hint">Demo patient · year of birth 1991</p>';
+  Teeth.mount(gbody);
+  $$('.pad button',gbody).forEach(function(b){b.addEventListener('click',function(){key(b.dataset.k)})});
+}
+function key(k){
+  if(k==='del'){code=code.slice(0,-1);sfx.tap();renderCode();return}
+  if(code.length>=4)return;code+=k;sfx.tap();buzz(6);renderCode();
+  if(code.length===4){
+    if(code==='1991'){renderCode('proud');squish($('#gAv'));setTimeout(function(){sfx.chime();step=0;ring(0);renderQ()},450)}
+    else{renderCode('wow');setTimeout(function(){$('#code').classList.add('bad');buzz([25,40,25]);sfx.alert();setTimeout(function(){code='';renderCode()},550)},120)}
+  }
+}
+function renderQ(){
+  var html='<div class="gtop">'+ICON+'<span class="appname">Family Dentistry<small>Welcome</small></span></div><h1 style="margin-top:22px;font-size:26px">Three quick questions to make this yours.</h1><div style="margin-top:12px">';
+  QS.forEach(function(q,i){
+    if(i<step)html+='<div class="qline done"><span class="num">'+check(12)+'</span><span>'+q.q.replace('?','')+': <b>'+S[q.k]+'</b></span></div>';
+    else if(i===step)html+='<div class="qbox"><div class="qh"><span class="num">'+(i+1)+'</span>'+q.q+'</div>'+q.o.map(function(o){return '<button class="li" data-v="'+o[0]+'">'+(o[2]?'<span class="av sm" data-tooth="'+o[2]+'"></span>':'')+'<span><b>'+o[0]+'</b>'+(o[1]?'<span class="s">'+o[1]+'</span>':'')+'</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>'}).join('')+'</div>';
+    else html+='<div class="qline"><span class="num">'+(i+1)+'</span>'+q.q+'</div>';
+  });
+  gbody.innerHTML=html+'</div>';Teeth.mount(gbody);
+  $$('.qbox .li',gbody).forEach(function(b){b.addEventListener('click',function(){S[QS[step].k]=b.dataset.v;step++;sfx.pop();buzz(8);ring(step);renderQ();if(step>=3)$('#goBtn').classList.add('ready')})});
+}
+$('#goBtn').addEventListener('click',function(){if(step>=3)finishGate()});
+function finishGate(){
+  gate.classList.add('thank');sfx.chime();Teeth.mount(gate);
+  var line=S.nerves==='Very nervous'?'We\'ll take this gently, one step at a time. Here is everything, in plain words.':S.nerves==='A little nervous'?'Feeling a little nervous is normal. Here is everything, in plain words.':'Here is your plan, in plain words, approved by Dr. Wala.';
+  var i=0,el=$('#thxLine');(function ty(){el.textContent=line.slice(0,i++);if(i<=line.length)setTimeout(ty,20);else setTimeout(function(){gate.classList.add('gone');S.opened=true;save();enter()},900)})();
+}
+
+/* ---------- navigation: a sidebar in the window, a segmented control on phones ---------- */
+var ORDER=['plan','visits','ask','care'],TITLES={plan:'My plan',visits:'Visits',ask:'Ask',care:'Aftercare'};
+function go(v,silent){
+  var i=ORDER.indexOf(v);app.dataset.view=v;
+  ORDER.forEach(function(n,j){$('#v-'+n).dataset.pos=j<i?'left':j>i?'right':'center'});
+  $$('[data-go]').forEach(function(b){b.setAttribute('aria-current',b.dataset.go===v?'page':'false')});
+  $('#crumbT').textContent=TITLES[v];
+  $('#dock').hidden=v==='ask';$('#composer').hidden=v!=='ask';
+  if(v==='care'){renderCare();$('#careDot').hidden=$('#careDot2').hidden=true}
+  if(!silent)sfx.tap();
+}
+$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.go)})});
+
+/* ---------- plan and visits ---------- */
+function nextIdx(){return S.visit1?1:0}
+function post(v,i){
+  var st=i<nextIdx()?'done':i===nextIdx()?'next':'';
+  var badge=st==='done'?'<span class="tag g">Done</span>':st==='next'?(S.req?(S.req.status==='confirmed'?'<span class="tag g">'+S.req.short+'</span>':'<span class="tag y">Requested</span>'):'<span class="tag p">Next</span>'):'';
+  return '<span class="av" data-tooth="'+v.tint+' '+(st==='done'?'proud badge':v.mood+(v.acc?' '+v.acc:''))+'"></span><div class="pcard"><div class="in"><div class="who">'+(i<4?'Visit '+v.id:'Check-up')+'<span class="h">· '+v.t+'</span><span class="bd">'+badge+'</span></div><p>'+v.sum+'</p></div><div class="ft tags">'+v.tags.map(function(t){return '<span class="tag '+t[0]+'">'+t[1]+'</span>'}).join('')+'</div></div>';
+}
+function renderFeed(){
+  $('#feed').innerHTML=VISITS.map(function(v,i){return '<p class="date">'+(i===nextIdx()&&S.req&&S.req.status==='confirmed'?S.req.label:v.when)+'</p><button class="post '+(i<nextIdx()?'done':i===nextIdx()?'next':'')+'" data-i="'+i+'">'+post(v,i)+'</button>'}).join('');
+  Teeth.mount($('#feed'));
+  $$('#feed .post').forEach(function(b){b.addEventListener('click',function(){openVisit(+b.dataset.i)})});
+  var n=$('#nextPost'),i=nextIdx();n.dataset.i=i;n.innerHTML=post(VISITS[i],i);Teeth.mount(n);
+}
+$('#nextPost').addEventListener('click',function(){openVisit(+this.dataset.i)});
+
+var scrim=$('#scrim');
+function openSheet(s){scrim.classList.add('on');s.classList.add('on');sfx.pop()}
+function closeSheets(){scrim.classList.remove('on');$$('.sheet').forEach(function(s){s.classList.remove('on')})}
+scrim.addEventListener('click',closeSheets);
+function openVisit(i){
+  var v=VISITS[i],k=0,sh=$('#sheetV');
+  function draw(){
+    var L=v.L[k];
+    sh.innerHTML='<div class="grab"></div><span class="muted" style="font-size:13px">'+(i<4?'Visit '+v.id+' of 4':'Afterwards')+' · '+v.d+'</span><h2 style="margin-top:2px">'+v.t+'</h2>'+
+      '<div class="pages">'+v.L.map(function(l,j){return '<button aria-pressed="'+(j===k)+'" data-k="'+j+'">'+l[0]+'</button>'}).join('')+'</div>'+
+      '<button class="layer" id="layer"><span class="av" data-tooth="'+v.tint+' '+L[2]+(v.acc?' '+v.acc:'')+'"></span><h3>'+L[0]+'</h3><p>'+L[1]+'</p><span class="tag p">'+VER+' Approved by Dr. Wala</span></button>'+
+      '<p class="hint">Tap the card for the next part</p>'+
+      (i===nextIdx()?'<button class="big" id="vReq">'+(S.req?'See my request':'Request this visit')+'</button>':'');
+    Teeth.mount(sh);
+    $$('.pages button',sh).forEach(function(b){b.addEventListener('click',function(){k=+b.dataset.k;sfx.tap();draw()})});
+    $('#layer',sh).addEventListener('click',function(){k=(k+1)%v.L.length;sfx.bloop();buzz(6);draw()});
+    var r=$('#vReq',sh);if(r)r.addEventListener('click',function(){closeSheets();setTimeout(openReq,260)});
+  }
+  draw();openSheet(sh);
+}
+
+/* estimate */
+function roll(el,to){var t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,4);el.textContent=Math.round(to*e).toLocaleString('en-US');if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+function seg(k){$$('.mini-seg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.seg===k)});$('#segl').innerHTML=SEG[k].map(function(r){return '<li><i style="background:'+r[0]+'"></i>'+r[1]+'</li>'}).join('')}
+$$('.mini-seg button').forEach(function(b){b.addEventListener('click',function(){seg(b.dataset.seg);sfx.tap()})});seg('in');
+var rolled=false,eo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!rolled){rolled=true;roll($('#tot'),84000)}})},{threshold:.4});
+
+/* read and seal */
+var hold=$('#hold'),fill=$('#holdFill'),ht=null,h0=0;
+function hs(e){e.preventDefault();if(S.sealed)return;ctx();h0=performance.now();sfx.tap();(function f(){var p=Math.min(1,(performance.now()-h0)/1100);fill.style.transform='scaleX('+p+')';if(p>.25)$('#holdTxt').textContent='Keep holding';if(p<1)ht=requestAnimationFrame(f);else sealed()})()}
+function he(){if(S.sealed)return;cancelAnimationFrame(ht);fill.style.transition='transform .3s';fill.style.transform='scaleX(0)';setTimeout(function(){fill.style.transition=''},300);$('#holdTxt').textContent='Press and hold'}
+hold.addEventListener('pointerdown',hs);['pointerup','pointerleave','pointercancel'].forEach(function(ev){hold.addEventListener(ev,he)});
+hold.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat)hs(e)});hold.addEventListener('keyup',he);
+function sealed(){S.sealed=true;save();sfx.seal();buzz([15,40,50]);$('#seal').classList.add('done');var av=$('#sealAv');setTooth(av,'sky proud badge');squish(av);var p=rel(av);confetti(p[0],p[1]);setTimeout(renderQuiz,900)}
+var QUIZ=[{q:'Quick check: what is your next step?',o:['Request visit 1','Get the crown fitted','Nothing for now'],a:0},{q:'How many visits are in your plan?',o:['Two','Four, plus a check-up','Just one'],a:1},{q:'Is KSh 84,000 the final bill?',o:['Yes, it is fixed','No, it is an estimate'],a:1}];
+function renderQuiz(){
+  var q=$('#quiz');q.hidden=false;
+  if(S.quiz>=QUIZ.length){q.innerHTML='<div class="row"><span class="tag g">3 of 3</span><span class="muted" style="font-size:13.5px">You know your plan inside out.</span></div>';return}
+  var Q=QUIZ[S.quiz];
+  q.innerHTML='<div class="qq">'+Q.q+'</div><div class="opts">'+Q.o.map(function(o,i){return '<button class="opt" data-i="'+i+'">'+o+'</button>'}).join('')+'</div>';
+  $$('.opt',q).forEach(function(b){b.addEventListener('click',function(){if(+b.dataset.i===Q.a){b.classList.add('right');sfx.chime();buzz(10);S.quiz++;save();setTimeout(renderQuiz,650)}else{b.classList.remove('wrong');void b.offsetWidth;b.classList.add('wrong');sfx.tap()}})});
+}
+
+/* ---------- next visit: a request, booked only once reception confirms ---------- */
+function nextDays(){var o=[],d=new Date();d.setHours(12);for(var i=1;o.length<10;i++)o.push(new Date(d.getTime()+i*864e5));return o}
+function openReq(){
+  if(S.req){reqStatus();return}
+  var v=VISITS[nextIdx()],sh=$('#sheetR'),pick={},days=nextDays();
+  sh.innerHTML='<div class="grab"></div><span class="muted" style="font-size:13px">Request · '+v.d+'</span><h2 style="margin-top:2px">When suits you for Visit '+v.id+'?</h2><p class="muted" style="margin-top:6px;font-size:14.5px;line-height:1.45">Pick a day and a time of day. Grace will confirm the exact time.</p>'+
+   '<div class="days">'+days.map(function(d,i){var sun=d.getDay()===0;return '<button class="day" data-i="'+i+'" aria-pressed="false"'+(sun?' disabled':'')+'><small>'+d.toLocaleDateString('en-GB',{weekday:'short'})+'</small><b>'+d.getDate()+'</b><small>'+(sun?'Closed':d.toLocaleDateString('en-GB',{month:'short'}))+'</small></button>'}).join('')+'</div>'+
+   '<span class="lbl">Time of day</span><div class="chips">'+['Morning','Midday','Afternoon'].map(function(t){return '<button class="chip" aria-pressed="false" data-t="'+t+'">'+t+'</button>'}).join('')+'</div>'+
+   '<button class="big" id="sendReq" disabled>Send request</button><p class="honest"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>This is a request, not a booking yet. It shows as booked only once reception confirms it.</p>';
+  function ready(){$('#sendReq',sh).disabled=!(pick.day&&pick.time)}
+  $$('.day',sh).forEach(function(b){b.addEventListener('click',function(){$$('.day',sh).forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');pick.day=days[+b.dataset.i];sfx.tap();ready()})});
+  $$('.chip',sh).forEach(function(b){b.addEventListener('click',function(){$$('.chip',sh).forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');pick.time=b.dataset.t;sfx.tap();ready()})});
+  $('#sendReq',sh).addEventListener('click',function(){S.req={status:'requested',visit:v.id,day:pick.day.toISOString(),time:pick.time};save();closeSheets();sfx.send();buzz(8);dock();renderFeed();setTimeout(confirmReq,EMBED?3000:4200)});
+  openSheet(sh);
+}
+function confirmReq(){
+  if(!S.req||S.req.status==='confirmed')return;
+  var d=new Date(S.req.day),at=S.req.time==='Morning'?'09:30':S.req.time==='Midday'?'12:00':'14:30';
+  S.req.status='confirmed';S.req.at=at;S.req.label=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+', '+at;S.req.short=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric'});save();
+  banner('Your visit is confirmed. Open to see it.');sfx.chime();buzz([12,50,12]);dock();renderFeed();var p=rel($('#cta'));confetti(p[0],p[1]);
+}
+function ics(){var d=new Date(S.req.day),hm=S.req.at.split(':');d.setHours(+hm[0],+hm[1],0,0);var e=new Date(d.getTime()+90*6e4);function f(x){return x.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z'}
+  return 'data:text/calendar;charset=utf-8,'+encodeURIComponent('BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Family Dentistry//EN\r\nBEGIN:VEVENT\r\nUID:'+Date.now()+'@familydentistry\r\nDTSTAMP:'+f(new Date())+'\r\nDTSTART:'+f(d)+'\r\nDTEND:'+f(e)+'\r\nSUMMARY:Dental visit, Family Dentistry\r\nLOCATION:James Gichuru Road, Lavington, Nairobi\r\nEND:VEVENT\r\nEND:VCALENDAR')}
+function reqStatus(){
+  var r=S.req,c=r.status==='confirmed',sh=$('#sheetR');
+  sh.innerHTML='<div class="grab"></div><span class="muted" style="font-size:13px">Visit '+r.visit+'</span><h2 style="margin-top:2px">'+(c?r.label:'Requested')+'</h2>'+
+   '<div class="ticket" style="margin-top:14px"><div class="row"><span class="av sm" data-tooth="rose '+(c?'happy':'calm')+'"></span><div><b>'+(c?'Booked by Grace at reception':'Waiting for reception')+'</b><p>'+(c?'James Gichuru Road, Lavington. Please arrive 10 minutes early.':'You asked for '+new Date(r.day).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+', '+r.time.toLowerCase()+'.')+'</p></div></div>'+
+   '<div class="status"><span class="tag g">Requested</span><span class="tag '+(c?'g':'y')+'">Seen</span><span class="tag '+(c?'g':'')+'">Confirmed</span></div></div>'+
+   (c?'<a class="big" download="dental-visit.ics" href="'+ics()+'">Add to my calendar</a>':'<a class="big lite" href="tel:+254722784882">Call reception instead</a>');
+  Teeth.mount(sh);openSheet(sh);
+}
+function dock(){
+  var cta=$('#cta'),v=VISITS[nextIdx()];cta.classList.remove('wait','ok');
+  if(!S.req){$('#ctaT').textContent='Request Visit '+v.id;$('#ctaS').textContent=v.t+' · '+v.d;$('#ctaI').innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'}
+  else if(S.req.status==='requested'){cta.classList.add('wait');$('#ctaT').textContent='Visit '+S.req.visit+' requested';$('#ctaS').textContent='Waiting for reception to confirm';$('#ctaI').innerHTML='<span class="dots"><i></i><i></i><i></i></span>'}
+  else{cta.classList.add('ok');$('#ctaT').textContent=S.req.label;$('#ctaS').textContent='Visit '+S.req.visit+' confirmed by reception';$('#ctaI').innerHTML=check(20)}
+}
+$('#cta').addEventListener('click',function(){ctx();openReq()});
+var bt=null;function banner(t){$('#bannerT').textContent=t;$('#banner').classList.add('on');clearTimeout(bt);bt=setTimeout(function(){$('#banner').classList.remove('on')},3600)}
+$('#banner').addEventListener('click',function(){this.classList.remove('on')});
+
+/* ---------- ask: approved answers only; anything else goes to a person ---------- */
+var thread=$('#thread');
+function add(h,c){var d=document.createElement('div');d.className=c;d.innerHTML=h;thread.appendChild(d);Teeth.mount(d);var v=$('#v-ask');setTimeout(function(){v.scrollTo({top:v.scrollHeight,behavior:'smooth'})},40);return d}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function ask(q){
+  q=q.trim();if(!q)return;ctx();add(esc(q),'msg me');sfx.send();buzz(5);
+  var t=add('<i></i><i></i><i></i>','typing');
+  setTimeout(function(){
+    t.remove();
+    if(URGENT.test(q)){add('<b>Please call the clinic now</b><p>Swelling, bleeding or fever should be checked by a person today. We have also alerted Dr. Wala\'s team.</p><a href="tel:+254722784882">Call +254 722 784 882</a>','urgent');sfx.alert();buzz([35,60,35]);return}
+    var hit=null;ANSWERS.some(function(a){if(a.k.test(q)){hit=a;return true}});
+    if(hit){add('<span class="by"><span class="av xs" data-tooth="lilac happy"></span>Family Dentistry</span>'+hit.a+'<div class="src"><span class="tag g">'+check(12)+' From: '+hit.src+'</span></div>','msg them');sfx.pop();return}
+    var tk=add('<div class="row"><span class="av sm" data-tooth="rose calm"></span><div><b>This one needs your care team</b><p>It isn\'t in your approved plan, so we won\'t guess. It\'s with Grace at reception.</p></div></div><div class="status"><span class="tag g">Sent</span><span class="tag">Seen</span><span class="tag">Answered</span></div>','ticket');
+    sfx.pop();var st=$$('.status .tag',tk);
+    setTimeout(function(){st[1].className='tag y';sfx.tap()},1500);
+    setTimeout(function(){st[1].className='tag g';st[2].className='tag g';
+      var ans=/instal|pay|mpesa|m-pesa|insur/i.test(q)?'Yes, you can pay per visit as you go, by M-Pesa or card. For insurance, send a photo of your card and I\'ll start the pre-approval.':'Thanks for asking. I\'ve checked with Dr. Wala and we\'ll go through it with you at your next visit. Call me any time if it can\'t wait.';
+      add('<span class="by"><span class="av xs" data-tooth="rose wink"></span>Grace · Reception</span>'+ans,'msg them');sfx.chime();
+      if(app.dataset.view!=='ask')banner('You have a new message');
+    },4000);
+  },850);
+}
+$('#composer').addEventListener('submit',function(e){e.preventDefault();var i=$('#askIn');ask(i.value);i.value=''});
+$$('#sugg button').forEach(function(b){b.addEventListener('click',function(){ask(b.textContent)})});
+
+/* ---------- aftercare: asleep until the visit, then it wakes up ---------- */
+var IC={
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+  bowl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0zM9 7c-1-1.5 1-2 0-3.5M13 7c-1-1.5 1-2 0-3.5"/></svg>',
+  pill:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="3.5" transform="rotate(-35 12 12)"/><path d="m9.5 8 5 8"/></svg>',
+  snow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/></svg>',
+  brush:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 20 9-9M13 11l4-4 3 3-4 4zM15 5l4 4"/></svg>'
+};
+var TASKS=[
+  {id:'numb',i:'clock',c:'#FFF4D2',k:'#B7791F',t:'Wait for the numbness to wear off',d:'First 2 to 3 hours. No hot drinks or chewing yet.'},
+  {id:'soft',i:'bowl',c:'#FFE9DC',k:'#D46B3A',t:'Soft, lukewarm food tonight',d:'Soup, rice, eggs or ugali. Chew on the other side.'},
+  {id:'pain',i:'pill',c:'#F4EAFE',k:'#A35BE0',t:'Take the painkiller Dr. Wala advised',d:'As written on your note, only if it feels tender.'},
+  {id:'ice',i:'snow',c:'#E8F2FE',k:'#2F7FD8',t:'A cold pack if it feels sore',d:'10 minutes on, 10 minutes off.'},
+  {id:'brush',i:'brush',c:'#E7F7E9',k:'#2F9E4F',t:'Brush gently as normal',d:'Keep it clean. Nothing sticky on that side.'}
+];
+function renderCare(){
+  var v=$('#care');
+  if(!S.visit1){
+    v.innerHTML='<p class="hello">After Visit 1</p><h1>Aftercare</h1><div class="sleep"><span class="av" id="sleeper" data-tooth="sage sleepy zzz" role="button" tabindex="0" aria-label="Sleeping tooth"></span><h2>Asleep until your visit</h2><p>Your aftercare from Dr. Wala wakes up here the moment Visit 1 is done. No searching the internet at midnight.</p><button class="big lite" id="wake" style="width:auto;padding:0 18px;height:44px;font-size:14px">Demo: mark Visit 1 as done</button></div>';
+    Teeth.mount(v);
+    $('#sleeper').addEventListener('click',function(){squish(this);sfx.tap()});$('#wake').addEventListener('click',wake);
+    return;
+  }
+  var n=TASKS.filter(function(t){return S.checks[t.id]}).length;
+  v.innerHTML='<p class="hello">After Visit 1 · from Dr. Wala, version 3</p><h1>Aftercare</h1>'+
+   '<p class="date">Healing streak</p><div class="streak">'+[1,2,3,4,5,6,7].map(function(d){return '<span class="'+(d===1?(n===TASKS.length?'on':'today'):'')+'">Day '+d+'</span>'}).join('')+'</div><p class="muted" style="font-size:12.5px;margin-top:8px">A day at a time while you heal. Miss one and it simply waits.</p>'+
+   '<p class="date">Today <span class="muted" style="font-size:14px;font-weight:450" id="cnt">'+n+' of '+TASKS.length+'</span></p><div class="list">'+TASKS.map(function(t){return '<button class="task '+(S.checks[t.id]?'done':'')+'" data-id="'+t.id+'"><span class="ico" style="background:'+t.c+';color:'+t.k+'">'+IC[t.i]+'</span><span class="tx"><b>'+t.t+'</b><span>'+t.d+'</span></span><span class="ck">'+check()+'</span></button>'}).join('')+'</div>'+
+   '<p class="date">How does it feel today?</p><div class="feel">'+[['fine','Fine','mint happy'],['tender','A bit tender','lemon calm'],['sore','Sore','peach wince bandage'],['worse','Getting worse','rose sad']].map(function(f){return '<button data-f="'+f[0]+'" aria-pressed="'+(S.feel===f[0])+'"><span class="av" data-tooth="'+f[2]+'"></span>'+f[1]+'</button>'}).join('')+'</div><div id="feelOut" style="margin-top:12px"></div>';
+  Teeth.mount(v);
+  $$('.task',v).forEach(function(b){b.addEventListener('click',function(){var id=b.dataset.id;S.checks[id]=!S.checks[id];save();b.classList.toggle('done',!!S.checks[id]);if(S.checks[id]){sfx.pop();buzz(6)}else sfx.tap();
+    var k=TASKS.filter(function(t){return S.checks[t.id]}).length;$('#cnt').textContent=k+' of '+TASKS.length;var d1=$('.streak span',v);
+    if(k===TASKS.length){d1.className='on';sfx.chime();var p=rel(d1);confetti(p[0],p[1])}else d1.className='today'})});
+  $$('.feel button',v).forEach(function(b){b.addEventListener('click',function(){S.feel=b.dataset.f;save();$$('.feel button',v).forEach(function(x){x.setAttribute('aria-pressed',x===b)});squish($('.av',b));
+    var o=$('#feelOut');
+    if(S.feel==='worse'){o.innerHTML='<div class="urgent"><b>Let\'s get you seen today</b><p>Swelling or pain that is getting worse should be checked by a person. Dr. Wala\'s team has been alerted and will call you.</p><a href="tel:+254722784882">Call the clinic now</a></div>';sfx.alert();buzz([35,60,35])}
+    else{o.innerHTML='<div class="ticket"><b>Thanks, '+S.name+'</b><p>'+(S.feel==='fine'?'Lovely. Keep going with the list above.':'That is normal for the first few days. If it gets worse rather than better, tell us here.')+'</p></div>';sfx.pop()}
+  })});
+}
+function wake(){
+  var s=$('#sleeper');ctx();setTooth(s,'sage wow sparkle');squish(s);sfx.wake();buzz([15,30,40]);
+  setTimeout(function(){setTooth(s,'sage happy sparkle');squish(s);var p=rel(s);confetti(p[0],p[1])},550);
+  setTimeout(function(){S.visit1=true;S.req=null;save();renderCare();renderFeed();dock();$('#v-care').scrollTop=0},1500);
+}
+
+/* ---------- start ---------- */
+function enter(){
+  $$('.nm').forEach(function(n){n.textContent=S.name});
+  $('#hello').textContent=S.nerves==='Very nervous'?'Hi Amani, we\'ll go gently':'Hi Amani';
+  Teeth.mount(document);renderFeed();dock();eo.observe($('#tot'));
+  if(S.sealed){$('#seal').classList.add('done');setTooth($('#sealAv'),'sky proud badge');renderQuiz()}
+}
+function route(h){
+  h=(h||'').replace('#','');Teeth.mount(document);
+  if(!h){if(S.opened){gate.classList.add('gone');enter()}else renderCode();return}
+  gate.classList.add('gone');S.opened=true;
+  if(h==='gate'){gate.classList.remove('gone');renderCode();return}
+  if(h==='welcome'){gate.classList.remove('gone');step=1;ring(1);renderQ();return}
+  if(h==='care')S.visit1=true;
+  if(h==='confirmed'){var dd=nextDays().filter(function(d){return d.getDay()!==0})[2];S.req={status:'requested',visit:1,day:dd.toISOString(),time:'Morning'}}
+  enter();
+  if(h==='visits')go('visits',true);
+  if(h==='visit')setTimeout(function(){openVisit(0)},350);
+  if(h==='estimate')setTimeout(function(){$('#v-plan').scrollTo({top:$('#estimate').offsetTop-8,behavior:'smooth'})},300);
+  if(h==='seal')setTimeout(function(){$('#v-plan').scrollTo({top:$('#sealT').offsetTop-8,behavior:'smooth'})},300);
+  if(h==='request')setTimeout(openReq,350);
+  if(h==='confirmed'){dock();renderFeed();setTimeout(confirmReq,1300)}
+  if(h==='ask')go('ask',true);
+  if(h==='care'||h==='sleep'){if(h==='sleep')S.visit1=false;renderFeed();dock();go('care',true)}
+}
+route(location.hash);
+})();
+</script>
+</body>
+</html>
