@@ -193,6 +193,20 @@
 .v-ctrl button:hover{border-color:var(--indigo);color:var(--indigo)}
 .v-ctrl button:disabled{opacity:.35;cursor:default}
 
+/* kidney life tips (nm.org's HealthBeat) */
+.life{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tip{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s}
+.tip:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.tip-top{height:150px;display:flex;justify-content:space-between;align-items:flex-start;padding:22px 24px}
+.tip-top .caps{font-size:11.5px}
+.tip-top.t1{background:var(--lilac);color:var(--indigo)}
+.tip-top.t2{background:var(--rose-soft);color:var(--rose-2)}
+.tip-top.t3{background:var(--teal-soft);color:var(--teal)}
+.tip-top svg{align-self:flex-end;width:64px;height:64px;opacity:.9}
+.tip-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tip-body p{color:var(--ink-2);font-size:15.5px}
+.tip-body .link{margin-top:auto;align-self:flex-start;font-size:15px}
+
 /* featured stories (nm.org) */
 .stories{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .story{text-decoration:none;display:flex;flex-direction:column;gap:16px}
@@ -291,6 +305,7 @@ legend,.lbl{font-weight:650;font-size:14.5px;margin-bottom:10px;padding:0;displa
   .b-list{display:grid;grid-template-columns:1fr 1fr}
   .leaders{grid-template-columns:1fr}
   .v-track{grid-auto-columns:calc((100% - 20px)/2)}
+  .life{grid-template-columns:1fr 1fr}
   .ins .wrap{grid-template-columns:1fr;gap:20px}
   .logos{grid-template-columns:repeat(4,1fr)}
   .close-card{grid-template-columns:1fr}
@@ -339,6 +354,8 @@ legend,.lbl{font-weight:650;font-size:14.5px;margin-bottom:10px;padding:0;displa
   .voice{padding:22px;min-height:0}
   .voice blockquote{font-size:17px}
   .stories{grid-template-columns:1fr;gap:28px}
+  .life{grid-template-columns:1fr}
+  .tip-top{height:110px}
   .logos{grid-template-columns:repeat(4,1fr);gap:8px}
   .logos span{height:54px;padding:8px}
   .ans{padding-right:0}
@@ -586,6 +603,21 @@ legend,.lbl{font-weight:650;font-size:14.5px;margin-bottom:10px;padding:0;displa
   </div>
 </section>
 
+<!-- kidney life: nm.org's HealthBeat, in CKS's own words -->
+<section class="sec" id="kidney-life">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="caps eyebrow rv">Kidney life</span><h2 class="rv" style="margin-top:14px">Living well <em>between sessions.</em></h2></div>
+      <p class="lede rv">Small habits make dialysis days easier. Your nephrologist and nutritionist will tailor all of this to you.</p>
+    </div>
+    <div class="life">
+      <article class="tip rv"><div class="tip-top t1"><span class="caps">Fluids</span><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s-6 6.4-6 11a6 6 0 0 0 12 0c0-4.6-6-11-6-11z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></div><div class="tip-body"><h3>Why your fluid limit matters</h3><p>Between sessions, extra fluid builds up in your body. Your nephrologist sets your limit, usually under 1 litre a day.</p><a class="link" href="#faq" data-faq="diet">Fluids &amp; diet questions</a></div></article>
+      <article class="tip rv" style="--d:.06s"><div class="tip-top t2"><span class="caps">Diet</span><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5c-1.5-2-4.5-2.4-6-.7-1.8 2-1.3 6 .6 9.3 1.4 2.4 3 4.4 5.4 4.4s4-2 5.4-4.4c1.9-3.3 2.4-7.3.6-9.3-1.5-1.7-4.5-1.3-6 .7z"/><path d="M12 6.5c0-2 1-3.5 3-4"/></svg></div><div class="tip-body"><h3>Foods to go easy on</h3><p>Limit phosphorus (dairy, cola, nuts, processed food) and potassium (bananas, oranges, potatoes, tomatoes). Keep protein moderate.</p><a class="link" href="#services">Meet our renal nutritionist</a></div></article>
+      <article class="tip rv" style="--d:.12s"><div class="tip-top t3"><span class="caps">Life</span><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div><div class="tip-body"><h3>Yes, you can still work and travel</h3><p>Sessions are twice a week on agreed days, leaving the rest of your week free. Travelling? We can help arrange care at partner centres.</p><a class="link" href="#book">Plan around your week</a></div></article>
+    </div>
+  </div>
+</section>
+
 <!-- featured stories -->
 <section class="sec">
   <div class="wrap">
@@ -602,7 +634,7 @@ legend,.lbl{font-weight:650;font-size:14.5px;margin-bottom:10px;padding:0;displa
 </section>
 
 <!-- insurers -->
-<section class="ins" aria-labelledby="insTitle">
+<section class="ins" id="insurers" aria-labelledby="insTitle">
   <div class="wrap">
     <div><h2 id="insTitle">We accept your cover</h2><p>SHA covers two haemodialysis sessions a week for eligible patients. CIC is accepted too.</p></div>
     <div class="logos">
@@ -633,7 +665,7 @@ legend,.lbl{font-weight:650;font-size:14.5px;margin-bottom:10px;padding:0;displa
       <details><summary>Will dialysis cure my kidney disease?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans">Dialysis is a life-sustaining treatment, not a cure. The only definitive treatment for end-stage kidney disease is a successful transplant, and we coordinate pre-transplant work-up for eligible patients. Whether kidneys can recover depends on the cause; our nephrologist will advise on your outlook.</div></details>
       <details><summary>Does dialysis hurt?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans">The session itself is not painful. Most patients find needle insertion easier to tolerate over time, and our nurses keep you as comfortable as possible throughout.</div></details>
       <details><summary>Can I still work or travel?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans">Yes. Sessions are twice a week on agreed days, leaving the rest of your week free. If you travel, we can help coordinate care at partner dialysis centres.</div></details>
-      <details><summary>What diet and fluid limits will I have?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans">Typical guidance, which your nephrologist will tailor:<ul><li>Fluids usually under 1 litre a day between sessions</li><li>Limit phosphorus: dairy, cola, nuts and processed foods</li><li>Limit potassium: bananas, oranges, potatoes and tomatoes</li><li>Moderate protein, as advised</li></ul>Outside food and drinks are generally not allowed during in-centre sessions. Breakfast and lunch are provided.</div></details>
+      <details id="faq-diet"><summary>What diet and fluid limits will I have?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans">Typical guidance, which your nephrologist will tailor:<ul><li>Fluids usually under 1 litre a day between sessions</li><li>Limit phosphorus: dairy, cola, nuts and processed foods</li><li>Limit potassium: bananas, oranges, potatoes and tomatoes</li><li>Moderate protein, as advised</li></ul>Outside food and drinks are generally not allowed during in-centre sessions. Breakfast and lunch are provided.</div></details>
       <details><summary>When are you open?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans"><ul><li>CKS Hospital Kimuka: 24 hours, 7 days a week, including public holidays</li><li>Pangani and Buruburu: Monday to Saturday, 6am to 6pm</li><li>Aga Khan Doctor's Plaza: Monday to Friday, 9am to 5pm</li></ul></div></details>
       <details><summary>How do I book?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="ans">Call or WhatsApp your preferred branch, send the request form below, or walk in to any branch. Walk-ins are welcome at Kimuka around the clock; appointments help us keep a chair ready for you.</div></details>
     </div>
@@ -727,6 +759,7 @@ legend,.lbl{font-weight:650;font-size:14.5px;margin-bottom:10px;padding:0;displa
   <a class="pri" href="#book">Book</a>
 </nav>
 
+<script src="assets/nav.js" data-base=""></script>
 <script>
 document.documentElement.classList.add('js');
 (function(){
@@ -826,6 +859,9 @@ document.documentElement.classList.add('js');
 
   /* ---------- faq deep links ---------- */
   $$('[data-open="sha"]').forEach(function(a){a.addEventListener('click',function(){var d=$('#faq-sha');if(d)d.open=true})});
+  $$('[data-faq]').forEach(function(a){a.addEventListener('click',function(){var d=$('#faq-'+a.dataset.faq);if(d)d.open=true})});
+  if(location.hash==='#faq-sha'||location.hash==='#faq-diet'){var d0=$(location.hash);if(d0)d0.open=true}
+  addEventListener('hashchange',function(){if(/^#faq-/.test(location.hash)){var d=$(location.hash);if(d){d.open=true}}});
 
   /* ---------- voices carousel ---------- */
   var tr=$('#vTrack'), pv=$('#vPrev'), nx=$('#vNext');
