@@ -170,16 +170,16 @@ p{margin:0}
 .hero-visual{position:relative;padding:20px 0 20px 30px}
 .frame{position:relative;border-radius:22px;padding:10px;background:linear-gradient(160deg,var(--peri-3),#fff 60%,var(--peach-2));border:1px solid var(--peri-2);box-shadow:var(--shadow)}
 .frame img{width:100%;border-radius:14px;object-fit:cover}
-.hero-visual .frame img{aspect-ratio:4/5;max-height:min(74vh,660px);object-position:50% 30%}
+.hero-visual .frame img{aspect-ratio:4/5;max-height:min(74vh,660px);object-position:50% 88%}
 .glass{position:absolute;background:rgba(255,255,255,.78);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.9);box-shadow:0 1px 0 #fff inset,0 20px 40px -16px rgba(18,20,58,.28),0 2px 6px rgba(18,20,58,.06);border-radius:16px;padding:14px 16px}
-.g-open{top:44px;left:-6px;display:flex;align-items:center;gap:12px}
+.g-open{bottom:16%;right:-30px;display:flex;align-items:center;gap:12px}
 .g-open .ic{width:38px;height:38px;border-radius:10px;background:var(--mint-2);color:var(--mint);display:grid;place-items:center}
 .g-open b{display:block;font-size:14px;font-weight:600}
 .g-open small{font-size:12.5px;color:var(--muted)}
-.g-review{bottom:56px;left:-34px;max-width:280px}
+.g-review{bottom:-28px;left:-40px;max-width:280px}
 .g-review p{font-family:var(--serif);font-size:17px;line-height:1.35;margin:6px 0 10px;letter-spacing:-.005em}
 .g-review small{font-size:12px;color:var(--muted)}
-.g-book{right:-18px;top:46%;width:212px}
+.g-book{right:-30px;top:13%;width:212px}
 .g-book .mono{font-size:10.5px;color:var(--muted)}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 10px}
 .slots span{font-size:11.5px;text-align:center;padding:7px 0;border-radius:8px;border:1px solid var(--line);background:#fff}
@@ -216,10 +216,12 @@ section{position:relative}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.about-imgs{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-.about-imgs>div:first-child img{aspect-ratio:4/5;object-fit:cover}
-.about-imgs>div:last-child{margin-top:96px}
-.about-imgs>div:last-child img{aspect-ratio:3/4;object-fit:cover;object-position:68% 30%}
+.about-imgs{position:relative;padding-bottom:84px}
+.about-imgs>div:first-child{width:78%}
+.about-imgs>div:first-child img{aspect-ratio:4/5;object-fit:cover;object-position:18% 50%}
+.about-imgs>div:last-child{position:absolute;right:0;bottom:0;width:48%}
+.about-imgs>div:last-child .frame{background:#fff;padding:8px;box-shadow:0 30px 60px -24px rgba(18,20,58,.35)}
+.about-imgs>div:last-child img{aspect-ratio:1/1;object-fit:cover;object-position:62% 30%;border-radius:10px}
 .cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;padding-left:4px}
 .about-copy h2{margin-bottom:26px}
 .about-copy .lede{margin-bottom:36px}
@@ -249,12 +251,12 @@ section{position:relative}
 .t-mobile-img{display:none}
 .t-visual{position:sticky;top:110px}
 .t-visual .frame{padding:12px;background:var(--peri-3)}
-.t-stage{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:var(--bg-2)}
+.t-stage{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--bg-2)}
 .t-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .t-stage img.show{opacity:1;transform:scale(1)}
-.t-stage .glass{left:16px;bottom:16px;right:16px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.t-stage .glass b{font-size:14px;font-weight:600}
-.t-stage .glass small{display:block;font-size:12.5px;color:var(--muted)}
+.t-label{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 6px 4px}
+.t-label b{font-size:15px;font-weight:600}
+.t-label small{display:block;font-size:12.5px;color:var(--muted)}
 
 /* ---------- smile gallery ---------- */
 .ba-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
@@ -392,7 +394,7 @@ legend,.f-label{display:block;font-size:13px;font-weight:500;color:var(--ink-2);
 /* ---------- closing band ---------- */
 .closing{padding:0 0 120px}
 .close-band{position:relative;border-radius:24px;overflow:hidden;min-height:420px;display:grid;place-items:center;text-align:center;color:#fff}
-.close-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.75)}
+.close-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%;filter:saturate(.55) blur(1.5px);transform:scale(1.03)}
 .close-band::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(18,20,58,.55),rgba(18,20,58,.82));z-index:1}
 .close-band .inner{position:relative;z-index:2;padding:64px 24px;max-width:760px}
 .close-band .mono{color:#C6CCFF}
@@ -438,7 +440,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
   .book-info{display:contents}
   .book-head{order:0}.form-card{order:1}.book-details{order:2}
   .t-visual{display:none}
-  .t-mobile-img{display:block;border-radius:12px;overflow:hidden;margin:20px 0 4px;aspect-ratio:4/3}
+  .t-mobile-img{display:block;border-radius:12px;overflow:hidden;margin:20px 0 4px;aspect-ratio:1/1}
   .t-mobile-img img{width:100%;height:100%;object-fit:cover}
   .hyg{grid-template-columns:1fr;justify-items:start;gap:36px}
   .f-grid{grid-template-columns:1fr 1fr}
@@ -466,7 +468,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
   .stat-grid{grid-template-columns:1fr;gap:28px}
   .stat{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:16px}
   .stat p{margin:0}
-  .about-imgs>div:last-child{margin-top:48px}
+  .about-imgs{padding-bottom:64px}
   .pillars{grid-template-columns:1fr}
   .t-body>div{padding-left:0}
   .team-band{grid-template-columns:1fr}
@@ -677,7 +679,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
         <li class="t-item" data-img="1">
           <div class="t-top"><span class="t-num">02</span><h3>Cosmetic dentistry</h3></div>
           <div class="t-body"><div>
-            <div class="t-mobile-img"><img src="assets/img/smile-after.jpg" alt="A bright, even smile after cosmetic treatment" loading="lazy"></div>
+            <div class="t-mobile-img"><img src="assets/img/smile-pair.jpg" alt="A smile before (top) and after (bottom) cosmetic treatment" loading="lazy"></div>
             <p>Enhance the appearance of your teeth with whitening and veneers, planned around your face, your features and the result you have in mind.</p>
             <div class="chips"><span class="chip">Teeth whitening</span><span class="chip">Veneers</span><span class="chip">Smile consultation</span></div>
             <button class="t-btn link" data-service="Cosmetic">Book a smile consultation</button>
@@ -686,7 +688,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
         <li class="t-item" data-img="2">
           <div class="t-top"><span class="t-num">03</span><h3>Children's dentistry</h3></div>
           <div class="t-body"><div>
-            <div class="t-mobile-img"><img src="assets/img/young-patient.jpg" alt="A happy young patient in the dental chair" loading="lazy" style="object-position:50% 25%"></div>
+            <div class="t-mobile-img"><img src="assets/img/young-patient.jpg" alt="A happy young patient in the dental chair" loading="lazy" style="object-position:50% 40%"></div>
             <p>Specialised care for children. We make dental visits fun and educational for the little ones, building good habits and a lifelong ease with the dentist.</p>
             <div class="chips"><span class="chip">First visits</span><span class="chip">Check-ups</span><span class="chip">Habits for life</span></div>
             <button class="t-btn link" data-service="Children">Book for my child</button>
@@ -715,14 +717,14 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
         <div class="frame">
           <div class="t-stage" id="tStage">
             <img class="show" src="assets/img/checkup.jpg" alt="" loading="lazy">
-            <img src="assets/img/smile-after.jpg" alt="" loading="lazy">
-            <img src="assets/img/young-patient.jpg" alt="" loading="lazy" style="object-position:50% 22%">
+            <img src="assets/img/smile-pair.jpg" alt="" loading="lazy">
+            <img src="assets/img/young-patient.jpg" alt="" loading="lazy" style="object-position:50% 40%">
             <img src="assets/img/dentist-treatment.jpg" alt="" loading="lazy">
-            <img src="assets/img/restorative.jpg" alt="" loading="lazy">
-            <div class="glass">
-              <span><b id="tStageTitle">Routine check-ups &amp; cleaning</b><small>Mon to Sat · 07:00 to 17:00</small></span>
-              <a class="btn btn-primary btn-sm" href="#book" id="tStageBtn">Book</a>
-            </div>
+            <img src="assets/img/restorative.jpg" alt="" loading="lazy" style="object-position:50% 60%">
+          </div>
+          <div class="t-label">
+            <span><b id="tStageTitle">Routine check-ups &amp; cleaning</b><small>Mon to Sat · 07:00 to 17:00</small></span>
+            <a class="btn btn-primary btn-sm" href="#book" id="tStageBtn">Book</a>
           </div>
         </div>
       </div>
@@ -1003,7 +1005,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);position:relative
 <section class="closing">
   <div class="wrap">
     <div class="close-band rv">
-      <img src="assets/img/reception.jpg" alt="" loading="lazy">
+      <img src="assets/img/dentist-hands.jpg" alt="" loading="lazy">
       <div class="inner">
         <span class="mono">BC Beatrice · Patient for over 15 years</span>
         <h2>"Excellent service. <em>Inviting for all ages.</em>"</h2>
