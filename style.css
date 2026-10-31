@@ -173,13 +173,6 @@
 @media(prefers-reduced-motion:reduce){.tc-track{scroll-behavior:auto;transition:none}}
 @media(max-width:600px){.thinking-invite p{gap:2px 9px}}
 
-/* Creamsoda's four Co.Founders in the Circle+ project: orange discs like the site's other marks. */
-.cofounder-crew{list-style:none;padding:0;margin:22px 0 4px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:450px}
-.cofounder-crew li{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
-.crew-mark{width:44px;height:44px;border-radius:50%;background:var(--orange);display:grid;place-items:center;font-family:var(--display);font-size:24px;font-weight:600;color:var(--ink);margin-bottom:4px;transition:transform .2s ease}
-.cofounder-crew li:hover .crew-mark{transform:translateY(-3px)}
-.cofounder-crew strong{font-family:var(--display);font-size:18px;font-weight:600;line-height:1;letter-spacing:.01em}
-.cofounder-crew .mono{font-size:8px;color:#777}
+/* Two links side by side under the Circle+ project. */
 .crew-links{display:flex;flex-wrap:wrap;gap:28px}
-@media (max-width:640px){.cofounder-crew{gap:8px}.crew-mark{width:38px;height:38px;font-size:21px}.cofounder-crew strong{font-size:16px}.crew-links{gap:18px}}
-@media (prefers-reduced-motion:reduce){.crew-mark{transition:none}.cofounder-crew li:hover .crew-mark{transform:none}}
+@media (max-width:640px){.crew-links{gap:18px}}
