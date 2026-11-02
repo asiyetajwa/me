@@ -93,13 +93,12 @@ html { scroll-behavior: smooth; }
 .cta { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 44px; border-radius: 32px; flex-wrap: wrap; }
 
 .lfoot { position: relative; z-index: 1; margin-top: 120px; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 70%, transparent); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
-.lfoot__inner { max-width: var(--wrap); margin: 0 auto; padding: 56px 24px 32px; display: flex; gap: 48px; justify-content: space-between; flex-wrap: wrap; }
+.lfoot__inner { max-width: var(--wrap); margin: 0 auto; padding: 56px 24px 56px; display: flex; gap: 48px; justify-content: space-between; flex-wrap: wrap; }
 .lfoot__brand p { margin-top: 12px; max-width: 34ch; font-size: 14px; }
 .lfoot__cols { display: flex; gap: 72px; flex-wrap: wrap; }
 .lfoot__cols > div { display: flex; flex-direction: column; gap: 10px; }
 .lfoot__cols a { font-size: 14px; color: var(--ink-2); text-decoration: none; }
 .lfoot__cols a:hover { color: var(--ink); }
-.lfoot__small { max-width: var(--wrap); margin: 0 auto; padding: 18px 24px 40px; font-size: 12.5px; border-top: 1px solid var(--line); }
 
 /* ---------- pricing ---------- */
 .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: stretch; }

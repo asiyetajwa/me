@@ -2,8 +2,8 @@ import { icon, mark, $, $$ } from './ui.js';
 
 const ROOT = new URL('../', import.meta.url).href;
 
-/* ---------- theme (shared preference with the app) ---------- */
-const getTheme = () => { try { return localStorage.getItem('prism-theme') ?? 'dusk'; } catch { return 'dusk'; } };
+/* ---------- theme: the website defaults to daylight; the app keeps its own setting (dusk by default) ---------- */
+const getTheme = () => { try { return localStorage.getItem('prism-web-theme') ?? 'day'; } catch { return 'day'; } };
 function paintTheme() {
   const t = getTheme();
   document.documentElement.dataset.theme = t;
@@ -12,7 +12,7 @@ function paintTheme() {
   paintTextures();
 }
 $('#theme').onclick = () => {
-  try { localStorage.setItem('prism-theme', getTheme() === 'dusk' ? 'day' : 'dusk'); } catch { /* private mode */ }
+  try { localStorage.setItem('prism-web-theme', getTheme() === 'dusk' ? 'day' : 'dusk'); } catch { /* private mode */ }
   paintTheme();
 };
 
