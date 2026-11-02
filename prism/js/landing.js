@@ -92,3 +92,6 @@ fetch('assets/Prism-demo.mp4', { method: 'HEAD' }).then((r) => {
   $('#tour').hidden = true;
   $$('a[href="#tour"]').forEach((a) => { a.hidden = true; });
 }).catch(() => {});
+
+/* old #/ demo links followed from within this page */
+window.addEventListener('hashchange', () => { if (location.hash.startsWith('#/')) location.replace('app/' + location.hash); });
