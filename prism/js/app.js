@@ -601,7 +601,7 @@ function openAssumption(key) {
       <p class="muted">${esc(a.note)}</p>
       ${evs.length ? evs.map((e) => e.restricted ? `<div class="restricted"><div style="display:flex;gap:8px;align-items:center">${icon('lock')}<strong>${e.id} · Restricted</strong></div><p class="faint" style="font-size:13px;margin-top:6px">Protection record. Visible to you as M&amp;E Lead; agents cannot read it and it is never used in drafts.</p></div>` : `
         <figure class="glass" style="margin:0;padding:18px;border-radius:18px">
-          ${e.quote ? `<blockquote class="quote" style="margin:0;font-size:20px">${esc(e.quote)}</blockquote>` : `<div style="font-weight:500">${esc(e.title)}</div>`}
+          ${e.quote ? `<blockquote class="quote" style="margin:0;font-size:16px">${esc(e.quote)}</blockquote>` : `<div style="font-weight:500">${esc(e.title)}</div>`}
           <figcaption style="display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap">${kindChip(e.kind)}${srcChip(e.id)}<span class="faint" style="font-size:12px">${esc(e.title)}${e.at ? ` · ${esc(e.at)}` : ''}</span>${e.contrary ? '<span class="chip status status--on">Contrary case</span>' : ''}</figcaption>
         </figure>`).join('') : `<div class="callout">${icon('alert')}<div><strong>No evidence on this assumption.</strong> Nothing in the M&amp;E plan tests it. Add a method, for example a short reader survey on coalition reports.</div></div>`}
       ${key === 'AS3' && !state.v4 ? '<a class="btn btn--primary" href="#/framework?proposal=1">Review the proposed v4 change</a>' : ''}
@@ -918,12 +918,12 @@ VIEWS.report = (v, q) => {
       <h2>1. Are women and youth being heard?</h2>
       <div class="figure"><div id="rf1"></div><div class="figure__cap">Figure 1. Women and youth as a share of budget-hearing speakers, Q4 2024 to Q3 2026, percent. Source: hearing attendance logs (EV-021). Hollow point: partial coverage.</div></div>
       <p class="interp">Speaker share has risen every quarter and is on pace for 40% by the end of 2027. Speaking is not the same as influence: on our participation rubric, three councils are “consultative” and only Kessa is “influential”.</p>
-      <blockquote style="margin:18px 0;font-family:var(--font-display);font-size:22px;line-height:1.3">“Now they call on us first. Last year we sat at the back and nobody asked.”<footer class="faint" style="font-family:var(--font-ui);font-size:12.5px;margin-top:6px">Women’s caucus member, Oru Coast focus group (EV-041)</footer></blockquote>
+      <blockquote class="pquote">“Now they call on us first. Last year we sat at the back and nobody asked.”<footer class="faint">Women’s caucus member, Oru Coast focus group (EV-041)</footer></blockquote>
 
       <h2>2. Are councils acting on what they hear?</h2>
       <div class="figure"><div id="rf2"></div><div class="figure__cap">Figure 2. Citizen priorities that appear as funded lines in adopted budgets, FY24 to FY26, percent. Source: hearing register matched to adopted budgets.</div></div>
       <p class="interp">${C('c3', 'Councils funded 12% of citizen priorities in FY26, far short of the 30% target.')} ${C('c4', 'Interviews show that the regional treasury fixes each council’s ceiling in January, before any hearing.')} ${C('c5', 'Kessa is the exception: its mayor approached the treasury in February and the water allocation rose 18%.')}</p>
-      <blockquote style="margin:18px 0;font-family:var(--font-display);font-size:22px;line-height:1.3">“We hear the priorities, but by the time the hearing happens the treasury has already set our ceilings.”<footer class="faint" style="font-family:var(--font-ui);font-size:12.5px;margin-top:6px">Finance officer, Lowmarsh council (EV-033)</footer></blockquote>
+      <blockquote class="pquote">“We hear the priorities, but by the time the hearing happens the treasury has already set our ceilings.”<footer class="faint">Finance officer, Lowmarsh council (EV-033)</footer></blockquote>
       <h3>A warning sign</h3>
       <p>${C('c6', 'Young people are giving up on hearings because nothing changes.')}</p>
 
