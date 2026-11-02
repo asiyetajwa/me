@@ -2,7 +2,8 @@
 
 Programme intelligence for MERL teams: field evidence in, defensible findings out.
 
-**Live demo:** https://asiyetajwa.github.io/me/prism/ (every person, place, quote and figure is fictional demo data).
+**Landing page:** https://asiyetajwa.github.io/me/prism/
+**Live demo:** https://asiyetajwa.github.io/me/prism/app/ (every person, place, quote and figure is fictional demo data).
 
 ## The pain point it is built around
 
@@ -47,6 +48,8 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Files: `index.html`, `css/prism.css` (design system), `js/data.js` (demo workspace), `js/charts.js` (SVG charts), `js/ui.js` (icons, mark), `js/app.js` (views and interactions).
+Files: `index.html` (landing page, `css/landing.css`, `js/landing.js`), `app/index.html` (the demo), `css/prism.css` (design system shared by both), `js/data.js` (demo workspace), `js/charts.js` (SVG charts), `js/ui.js` (icons, mark), `js/app.js` (views and interactions), `assets/` (product shots and the tour video).
+
+The landing page's hero borrows one idea from Contrary's Tech Trends report, type used as a window onto imagery, and fills the Prism wordmark with the three kinds of evidence instead. No Contrary assets are used.
 
 Agent runs are scripted for the demo. In production they sit behind a provider-agnostic orchestration layer with structured outputs and server-side permission checks.
