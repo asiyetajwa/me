@@ -89,6 +89,13 @@
       stage.appendChild(b);
       return b;
     });
+    // A dropped request on a weak connection leaves a broken image; ask for each picture once more before giving up.
+    root.querySelectorAll('img').forEach((img) => img.addEventListener('error', () => {
+      const src = img.getAttribute('src');
+      if (!src || img.dataset.retried === src) return;
+      img.dataset.retried = `${src.split('?')[0]}?retry=1`;
+      setTimeout(() => { img.src = img.dataset.retried; }, 800);
+    }));
 
     root.querySelector('.ms-close').addEventListener('click', close);
     file.querySelector('.ms-back').addEventListener('click', hideFile);
