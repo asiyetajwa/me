@@ -310,7 +310,7 @@ p { margin: 0; }
 .grid > * { min-width: 0; }
 
 /* ---------- Timeline ---------- */
-.tl { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(96px, 1fr); gap: 0; overflow-x: auto; padding: 8px 2px 4px; scrollbar-width: thin; }
+.tl { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; padding: 8px 2px 4px; }
 .tl::before { content: ''; position: absolute; left: 8px; right: 8px; top: 23px; height: 1px; background: var(--line-2); }
 .tl__item { position: relative; padding: 0 10px 0 2px; }
 .tl__dot { position: relative; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--ink-3); margin: 9px 0 12px; }
@@ -650,11 +650,42 @@ details.more > :not(summary) { margin-top: 14px; }
 
 /* grid children may shrink; wide tables scroll inside their own wrapper */
 .report-layout > *, .ev-layout > *, .studio > *, .brief > * { min-width: 0; }
-.paper .tablewrap table.data { min-width: 520px; }
 @media (max-width: 900px) {
   .paper { padding: 24px 18px; border-radius: 18px; }
   .ev-layout #evDetail { position: static !important; }
 }
-@media (max-width: 700px) { .matrix { min-width: 600px; } }
 .btn--primary .mk-blend { mix-blend-mode: multiply; }
 :root[data-theme='day'] .btn--primary .mk-blend { mix-blend-mode: screen; }
+
+/* ---------- Fit, never scroll: tables drop secondary columns as their card narrows ---------- */
+.tablewrap { container-type: inline-size; }
+.tl-host { container-type: inline-size; }
+.c-title { min-width: 180px; }
+.c-upd-inline { display: none; }
+.matrix__h .sh { display: none; }
+@container (max-width: 1060px) { .c-res, .c-upd { display: none; } .c-upd-inline { display: inline; } }
+@container (max-width: 880px) { .c-ev { display: none; } }
+@container (max-width: 760px) { .c-trend { display: none; } }
+@container (max-width: 620px) { .c-base { display: none; } }
+@container (max-width: 540px) {
+  .c-title { min-width: 0; }
+  table.data th, table.data td { padding: 10px 8px; }
+  .matrix { grid-template-columns: minmax(96px, 1.3fr) repeat(4, minmax(0, 1fr)); }
+  .matrix__h { letter-spacing: .02em; font-size: 9.5px; padding: 6px 2px; text-align: center; }
+  .matrix__h .lg, .matrix .m-desc { display: none; }
+  .matrix__h .sh { display: inline; }
+}
+@container (max-width: 470px) { .c-target { display: none; } }
+@container (max-width: 420px) { .chip.status .st-l { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .chip.status { padding: 0 6px; } }
+
+/* timeline: across when there is room, down the card when there is not */
+@container (max-width: 640px) {
+  .tl { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: 1fr; padding: 4px 0; }
+  .tl::before { left: 6px; right: auto; top: 14px; bottom: 14px; width: 1px; height: auto; }
+  .tl__item { display: grid; grid-template-columns: 26px 64px minmax(0, 1fr); align-items: baseline; padding: 6px 0; }
+  .tl__dot { margin: 0; align-self: center; }
+  .tl__label { margin: 0; }
+  .tl__note { grid-column: 3; }
+}
+@container (max-width: 420px) { table.data th, table.data td { padding: 9px 5px; } table.data .num { font-size: 11px; } table.data th { letter-spacing: .04em; } }
+@container (max-width: 320px) { table.data .num { hyphens: auto; overflow-wrap: anywhere; } }

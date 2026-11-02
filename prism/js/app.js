@@ -32,7 +32,7 @@ const vNum = (v) => Number(v.slice(1));
 
 function statusChip(s, extra = '') {
   const st = STATUS[s] ?? STATUS.nodata;
-  return `<span class="chip status status--${s} ${extra}">${icon(st.icon)}${st.label}</span>`;
+  return `<span class="chip status status--${s} ${extra}" title="${st.label}">${icon(st.icon)}<span class="st-l">${st.label}</span></span>`;
 }
 function kindChip(k) {
   return `<span class="chip kind kind--${k}"><i></i>${KINDS[k].short}</span>`;
@@ -231,20 +231,20 @@ VIEWS.brief = (v) => {
     <section class="glass card" aria-labelledby="pulse-h">
       <div class="card__head"><div><div class="card__title" id="pulse-h">Outcome pulse</div><div class="card__sub">Impact and outcome indicators, latest value against target</div></div><span class="spacer"></span><a class="btn btn--sm btn--ghost" href="#/indicators">All indicators</a></div>
       <div class="tablewrap"><table class="data">
-        <thead><tr><th>Indicator</th><th>Trend</th><th class="num">Now</th><th class="num">Target</th><th>Status</th></tr></thead>
+        <thead><tr><th>Indicator</th><th class="c-trend">Trend</th><th class="num">Now</th><th class="num c-target">Target</th><th>Status</th></tr></thead>
         <tbody>${INDICATORS.filter((i) => ['impact', 'outcome'].includes(res(i.result).level)).map((i) => `
           <tr class="clickable" data-go="#/indicators?id=${i.id}" tabindex="0">
-            <td style="min-width:190px"><div style="font-weight:500;font-size:13.5px;line-height:1.3">${esc(i.title)}</div><div class="faint mono" style="font-size:11px;margin-top:2px">${i.id} · ${i.type === 'qual' ? 'Qualitative' : 'Quantitative'}</div></td>
-            <td>${i.series ? sparkline(i.annualSeries ?? i.series, { colorVar: i.type === 'qual' ? '--voice' : '--obs', w: 72 }) : '<span class="faint mono" style="font-size:11px">Harvest log</span>'}</td>
+            <td class="c-title"><div style="font-weight:500;font-size:13.5px;line-height:1.3">${esc(i.title)}</div><div class="faint mono" style="font-size:11px;margin-top:2px">${i.id} · ${i.type === 'qual' ? 'Qualitative' : 'Quantitative'}</div></td>
+            <td class="c-trend">${i.series ? sparkline(i.annualSeries ?? i.series, { colorVar: i.type === 'qual' ? '--voice' : '--obs', w: 72 }) : '<span class="faint mono" style="font-size:11px">Harvest log</span>'}</td>
             <td class="num">${fmtVal(i)}${i.partial ? '*' : ''}</td>
-            <td class="num">${i.target != null ? fmtVal(i, i.target) : '–'}</td>
+            <td class="num c-target">${i.target != null ? fmtVal(i, i.target) : '–'}</td>
             <td>${statusChip(i.status)}</td>
           </tr>`).join('')}</tbody>
       </table></div>
       <div class="chart-foot">* Q3 covers three of four districts. Tarn Valley has not reported.</div>
     </section>
     <div class="grid">
-      <section class="glass card" aria-labelledby="tl-h">
+      <section class="glass card tl-host" aria-labelledby="tl-h">
         <div class="card__head"><div><div class="card__title" id="tl-h">Next eight weeks</div><div class="card__sub">Reviews, reporting dates and the budget calendar</div></div></div>
         <div class="tl">${TIMELINE.map((t) => `<div class="tl__item ${t.done ? 'done' : ''} ${t.today ? 'today' : ''} ${t.key ? 'key' : ''}"><div class="tl__dot"></div><div class="tl__date">${fmtDate(t.date)}</div><div class="tl__label">${esc(t.label)}</div>${t.note ? `<div class="tl__note">${esc(t.note)}</div>` : ''}</div>`).join('')}</div>
       </section>
@@ -642,19 +642,19 @@ function plan(host, selId) {
   host.innerHTML = `
   <section class="glass card" style="padding:8px 8px 4px">
     <div class="tablewrap"><table class="data">
-      <thead><tr><th>Indicator</th><th>Result</th><th>Trend</th><th class="num">Baseline</th><th class="num">Now</th><th class="num">Target</th><th>Evidence</th><th>Status</th><th>Updated</th></tr></thead>
+      <thead><tr><th>Indicator</th><th class="c-res">Result</th><th class="c-trend">Trend</th><th class="num c-base">Baseline</th><th class="num">Now</th><th class="num c-target">Target</th><th class="c-ev">Evidence</th><th>Status</th><th class="c-upd">Updated</th></tr></thead>
       <tbody>${all.map((i) => {
         const age = i.lastUpdate ? daysBetween(i.lastUpdate, TODAY) : null;
         return `<tr class="clickable" data-id="${i.id}" tabindex="0" aria-selected="${i.id === selId}">
-          <td style="min-width:240px"><div style="font-weight:500;font-size:13.5px;line-height:1.3">${esc(i.title)}</div><div class="faint mono" style="font-size:11px;margin-top:2px">${i.id} · ${i.type === 'qual' ? 'Qualitative' : i.type === 'mixed' ? 'Mixed' : 'Quantitative'}${i.draft ? ' · draft' : ''}</div></td>
-          <td><span class="tag">${esc(res(i.result).code.replace('Outcome', 'Out.').replace('Output', 'Op.'))}</span></td>
-          <td>${i.series ? sparkline(i.annualSeries ?? i.series, { colorVar: i.type === 'qual' ? '--voice' : '--obs' }) : ''}</td>
-          <td class="num">${i.baseline != null ? fmtVal(i, i.baseline) : '–'}</td>
+          <td class="c-title"><div style="font-weight:500;font-size:13.5px;line-height:1.3">${esc(i.title)}</div><div class="faint mono" style="font-size:11px;margin-top:2px">${i.id} · ${i.type === 'qual' ? 'Qualitative' : i.type === 'mixed' ? 'Mixed' : 'Quantitative'}${i.draft ? ' · draft' : ''}<span class="c-upd-inline"${(i.overdue || i.partial) ? ' style="color:var(--watch)"' : ''}> · ${age != null ? `${age}d ago` : 'new'}${(i.overdue || i.partial) ? ', gap' : ''}</span></div></td>
+          <td class="c-res"><span class="tag">${esc(res(i.result).code.replace('Outcome', 'Out.').replace('Output', 'Op.'))}</span></td>
+          <td class="c-trend">${i.series ? sparkline(i.annualSeries ?? i.series, { colorVar: i.type === 'qual' ? '--voice' : '--obs' }) : ''}</td>
+          <td class="num c-base">${i.baseline != null ? fmtVal(i, i.baseline) : '–'}</td>
           <td class="num" style="color:var(--ink)">${fmtVal(i)}${i.partial ? '*' : ''}</td>
-          <td class="num">${i.target != null ? fmtVal(i, i.target) : '–'}</td>
-          <td style="min-width:90px">${spectrumBar(i.spectrum ?? {})}</td>
+          <td class="num c-target">${i.target != null ? fmtVal(i, i.target) : '–'}</td>
+          <td class="c-ev" style="min-width:90px">${spectrumBar(i.spectrum ?? {})}</td>
           <td>${statusChip(i.status)}</td>
-          <td class="mono" style="font-size:11.5px;white-space:nowrap;${(i.overdue || i.partial) ? 'color:var(--watch)' : ''}">${age != null ? `${age}d ago` : 'New'}${(i.overdue || i.partial) ? ' · gap' : ''}</td>
+          <td class="mono c-upd" style="font-size:11.5px;white-space:nowrap;${(i.overdue || i.partial) ? 'color:var(--watch)' : ''}">${age != null ? `${age}d ago` : 'New'}${(i.overdue || i.partial) ? ' · gap' : ''}</td>
         </tr>`;
       }).join('')}</tbody></table></div>
   </section>
@@ -838,8 +838,8 @@ VIEWS.evidence = (v, q) => {
     <div class="card__head" style="flex-wrap:wrap"><div style="flex:1;min-width:240px"><div class="card__title" id="mx-h">What people are telling us</div><div class="card__sub">Coded excerpts by theme and group, from 6 interviews and 4 focus groups. Colour shows whether the voices support or contradict the framework’s logic.</div></div>
       <span class="legend"><span style="--c:var(--on)"><i></i>Supports</span><span style="--c:var(--off)"><i></i>Contradicts</span><span style="--c:var(--watch)"><i></i>Mixed</span></span></div>
     <div class="tablewrap"><div class="matrix" role="table" aria-label="Themes by group">
-      <div class="matrix__h" role="columnheader">Theme</div>${GROUPS.map((g) => `<div class="matrix__h" role="columnheader">${esc(g)}</div>`).join('')}
-      ${THEMES.map((t) => `<div class="matrix__t" role="rowheader" title="${esc(t.desc)}">${esc(t.name)}<div class="faint" style="font-size:11.5px;font-weight:400">${esc(t.desc)}</div></div>${MATRIX[t.id].map(([n, s], gi) => `<div class="matrix__c" role="cell" data-s="${s}" style="--a:${Math.min(60, n * 6)}" aria-label="${esc(GROUPS[gi])}: ${n} excerpts${s ? `, ${s === '+' ? 'supports' : s === '-' ? 'contradicts' : 'mixed'}` : ''}">${n || '<span class="faint">·</span>'}${s ? `<small>${s}</small>` : ''}</div>`).join('')}`).join('')}
+      <div class="matrix__h" role="columnheader">Theme</div>${GROUPS.map((g, gi) => `<div class="matrix__h" role="columnheader"><span class="lg">${esc(g)}</span><span class="sh" aria-hidden="true">${['Women', 'Youth', 'Council', 'CSOs'][gi]}</span></div>`).join('')}
+      ${THEMES.map((t) => `<div class="matrix__t" role="rowheader" title="${esc(t.desc)}">${esc(t.name)}<div class="faint m-desc" style="font-size:11.5px;font-weight:400">${esc(t.desc)}</div></div>${MATRIX[t.id].map(([n, s], gi) => `<div class="matrix__c" role="cell" data-s="${s}" style="--a:${Math.min(60, n * 6)}" aria-label="${esc(GROUPS[gi])}: ${n} excerpts${s ? `, ${s === '+' ? 'supports' : s === '-' ? 'contradicts' : 'mixed'}` : ''}">${n || '<span class="faint">·</span>'}${s ? `<small>${s}</small>` : ''}</div>`).join('')}`).join('')}
     </div></div>
     <div class="callout" style="margin-top:16px;background:color-mix(in srgb,var(--on) 7%,transparent);border-color:color-mix(in srgb,var(--on) 28%,transparent)">${icon('split').replace('<svg', '<svg style="color:var(--on)"')}<div><strong>Contrary case worth learning from.</strong> Only council officials and coalitions mention early engagement, and only in Kessa. It is the one place where a citizen priority was funded. <a href="#/evidence?id=EV-035">Open EV-035</a></div></div>
   </section>
@@ -925,8 +925,8 @@ VIEWS.report = (v, q) => {
       </ol>
 
       <h2>KPI summary</h2>
-      <div class="tablewrap"><table class="data"><thead><tr><th>Indicator</th><th class="num">Baseline</th><th class="num">Now</th><th class="num">Target</th><th>Status</th></tr></thead><tbody>
-        ${['IMP-1', 'O1-a', 'O1-b', 'O2-a', 'O3-a'].map(ind).map((i) => `<tr><td style="font-size:13.5px">${esc(i.title)}</td><td class="num">${fmtVal(i, i.baseline)}</td><td class="num">${fmtVal(i)}${i.partial ? '*' : ''}</td><td class="num">${fmtVal(i, i.target)}</td><td>${statusChip(i.status)}</td></tr>`).join('')}
+      <div class="tablewrap"><table class="data"><thead><tr><th>Indicator</th><th class="num c-base">Baseline</th><th class="num">Now</th><th class="num">Target</th><th>Status</th></tr></thead><tbody>
+        ${['IMP-1', 'O1-a', 'O1-b', 'O2-a', 'O3-a'].map(ind).map((i) => `<tr><td style="font-size:13.5px">${esc(i.title)}</td><td class="num c-base">${fmtVal(i, i.baseline)}</td><td class="num">${fmtVal(i)}${i.partial ? '*' : ''}</td><td class="num">${fmtVal(i, i.target)}</td><td>${statusChip(i.status)}</td></tr>`).join('')}
       </tbody></table></div>
       <p class="faint" style="font-size:12.5px;margin-top:8px">* Three of four districts. Tarn Valley’s Q3 log had not arrived when this draft was prepared.</p>
 
