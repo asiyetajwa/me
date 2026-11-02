@@ -1,5 +1,7 @@
 import { icon, mark, $, $$ } from './ui.js';
 
+const ROOT = new URL('../', import.meta.url).href;
+
 /* ---------- theme (shared preference with the app) ---------- */
 const getTheme = () => { try { return localStorage.getItem('prism-theme') ?? 'dusk'; } catch { return 'dusk'; } };
 function paintTheme() {
@@ -76,7 +78,7 @@ const TILES = [
   { id: 'report', ic: 'report', t: 'Reports', d: 'Drafts built from approved records, every claim checked.', c: '--on' },
   { id: 'ledger', ic: 'ledger', t: 'Ledger', d: 'Every change by a person or an agent, and why.', c: '--watch' },
 ];
-$('#tiles').innerHTML = TILES.map((x) => `<a class="tile reveal" href="app/#/${x.id}" style="--c:var(${x.c})">
+$('#tiles').innerHTML = TILES.map((x) => `<a class="tile reveal" href="${ROOT}app/#/${x.id}" style="--c:var(${x.c})">
   <span class="tile__ic">${icon(x.ic)}</span><h3>${x.t}</h3><p>${x.d}</p><span class="tile__go">Open in the demo</span></a>`).join('');
 
 /* ---------- reveal on scroll ---------- */
@@ -87,11 +89,11 @@ paintTheme();
 showKind(0);
 
 /* ---------- show the tour only once the video has been published ---------- */
-fetch('assets/Prism-demo.mp4', { method: 'HEAD' }).then((r) => {
+fetch(`${ROOT}assets/Prism-demo.mp4`, { method: 'HEAD' }).then((r) => {
   if (r.ok) return;
   $('#tour').hidden = true;
   $$('a[href="#tour"]').forEach((a) => { a.hidden = true; });
 }).catch(() => {});
 
 /* old #/ demo links followed from within this page */
-window.addEventListener('hashchange', () => { if (location.hash.startsWith('#/')) location.replace('app/' + location.hash); });
+window.addEventListener('hashchange', () => { if (location.hash.startsWith('#/')) location.replace(`${ROOT}app/` + location.hash); });

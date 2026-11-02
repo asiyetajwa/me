@@ -10,14 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/prism.css?v=7">
-  <link rel="stylesheet" href="css/landing.css?v=1">
+  <link rel="stylesheet" href="css/prism.css?v=8">
+  <link rel="stylesheet" href="css/landing.css?v=2">
   <script>
     // Old demo links (#/brief, #/framework…) now live under app/
     if (location.hash.startsWith('#/')) location.replace('app/' + location.hash);
     try { var t = localStorage.getItem('prism-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
-  <script type="module" src="js/landing.js?v=2"></script>
+  <script type="module" src="js/landing.js?v=3"></script>
 </head>
 <body class="landing">
   <div class="atmos" aria-hidden="true">
@@ -33,6 +33,7 @@
       <a href="#product">Product</a>
       <a href="#story">How It Works</a>
       <a href="#principles">Principles</a>
+      <a href="#pricing">Pricing</a>
     </nav>
     <div class="lnav__actions">
       <button class="iconbtn" type="button" id="theme" aria-label="Switch theme"></button>
@@ -178,6 +179,70 @@
       </div>
     </section>
 
+    <!-- ============ Pricing ============ -->
+    <section class="lsec" id="pricing" aria-labelledby="pricing-h">
+      <div class="lsec__head">
+        <div class="eyebrow">Pricing</div>
+        <h2 id="pricing-h" class="lsec__title">Priced per team, not per report.</h2>
+        <p class="muted lsec__lede">Every plan includes the whole workflow: Theory of Change with versioning, the indicator library, the M&amp;E plan, evidence and qualitative coding, report checks and the Ledger. Plans differ by team size, programmes and support.</p>
+      </div>
+      <div class="plans">
+        <article class="plan glass reveal">
+          <div class="plan__name">Starter</div>
+          <div class="plan__price"><span class="plan__amt">$49</span><span class="faint">/ month</span></div>
+          <p class="plan__for">For independent consultants and small teams.</p>
+          <ul class="plan__list">
+            <li><b>2</b> users</li><li><b>3</b> active programmes</li><li>Monthly agent allowance included</li><li>Email support</li>
+          </ul>
+          <a class="btn plan__cta" href="app/">Try It in the Demo</a>
+        </article>
+        <article class="plan plan--hi glass refract reveal">
+          <div class="plan__name">Professional <span class="plan__tag mono">Most teams</span></div>
+          <div class="plan__price"><span class="plan__amt">$149</span><span class="faint">/ month</span></div>
+          <p class="plan__for">For established NGO programme teams.</p>
+          <ul class="plan__list">
+            <li><b>10</b> users</li><li><b>10</b> active programmes</li><li>Larger monthly agent allowance</li><li>Import existing logframes from Excel</li><li>Priority support</li>
+          </ul>
+          <a class="btn btn--primary plan__cta" href="app/">Try It in the Demo</a>
+        </article>
+        <article class="plan glass reveal">
+          <div class="plan__name">Organisation</div>
+          <div class="plan__price"><span class="plan__amt">$399</span><span class="faint">/ month</span></div>
+          <p class="plan__for">For larger NGOs running many projects.</p>
+          <ul class="plan__list">
+            <li><b>30</b> users</li><li><b>30</b> active programmes</li><li>Cross-programme views</li><li>Shared organisation indicator library</li><li>Onboarding call</li>
+          </ul>
+          <a class="btn plan__cta" href="app/">Try It in the Demo</a>
+        </article>
+        <article class="plan glass reveal">
+          <div class="plan__name">Enterprise</div>
+          <div class="plan__price"><span class="plan__amt plan__amt--sm">Custom</span><span class="faint">from $1,500 / month</span></div>
+          <p class="plan__for">For INGOs, funders, government and institutions.</p>
+          <ul class="plan__list">
+            <li>Users and programmes to fit</li><li>Single sign-on and advanced audit</li><li>Data residency options</li><li>Dedicated support</li>
+          </ul>
+          <a class="btn plan__cta" href="app/">Try It in the Demo</a>
+        </article>
+      </div>
+      <p class="faint plan__note">Prices in US dollars, billed monthly. Agent use is metered against an allowance included in each plan; you see any overage before it is charged, and nothing is ever sold as unlimited. These are indicative prices for pilot organisations.</p>
+
+      <div class="addons glass reveal">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h3 class="addons__title">Help getting started</h3>
+          <p class="muted" style="margin-top:8px;font-size:14.5px">One-off services, quoted per organisation.</p>
+        </div>
+        <dl class="addons__list">
+          <div><dt>Onboarding</dt><dd>$500 to $2,000</dd></div>
+          <div><dt>Moving an existing framework into Prism</dt><dd>$500 to $2,500</dd></div>
+          <div><dt>Custom donor report templates</dt><dd>$300 to $1,000</dd></div>
+          <div><dt>Remote training</dt><dd>$300 to $750 a day</dd></div>
+          <div><dt>On-site training</dt><dd>$750 to $1,500 a day, plus expenses</dd></div>
+          <div><dt>Custom integrations</dt><dd>From $1,500</dd></div>
+        </dl>
+      </div>
+    </section>
+
     <!-- ============ CTA ============ -->
     <section class="lsec">
       <div class="cta glass refract">
@@ -203,7 +268,7 @@
         <div><div class="eyebrow">Product</div>
           <a href="app/#/brief">Brief</a><a href="app/#/framework">Theory of Change</a><a href="app/#/indicators">Indicators</a><a href="app/#/evidence">Evidence</a><a href="app/#/report">Reports</a><a href="app/#/ledger">Ledger</a></div>
         <div><div class="eyebrow">Explore</div>
-          <a href="#problem">The Problem</a><a href="#story">How It Works</a><a href="#tour">Watch the Tour</a><a href="#principles">Principles</a></div>
+          <a href="#problem">The Problem</a><a href="#story">How It Works</a><a href="#tour">Watch the Tour</a><a href="#principles">Principles</a><a href="#pricing">Pricing</a></div>
       </div>
     </div>
     <div class="lfoot__small faint">Demo. Every organisation, person, place, quote and figure shown is fictional. Music in the tour: “Softly” by Loyalty Freak Music, CC0.</div>

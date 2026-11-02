@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en" data-theme="dusk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Prism · Programme Intelligence</title>
+  <meta name="description" content="Prism turns field evidence into defensible findings for monitoring, evaluation and learning teams.">
+  <meta name="theme-color" content="#0b1113">
+  <link rel="canonical" href="https://asiyetajwa.github.io/me/prism.html">
+  <link rel="icon" href="prism/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="prism/css/prism.css?v=8">
+  <link rel="stylesheet" href="prism/css/landing.css?v=2">
+  <script>
+    // Old demo links (#/brief, #/framework…) now live under app/
+    if (location.hash.startsWith('#/')) location.replace('prism/app/' + location.hash);
+    try { var t = localStorage.getItem('prism-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="module" src="prism/js/landing.js?v=3"></script>
+</head>
+<body class="landing">
+  <div class="atmos" aria-hidden="true">
+    <div class="atmos__sky"></div>
+    <div class="atmos__orb atmos__orb--1"></div><div class="atmos__orb atmos__orb--2"></div><div class="atmos__orb atmos__orb--3"></div>
+    <div class="atmos__grain"></div>
+  </div>
+
+  <header class="lnav glass" id="top">
+    <a class="lnav__brand" href="#top" aria-label="Prism home"><span class="lnav__mark" data-mark></span><span>Prism</span></a>
+    <nav class="lnav__links" aria-label="Sections">
+      <a href="#problem">The Problem</a>
+      <a href="#product">Product</a>
+      <a href="#story">How It Works</a>
+      <a href="#principles">Principles</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="lnav__actions">
+      <button class="iconbtn" type="button" id="theme" aria-label="Switch theme"></button>
+      <a class="btn btn--ghost lnav__tour" href="#tour">Watch the Tour</a>
+      <a class="btn btn--primary" href="prism/app/">Open the Demo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ Hero: the wordmark is a window onto the evidence ============ -->
+    <section class="hero2" aria-labelledby="hero-title">
+      <div class="word" aria-hidden="true">
+        <span class="word__layer is-on" data-kind="observed">Prism</span>
+        <span class="word__layer" data-kind="voice">Prism</span>
+        <span class="word__layer" data-kind="document">Prism</span>
+        <span class="word__layer" data-kind="spectrum">Prism</span>
+      </div>
+      <div class="word__caption" aria-hidden="true">
+        <span class="word__dot"></span><span class="mono" id="wordKind">Observed data</span><span class="faint mono" id="wordNote">survey waves, hearing logs, budgets</span>
+      </div>
+
+      <div class="hero2__grid">
+        <div>
+          <div class="eyebrow">Programme intelligence for MERL teams</div>
+          <h1 id="hero-title" class="hero2__title">See the evidence. Understand the impact.</h1>
+        </div>
+        <div class="hero2__copy">
+          <p>Monitoring and evaluation teams can count what they did. The hard part is showing what changed, and why, in a way a funder, a board or a community can trust.</p>
+          <p>Prism keeps every number, interview and document joined to the result it supports. Its agents prepare the analysis. Your team makes the calls.</p>
+          <div class="btnrow" style="margin-top:22px">
+            <a class="btn btn--primary" href="prism/app/">Open the Demo</a>
+            <a class="btn" href="#tour">Watch the Two-Minute Tour</a>
+          </div>
+          <a class="scrollcue" href="#problem"><span class="scrollcue__line"></span>Scroll to explore</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ The problem ============ -->
+    <section class="lsec" id="problem" aria-labelledby="problem-h">
+      <div class="lsec__head">
+        <div class="eyebrow">The problem</div>
+        <h2 id="problem-h" class="lsec__title">Reporting week should not be an act of archaeology.</h2>
+      </div>
+      <div class="problems">
+        <article class="glass problem reveal">
+          <span class="problem__n mono">01</span>
+          <h3>Green outputs, red outcomes</h3>
+          <p>Trainings held, forums run, people reached. Dashboards light up, while the change the programme exists for stays flat and nobody can say why.</p>
+        </article>
+        <article class="glass problem reveal">
+          <span class="problem__n mono">02</span>
+          <h3>The quarter-end rebuild</h3>
+          <p>Every donor report is assembled again by hand, from spreadsheets, transcripts and memory. The interviews that explain the numbers are reduced to one quote.</p>
+        </article>
+        <article class="glass problem reveal">
+          <span class="problem__n mono">03</span>
+          <h3>Claims that drift</h3>
+          <p>Caveats fall away on the way to the page. A rise from 18% to 34%, reported by three of four districts, becomes “more than doubled”.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ Explore the product ============ -->
+    <section class="lsec" id="product" aria-labelledby="product-h">
+      <div class="explore">
+        <div class="explore__intro">
+          <div class="eyebrow">Product</div>
+          <h2 id="product-h" class="lsec__title">Explore the six views.</h2>
+          <p class="muted">Each one answers a question an M&amp;E lead asks every week. Open any of them in the live demo, which runs on a fictional programme.</p>
+        </div>
+        <div class="tiles" id="tiles"></div>
+      </div>
+    </section>
+
+    <!-- ============ Story with product shots ============ -->
+    <section class="lsec" id="story" aria-labelledby="story-h">
+      <div class="lsec__head">
+        <div class="eyebrow">How it works</div>
+        <h2 id="story-h" class="lsec__title">One programme, from signal to sentence.</h2>
+        <p class="muted lsec__lede">Open Councils trains council officials and runs citizen budget hearings. Every output is green. Funded citizen priorities moved three points in two years. Here is how Prism finds out why.</p>
+      </div>
+      <div class="story">
+        <article class="chapter reveal">
+          <figure class="shot glass"><img src="prism/assets/shot-brief.jpg" alt="The Prism Brief: a one-sentence situation, results health by level, and decisions prepared by agents" loading="lazy" width="1920" height="1080"></figure>
+          <div class="chapter__text">
+            <span class="chapter__n mono">01 · Brief</span>
+            <h3>It starts with one honest sentence.</h3>
+            <p>Not a wall of charts. The Brief says what changed and puts the decisions that need your judgement first, each prepared by an agent with its sources, confidence and limits.</p>
+          </div>
+        </article>
+        <article class="chapter chapter--flip reveal">
+          <figure class="shot glass"><img src="prism/assets/shot-toc.jpg" alt="Theory of Change map with assumption A3 marked contradicted and a proposed framework version 4" loading="lazy" width="1920" height="1080"></figure>
+          <div class="chapter__text">
+            <span class="chapter__n mono">02 · Theory of Change</span>
+            <h3>Assumptions are tested, not assumed.</h3>
+            <p>Six of nine interviews say the regional treasury fixes budget ceilings before hearings. The assumption is marked contradicted, a change is proposed, and you approve version four with your reason. Version three stays on the record.</p>
+          </div>
+        </article>
+        <article class="chapter reveal">
+          <figure class="shot glass"><img src="prism/assets/shot-evidence.jpg" alt="Evidence view: coded excerpts by theme and group, showing where voices support or contradict the framework" loading="lazy" width="1920" height="1080"></figure>
+          <div class="chapter__text">
+            <span class="chapter__n mono">03 · Evidence</span>
+            <h3>Voices carry as much weight as numbers.</h3>
+            <p>Interviews and focus groups are coded by theme and group, so you can see where people support the logic and where they push back, including the one council that broke the pattern.</p>
+          </div>
+        </article>
+        <article class="chapter chapter--flip reveal">
+          <figure class="shot glass"><img src="prism/assets/shot-report.jpg" alt="Report draft with a defensibility check flagging one misleading claim and offering a sourced rewrite" loading="lazy" width="1920" height="1080"></figure>
+          <div class="chapter__text">
+            <span class="chapter__n mono">04 · Reports</span>
+            <h3>Every claim is checked before it ships.</h3>
+            <p>The draft builds itself from approved records. Prism traces each sentence to its evidence, flags the ones that overreach, and keeps the report from going out for review until they are fixed.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ Tour video ============ -->
+    <section class="lsec" id="tour" aria-labelledby="tour-h">
+      <div class="lsec__head lsec__head--center">
+        <div class="eyebrow">The tour</div>
+        <h2 id="tour-h" class="lsec__title">Two minutes, start to finish.</h2>
+      </div>
+      <div class="tour glass refract">
+        <video controls preload="none" playsinline poster="prism/assets/tour-poster.jpg" width="1920" height="1080">
+          <source src="prism/assets/Prism-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- ============ Principles ============ -->
+    <section class="lsec" id="principles" aria-labelledby="principles-h">
+      <div class="lsec__head">
+        <div class="eyebrow">Principles</div>
+        <h2 id="principles-h" class="lsec__title">Built for work that has to stand up.</h2>
+      </div>
+      <div class="principles">
+        <div class="principle reveal"><span class="principle__bar" style="--c:var(--obs)"></span><h3>Every claim is traced</h3><p>Numbers, quotes and findings stay linked to the records behind them, from the first upload to the final report.</p></div>
+        <div class="principle reveal"><span class="principle__bar" style="--c:var(--voice)"></span><h3>Gaps are never zeros</h3><p>A missing report is drawn and labelled as missing. A survey that runs twice a year simply skips quarters.</p></div>
+        <div class="principle reveal"><span class="principle__bar" style="--c:var(--doc)"></span><h3>Agents prepare, people decide</h3><p>Agent output is labelled, sourced and changes nothing until someone accepts it. Every decision lands in the Ledger.</p></div>
+        <div class="principle reveal"><span class="principle__bar principle__bar--agent"></span><h3>Restricted stays restricted</h3><p>Protection records are never read by agents, never quoted and never drafted into a report. Opening one is logged.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ Pricing ============ -->
+    <section class="lsec" id="pricing" aria-labelledby="pricing-h">
+      <div class="lsec__head">
+        <div class="eyebrow">Pricing</div>
+        <h2 id="pricing-h" class="lsec__title">Priced per team, not per report.</h2>
+        <p class="muted lsec__lede">Every plan includes the whole workflow: Theory of Change with versioning, the indicator library, the M&amp;E plan, evidence and qualitative coding, report checks and the Ledger. Plans differ by team size, programmes and support.</p>
+      </div>
+      <div class="plans">
+        <article class="plan glass reveal">
+          <div class="plan__name">Starter</div>
+          <div class="plan__price"><span class="plan__amt">$49</span><span class="faint">/ month</span></div>
+          <p class="plan__for">For independent consultants and small teams.</p>
+          <ul class="plan__list">
+            <li><b>2</b> users</li><li><b>3</b> active programmes</li><li>Monthly agent allowance included</li><li>Email support</li>
+          </ul>
+          <a class="btn plan__cta" href="prism/app/">Try It in the Demo</a>
+        </article>
+        <article class="plan plan--hi glass refract reveal">
+          <div class="plan__name">Professional <span class="plan__tag mono">Most teams</span></div>
+          <div class="plan__price"><span class="plan__amt">$149</span><span class="faint">/ month</span></div>
+          <p class="plan__for">For established NGO programme teams.</p>
+          <ul class="plan__list">
+            <li><b>10</b> users</li><li><b>10</b> active programmes</li><li>Larger monthly agent allowance</li><li>Import existing logframes from Excel</li><li>Priority support</li>
+          </ul>
+          <a class="btn btn--primary plan__cta" href="prism/app/">Try It in the Demo</a>
+        </article>
+        <article class="plan glass reveal">
+          <div class="plan__name">Organisation</div>
+          <div class="plan__price"><span class="plan__amt">$399</span><span class="faint">/ month</span></div>
+          <p class="plan__for">For larger NGOs running many projects.</p>
+          <ul class="plan__list">
+            <li><b>30</b> users</li><li><b>30</b> active programmes</li><li>Cross-programme views</li><li>Shared organisation indicator library</li><li>Onboarding call</li>
+          </ul>
+          <a class="btn plan__cta" href="prism/app/">Try It in the Demo</a>
+        </article>
+        <article class="plan glass reveal">
+          <div class="plan__name">Enterprise</div>
+          <div class="plan__price"><span class="plan__amt plan__amt--sm">Custom</span><span class="faint">from $1,500 / month</span></div>
+          <p class="plan__for">For INGOs, funders, government and institutions.</p>
+          <ul class="plan__list">
+            <li>Users and programmes to fit</li><li>Single sign-on and advanced audit</li><li>Data residency options</li><li>Dedicated support</li>
+          </ul>
+          <a class="btn plan__cta" href="prism/app/">Try It in the Demo</a>
+        </article>
+      </div>
+      <p class="faint plan__note">Prices in US dollars, billed monthly. Agent use is metered against an allowance included in each plan; you see any overage before it is charged, and nothing is ever sold as unlimited. These are indicative prices for pilot organisations.</p>
+
+      <div class="addons glass reveal">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h3 class="addons__title">Help getting started</h3>
+          <p class="muted" style="margin-top:8px;font-size:14.5px">One-off services, quoted per organisation.</p>
+        </div>
+        <dl class="addons__list">
+          <div><dt>Onboarding</dt><dd>$500 to $2,000</dd></div>
+          <div><dt>Moving an existing framework into Prism</dt><dd>$500 to $2,500</dd></div>
+          <div><dt>Custom donor report templates</dt><dd>$300 to $1,000</dd></div>
+          <div><dt>Remote training</dt><dd>$300 to $750 a day</dd></div>
+          <div><dt>On-site training</dt><dd>$750 to $1,500 a day, plus expenses</dd></div>
+          <div><dt>Custom integrations</dt><dd>From $1,500</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="lsec">
+      <div class="cta glass refract">
+        <div>
+          <h2 class="lsec__title" style="margin:0">See it with a programme of your own.</h2>
+          <p class="muted" style="margin-top:12px;max-width:52ch">The demo runs on Open Councils, a fictional governance programme. Walk through it, approve a framework change and fix a misleading claim yourself.</p>
+        </div>
+        <div class="btnrow">
+          <a class="btn btn--primary" href="prism/app/">Open the Demo</a>
+          <a class="btn" href="#tour">Watch the Tour</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lfoot">
+    <div class="lfoot__inner">
+      <div class="lfoot__brand">
+        <a class="lnav__brand" href="#top"><span class="lnav__mark" data-mark></span><span>Prism</span></a>
+        <p class="faint">Programme intelligence for monitoring, evaluation, research and learning teams.</p>
+      </div>
+      <div class="lfoot__cols">
+        <div><div class="eyebrow">Product</div>
+          <a href="prism/app/#/brief">Brief</a><a href="prism/app/#/framework">Theory of Change</a><a href="prism/app/#/indicators">Indicators</a><a href="prism/app/#/evidence">Evidence</a><a href="prism/app/#/report">Reports</a><a href="prism/app/#/ledger">Ledger</a></div>
+        <div><div class="eyebrow">Explore</div>
+          <a href="#problem">The Problem</a><a href="#story">How It Works</a><a href="#tour">Watch the Tour</a><a href="#principles">Principles</a><a href="#pricing">Pricing</a></div>
+      </div>
+    </div>
+    <div class="lfoot__small faint">Demo. Every organisation, person, place, quote and figure shown is fictional. Music in the tour: “Softly” by Loyalty Freak Music, CC0.</div>
+  </footer>
+</body>
+</html>

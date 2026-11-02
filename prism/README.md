@@ -2,7 +2,7 @@
 
 Programme intelligence for MERL teams: field evidence in, defensible findings out.
 
-**Landing page:** https://asiyetajwa.github.io/me/prism/
+**Landing page:** https://asiyetajwa.github.io/me/prism.html (also served at https://asiyetajwa.github.io/me/prism/)
 **Live demo:** https://asiyetajwa.github.io/me/prism/app/ (every person, place, quote and figure is fictional demo data).
 
 ## The pain point it is built around
@@ -47,6 +47,8 @@ Plain HTML, CSS and JavaScript modules. No build step and no dependencies beyond
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
+
+`prism.html` at the site root is generated from `prism/index.html` by `python3 prism/tools/build_landing.py`; edit the source, then run it.
 
 Files: `index.html` (landing page, `css/landing.css`, `js/landing.js`), `app/index.html` (the demo), `css/prism.css` (design system shared by both), `js/data.js` (demo workspace), `js/charts.js` (SVG charts), `js/ui.js` (icons, mark), `js/app.js` (views and interactions), `assets/` (product shots and the tour video).
 
