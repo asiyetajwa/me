@@ -380,6 +380,7 @@ function fwMap(fw) {
   $$('[data-v]', fw).forEach((b) => b.onclick = () => { state.version = b.dataset.v; fwMap(fw); });
   if (showProposal) wireProposal(fw);
   $$('.node', fw).forEach((n) => n.onclick = () => openResult(n.dataset.id));
+  fitToc();
   requestAnimationFrame(() => drawEdges());
 }
 
@@ -387,7 +388,7 @@ function nodeHtml(r) {
   const vis = visible(r);
   const sp = (r.indicators ?? []).map(ind).filter(Boolean).reduce((a, i) => { for (const k in i.spectrum) a[k] = (a[k] ?? 0) + i.spectrum[k]; return a; }, {});
   const c = { on: '--on', watch: '--watch', off: '--off', nodata: '--nodata' }[r.status] ?? '--nodata';
-  const top = POS[r.id];
+  const top = POS[r.id] - (tocCompact() && ['P31', 'A6', 'O3'].includes(r.id) ? 112 : 0);
   return `<button type="button" class="node node--${r.level} ${r.proposed && !state.v4 ? 'node--proposed' : ''} ${vis ? '' : 'is-hidden'}" data-id="${r.id}" style="left:${COLS[r.level]}px;top:${top}px;--c:var(${c})" aria-label="${esc(r.code)}: ${esc(r.title)}${r.status ? `, ${STATUS[r.status].label}` : ''}" ${vis ? '' : 'tabindex="-1" aria-hidden="true"'}>
     <div class="node__code">${esc(r.code)}${r.status ? '<span class="dot"></span>' : ''}</div>
     <div class="node__title">${esc(r.title)}</div>
@@ -426,7 +427,21 @@ function drawEdges() {
   host.innerHTML = badges;
   $$('[data-as]', host).forEach((b) => b.onclick = () => openAssumption(b.dataset.as));
 }
-window.addEventListener('resize', () => { if (current?.view === 'framework') drawEdges(); });
+// The map is drawn on a fixed 1080 x 760 canvas and scaled to fit its card, so it never scrolls sideways.
+const TOC_W = 1080;
+const tocCompact = () => !visible(res('P23'));
+const tocH = () => (tocCompact() ? 648 : 760);
+function fitToc() {
+  const toc = $('#toc');
+  if (!toc) return;
+  const wrap = toc.parentElement;
+  const s = Math.min(1.25, wrap.clientWidth / TOC_W);
+  const left = Math.max(0, (wrap.clientWidth - TOC_W * s) / 2);
+  toc.style.height = `${tocH()}px`;
+  toc.style.transform = `translate(${left}px, 0) scale(${s})`;
+  wrap.style.height = `${Math.ceil(tocH() * s)}px`;
+}
+window.addEventListener('resize', () => { if (current?.view === 'framework') fitToc(); });
 
 function proposalCard() {
   const d = DECISIONS[0];
