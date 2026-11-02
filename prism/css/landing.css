@@ -82,6 +82,8 @@ html { scroll-behavior: smooth; }
 .chapter p { margin-top: 14px; color: var(--ink-2); font-size: 16px; line-height: 1.65; }
 
 .tour { padding: 10px; border-radius: 28px; }
+.tour__credit { margin-top: 14px; text-align: center; font-size: 12.5px; }
+.tour__credit a { color: inherit; }
 .tour video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 20px; background: #0b1113; }
 
 .principles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
