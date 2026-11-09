@@ -176,3 +176,5 @@
 /* Two links side by side under the Circle+ project. */
 .crew-links{display:flex;flex-wrap:wrap;gap:28px}
 @media (max-width:640px){.crew-links{gap:18px}}
+
+.circle-art .orbit-core.creamsoda-core{background:#3524c8;border-color:#111}.orbit-core.creamsoda-core img{width:100%;height:100%}
