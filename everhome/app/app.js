@@ -39,7 +39,7 @@ function reset(id) {
 
 // The scripted moments (also used by the film, which calls them at its own pace)
 const PLAY = {
-  lang() { later(900, () => pickLang('so')); },
+  lang() { later(900, () => pickLang('en')); },
   talk() {
     const bubs = $$('.bub'), lis = $$('.fill li');
     bubs.forEach((b, i) => later(300 + i * 1500, () => b.classList.add('in')));
@@ -168,7 +168,37 @@ function cursorTo(sel, { ms = 900, click = false, dx = 0, dy = 0 } = {}) {
 function cursorHide(on) { cur.style.opacity = on ? '0' : '1'; }
 function endcard() {
   const e = document.createElement('div'); e.className = 'endcard';
-  e.innerHTML = '<div class="ec-in"><span class="orb live" style="--s:96px"></span><span class="dots ec-word">Everhome</span><p>Stay safe in the home you love.</p><small>Twin Cities and Dakota County · Somali, Hmong, Spanish and English</small></div>';
+  e.innerHTML = '<div class="ec-in"><span class="orb live" style="--s:96px"></span><span class="dots ec-word">Everhome</span><p>Stay safe in the home you love.</p><small>Twin Cities and Dakota County · English, Somali and Spanish</small></div>';
   document.body.append(e); requestAnimationFrame(() => e.classList.add('on'));
 }
-Object.assign(window.EH, { cursorTo, cursorHide, endcard, speakSo(on) { $('.listen .so').classList.toggle('speaking', on); } });
+Object.assign(window.EH, { cursorTo, cursorHide, endcard, speakSo(on) { $('.listen .so').classList.toggle('speaking', on); }, listen, greet });
+
+// Family screen: the same report, read in each household's language
+const CIRCLES = {
+  so: [['KH', 24, 'Khadra · Home'], ['AM', 270, 'Amina · Seattle'], ['HA', 200, 'Hassan · Columbus']],
+  es: [['RO', 12, 'Rosa · Home'], ['LU', 150, 'Luis · St. Paul'], ['CA', 320, 'Carmen · Chicago']],
+  en: [['MA', 40, 'Margaret · Home'], ['JO', 220, 'John · Denver'], ['EM', 290, 'Emily · Eagan']],
+};
+const HOMES = {
+  so: { who: 'Ever reading to Khadra', lang: 'Soomaali', av: 'KH', say: '"Hooyo, guriga waxaa ku jira saddex shay oo hadda la hagaajinayo."', tr: '"Mom, there are three things in the house to fix now."' },
+  es: { who: 'Ever reading to Rosa', lang: 'Español', av: 'RO', say: '"Rosa, encontramos tres cosas para arreglar en su casa. La primera es la ducha."', tr: '"Rosa, we found three things to fix in your home. The first is the shower."' },
+  en: { who: 'Ever reading to Margaret', lang: 'English', av: 'MA', say: '"Margaret, we found three things to fix in your home. The first is the stairs."', tr: 'Read aloud, with large captions on screen.' },
+};
+function listen(l) {
+  const h = HOMES[l]; const card = $('#listen'); if (!h || !card) return;
+  card.classList.add('swap');
+  setTimeout(() => {
+    $('#listen-who').textContent = h.who; $('#listen-lang').textContent = h.lang; $('#listen-av').textContent = h.av;
+    const say = $('#listen-say'); say.textContent = h.say; say.lang = l;
+    $('#listen-tr').textContent = h.tr;
+    $$('.langdots i').forEach((i) => i.classList.toggle('on', i.dataset.l === l));
+    $('#circle').innerHTML = CIRCLES[l].map(([i, h, n]) => `<span class="av" style="--h:${h}"><b>${i}</b><small>${n}</small></span>`).join('');
+    card.classList.remove('swap');
+  }, 260);
+}
+// Language screen: Ever greets in each language in turn
+const GREET = ['Hello', 'Ku soo dhawoow', 'Hola'];
+let gi = 0;
+function greet() { const g = $('#greet'); if (!g) return; gi = (gi + 1) % GREET.length; g.classList.add('swap'); setTimeout(() => { g.textContent = GREET[gi]; g.classList.remove('swap'); }, 250); }
+setInterval(greet, 1600);
+Object.assign(window.EH, { listen, greet });

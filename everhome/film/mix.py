@@ -21,8 +21,8 @@ run(['ffmpeg', '-y', '-framerate', str(FPS), '-i', f'{frames}/f%06d.jpg', '-vf',
 clips = []
 for s in S:
     clips.append((f"{vo}/everhome-{s['id']}.mp3", s['start'] + s['voAt']))
-    if s.get('extraClip'):
-        clips.append((f"{vo}/everhome-{s['extraClip']}.mp3", s['start'] + s['extraAt']))
+    for x in s.get('extras', []):
+        clips.append((f"{vo}/everhome-{x['clip']}.mp3", s['start'] + x['at']))
 inputs, parts = [], []
 for i, (f, at) in enumerate(clips):
     inputs += ['-i', f]

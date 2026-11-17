@@ -30,11 +30,11 @@
           <div class="lang-sky dotgrid"></div>
           <div class="lang-top"><span class="dots wm">Everhome</span></div>
           <div class="lang-orb"><span class="orb live" style="--s:118px"></span></div>
+          <p class="lang-greet" id="greet" aria-live="polite">Hello</p>
           <h1 class="lang-h">Hello. Which language feels like home?</h1>
           <div class="langs" role="list">
             <button class="lang" data-lang="en" role="listitem"><b>English</b><span>Hello</span></button>
             <button class="lang" data-lang="so" role="listitem"><b>Soomaali</b><span>Ku soo dhawoow</span></button>
-            <button class="lang" data-lang="hmn" role="listitem"><b>Hmoob</b><span>Nyob zoo</span></button>
             <button class="lang" data-lang="es" role="listitem"><b>Español</b><span>Hola</span></button>
           </div>
           <p class="lang-call">No smartphone? Call Ever on <b>651-555-0142</b></p>
@@ -83,9 +83,9 @@
             <p class="eyebrow">Step 2 of 3</p>
             <h2>Who scans the home?</h2>
             <p class="lede">You don't have to scan anything.</p>
-            <button class="opt card on" data-opt="a"><span class="opt-top"><b>Esa scans it at the visit</b><span class="tag tag-good">Recommended</span></span><span class="opt-sub">Nothing to do. Includes the 3D model, a licensed OT review and 3 quotes.</span><span class="price"><b>$349</b> one-time</span></button>
-            <button class="opt card" data-opt="b"><span class="opt-top"><b>We'll scan it ourselves</b></span><span class="opt-sub">Save $150. Get stuck? Switch to Esa and pay only the difference.</span><span class="price"><b>$199</b> one-time</span></button>
-            <div class="when card"><span class="cal"><b>20</b><small>Nov</small></span><span><b>Thursday, 10:00</b><small>Esa, home safety assessor</small></span><span class="tag tag-good">Booked</span></div>
+            <button class="opt card on" data-opt="a"><span class="opt-top"><b>An assessor scans it at the visit</b><span class="tag tag-good">Recommended</span></span><span class="opt-sub">Nothing to do. Includes the 3D model, a licensed OT review and 3 quotes.</span><span class="price"><b>$349</b> one-time</span></button>
+            <button class="opt card" data-opt="b"><span class="opt-top"><b>We'll scan it ourselves</b></span><span class="opt-sub">Save $150. Get stuck? Switch to an assessor and pay only the difference.</span><span class="price"><b>$199</b> one-time</span></button>
+            <div class="when card"><span class="cal"><b>20</b><small>Nov</small></span><span><b>Thursday, 10:00</b><small>Home safety assessor visit</small></span><span class="tag tag-good">Booked</span></div>
           </div>
           <div class="dock col"><button class="btn btn-primary grow" data-go="scan" id="pay">Pay $349 One-Time</button><small class="fine">Full refund until 48 hours before the visit.</small></div>
         </section>
@@ -161,19 +161,20 @@
           <div class="pad tight">
             <p class="eyebrow">Family circle</p>
             <h2 class="h-sm">Everyone sees the same plan</h2>
-            <div class="circle">
+            <div class="circle" id="circle">
               <span class="av" style="--h:24"><b>KH</b><small>Khadra · Home</small></span>
               <span class="av" style="--h:270"><b>AM</b><small>Amina · Seattle</small></span>
               <span class="av" style="--h:200"><b>HA</b><small>Hassan · Columbus</small></span>
             </div>
           </div>
-          <div class="listen card dusk-card">
-            <div class="pill"><span class="orb live" style="--s:40px"></span><span class="meta"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><b>Ever reading to Khadra</b><small id="listen-clock">01:12</small></span><span class="who" aria-hidden="true">KH</span></div>
-            <p class="so" lang="so">"Hooyo, guriga waxaa ku jira saddex shay oo hadda la hagaajinayo. Midka koowaad waa musqusha."</p>
-            <p class="tr">"Mom, there are three things in the house to fix now. The first is the bathroom."</p>
+          <div class="listen card dusk-card" id="listen">
+            <div class="pill"><span class="orb live" style="--s:40px"></span><span class="meta"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><b id="listen-who">Ever reading to Khadra</b><small id="listen-lang">Soomaali</small></span><span class="who" aria-hidden="true" id="listen-av">KH</span></div>
+            <p class="so" id="listen-say" lang="so">"Hooyo, guriga waxaa ku jira saddex shay oo hadda la hagaajinayo."</p>
+            <p class="tr" id="listen-tr">"Mom, there are three things in the house to fix now."</p>
+            <div class="langdots" aria-hidden="true"><i data-l="so" class="on"></i><i data-l="es"></i><i data-l="en"></i></div>
           </div>
           <ol class="tl">
-            <li class="done"><b>Esa's visit</b><span>Thu 20 Nov</span></li>
+            <li class="done"><b>Assessor visit</b><span>Thu 20 Nov</span></li>
             <li class="done"><b>OT approved the plan</b><span>Fri 21 Nov</span></li>
             <li class="now"><b>Riverbend starts</b><span>Tue 2 Dec</span></li>
             <li><b>Re-check visit, $75</b><span>Fri 12 Dec</span></li>
@@ -187,14 +188,14 @@
     <p class="eyebrow">Family App · Tap Any Step</p>
     <h1 class="steps-h">Booking a safety check should feel like a phone call with someone kind.</h1>
     <ol id="steplist">
-      <li><button data-go="lang"><b>Choose a language</b><span>English, Somali, Hmong or Spanish. Big buttons, or just call.</span></button></li>
+      <li><button data-go="lang"><b>Choose a language</b><span>English, Somali or Spanish. Big buttons, or just call.</span></button></li>
       <li><button data-go="talk"><b>Talk to Ever</b><span>Say what's going on. Ever fills in the booking as you speak.</span></button></li>
       <li><button data-go="consent"><b>Consent, in plain words</b><span>Photos and health details are separate choices. Signing by voice works.</span></button></li>
-      <li><button data-go="plan"><b>Pick who scans</b><span>Esa scans at the visit, or the family scans and saves $150.</span></button></li>
+      <li><button data-go="plan"><b>Pick who scans</b><span>An assessor scans at the visit, or the family scans and saves $150.</span></button></li>
       <li><button data-go="scan"><b>Scan each room in a minute</b><span>Doorways, steps and the tub rim, measured and flagged live.</span></button></li>
       <li><button data-go="home"><b>See the home in 3D</b><span>Five risks ranked, then the same home after the fixes.</span></button></li>
       <li><button data-go="quotes"><b>Compare 3 quotes</b><span>Vetted local contractors, with the reason each one was matched.</span></button></li>
-      <li><button data-go="family"><b>Keep the family together</b><span>Khadra hears her report in Somali. Everyone sees one plan.</span></button></li>
+      <li><button data-go="family"><b>Keep the family together</b><span>Each senior hears the report in their own language.</span></button></li>
     </ol>
   </aside>
 </main>
@@ -209,7 +210,7 @@
     <div class="win-body">
       <nav class="side" aria-label="Console">
         <span class="brand"><span class="orb" style="--s:26px"></span><span class="dots">Everhome</span></span>
-        <a class="on">Review Queue <em>3</em></a><a>Esa's Visits</a><a>Vendors <em>10</em></a><a>Compliance</a><a>Revenue</a>
+        <a class="on">Review Queue <em>3</em></a><a>Visits</a><a>Vendors <em>10</em></a><a>Compliance</a><a>Revenue</a>
         <div class="gate card"><small>MDH gate</small><b><i class="dot ok"></i>Open</b><small>Pilot homes 3 of 5</small></div>
       </nav>
       <div class="main">
@@ -228,7 +229,7 @@
                 <tr><td>Toilet seat height</td><td><input value="15 in" aria-label="Toilet seat height"></td><td>92%</td><td><i class="ck"></i></td></tr>
               </tbody>
             </table>
-            <p class="flagnote">Mirror on the east wall. Turning space is low confidence: Esa's tape says 52 in.</p>
+            <p class="flagnote">Mirror on the east wall. Turning space is low confidence: The assessor's tape says 52 in.</p>
             <button class="btn btn-primary" id="approve">Approve 5 Measurements</button>
           </div>
         </div>

@@ -8,7 +8,7 @@ const lazy = (el, fn) => new IntersectionObserver((en, ob) => { if (en.some((e) 
 const hero = mountHouse($('#hero-house'), { labels: false, interactive: false, radius: innerWidth < 820 ? 21 : 26, phi: 0.92 });
 
 // Ever speaks each language in turn
-const langs = ['Soomaali', 'Hmoob', 'Español', 'English'];
+const langs = ['Soomaali', 'Español', 'English'];
 let li = 0;
 setInterval(() => { li = (li + 1) % langs.length; $('#hero-lang').textContent = langs[li]; }, 2600);
 

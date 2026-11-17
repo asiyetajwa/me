@@ -21,9 +21,9 @@ function scenes() {
       [0, `const h=document.querySelector('.hero'); h.style.transformOrigin='70% 50%'; h.style.transition='transform 11s cubic-bezier(.3,0,.3,1)'; requestAnimationFrame(()=>{h.style.transform='scale(1.045)'})`],
     ], extra: 0.4 },
     { id: 's02', page: 'app', cues: [
-      [0, `EH.side(true); EH.go('lang'); EH.word('Talk', 'English, Somali, Hmong or Spanish. Big buttons, or just call.'); EH.cursorHide(true)`],
+      [0, `EH.side(true); EH.go('lang'); EH.word('Talk', 'English, Somali or Spanish. Big buttons, or just call.'); EH.cursorHide(true)`],
       [5.0, `EH.cursorHide(false)`],
-      ...tap(5.4, '.lang[data-lang="so"]', `EH.pickLang('so')`, 1100),
+      ...tap(5.4, '.lang[data-lang="en"]', `EH.pickLang('en')`, 1100),
     ] },
     { id: 's03', page: 'app', cues: [
       [0, `EH.go('talk', { play: true }); EH.word('Talk', 'Ever fills in the booking as Amina speaks.')`],
@@ -65,8 +65,8 @@ function scenes() {
       ...glide(2.6, '.q.best'),
       ...tap(8.8, '#choose', `void 0`),
     ] },
-    { id: 's11', page: 'app', extraClip: 'so1', cues: [
-      [0, `EH.go('family'); EH.word('Family', 'Read aloud in Somali. One plan for everyone.'); EH.cursorHide(true)`],
+    { id: 's11', page: 'app', extraClips: [['so1', 'so'], ['es1', 'es'], ['en1', 'en']], cues: [
+      [0, `EH.go('family'); EH.word('Family', 'Read aloud in English, Somali or Spanish.'); EH.cursorHide(true)`],
     ] },
     { id: 's12', page: 'app', cues: [[0, `EH.endcard()`]], extra: 2.2 },
   ];
@@ -75,11 +75,15 @@ function scenes() {
     s.clipDur = dur(s.id);
     s.voAt = LEAD;
     let d = LEAD + s.clipDur;
-    if (s.extraClip) {
-      s.extraDur = dur(s.extraClip);
-      s.extraAt = d + 0.45;
-      d = s.extraAt + s.extraDur;
-      s.cues.push([s.extraAt - 0.1, `EH.speakSo(true)`], [d, `EH.speakSo(false)`]);
+    if (s.extraClips) {
+      s.extras = [];
+      for (const [i, [clip, lang]] of s.extraClips.entries()) {
+        const at = d + (i === 0 ? 0.45 : 0.7), len = dur(clip);
+        s.extras.push({ clip, at });
+        s.cues.push([at - 0.55, `EH.speakSo(false); EH.listen('${lang}')`], [at - 0.05, `EH.speakSo(true)`]);
+        d = at + len;
+      }
+      s.cues.push([d + 0.1, `EH.speakSo(false)`]);
     }
     s.dur = d + TAIL + (s.extra ?? 0);
     s.start = t; t += s.dur;

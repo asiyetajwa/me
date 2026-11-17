@@ -271,3 +271,15 @@ body.film #cursor.down { scale: 0.72; }
 /* Home renders sit on a light stage */
 .house, .rev-3d { background: radial-gradient(120% 100% at 50% 40%, #f6f4f8, #e7e3ec); }
 .house { border-radius: 0; }
+
+/* Three languages: a roomier language list and the switching family card */
+.langs { grid-template-columns: 1fr; gap: 10px; }
+.lang { min-height: 70px; grid-template-columns: 1fr auto; align-items: center; justify-items: start; }
+.lang b { font-size: 22px; } .lang span { justify-self: end; }
+.lang-orb { height: 170px; }
+.lang-greet { position: relative; text-align: center; margin: -14px 0 10px; font-size: 20px; font-weight: 700; color: rgba(255,255,255,0.85); transition: opacity .25s, transform .25s; }
+.lang-greet.swap { opacity: 0; transform: translateY(6px); }
+.lang-h { margin-bottom: 18px; }
+.listen { transition: opacity .25s, transform .25s; }
+.listen.swap { opacity: .25; transform: scale(.985); }
+.langdots { display: flex; gap: 6px; margin-top: 12px; } .langdots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.35); } .langdots i.on { background: #fff; width: 22px; border-radius: 6px; }
