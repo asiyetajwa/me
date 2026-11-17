@@ -177,3 +177,56 @@ body { font-size: 19px; }
 .h3d { inset: 20px 20px 110px; }
 .h3d-note { color: var(--ink-2); }
 @media (max-width: 560px) { .h3d { inset: 12px 12px 150px; } .h3d .hv-lb { display: none; } }
+
+/* ---- Homepage refresh (17 Nov): open hero, flags, scan render ---- */
+.nav-mark { display: inline-flex !important; align-items: center; gap: 10px; padding: 0 14px 0 0 !important; }
+.nav-mark .orb { flex: none; }
+
+.hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: max(700px, 94svh); color: #fff;
+  background: linear-gradient(180deg, #1f1a3a 0%, #3f3275 34%, #7d63ad 64%, #c9a6d6 81%, #e9cfe0 86.5%, #6a5893 87%, #352c5c 100%); }
+.hero .pines { top: auto; bottom: 13%; height: 9%; }
+.hero .reflect { top: 87%; bottom: 0; }
+.hero .sun { top: auto; bottom: 4%; left: 34%; width: 26%; }
+.hero-in { position: relative; z-index: 2; width: 100%; max-width: 1440px; margin: 0 auto; padding: 132px clamp(20px, 5vw, 80px) 150px;
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 72px); align-items: center; }
+.hero-copy { padding: 0; max-width: none; }
+.hero-copy::before { display: none; }
+.hero h1 { font-size: clamp(46px, 6.2vw, 100px); line-height: 1.02; letter-spacing: -0.025em; margin: 16px 0 24px; text-wrap: balance; }
+.rot { display: inline-block; color: #f6dcff; background: linear-gradient(transparent 82%, rgba(246,220,255,0.28) 82%); transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease; }
+.rot.out { opacity: 0; transform: translateY(0.3em); filter: blur(6px); }
+.hero .sub { max-width: 560px; }
+.hero-visual { position: relative; aspect-ratio: 1.5; }
+.hero-house { position: absolute; inset: 0; }
+.hero-house .hv-plate img { border-radius: 28px; box-shadow: 0 50px 90px -30px rgba(15,10,35,0.75), 0 0 0 1px rgba(255,255,255,0.25); }
+.hero-pill { position: absolute; left: 50%; bottom: -34px; top: auto; transform: translateX(-50%); }
+.hero-pill .meta { min-width: 120px; }
+.hero-flag { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.14); }
+.hero-flag .flag { width: 30px; border-radius: 4px; transition: opacity 0.3s; }
+
+.langs-band { display: flex; align-items: center; justify-content: center; gap: 18px 32px; flex-wrap: wrap; padding: 26px 16px; background: #17151f; color: #fff; }
+.langs-band > p { margin: 0; font-size: 20px; font-weight: 700; }
+.flags { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 26px; margin: 0; padding: 0; }
+.flags li { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.flag { display: block; width: 40px; height: auto; border-radius: 5px; box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 4px 12px -4px rgba(0,0,0,0.5); }
+.flags.small { margin-top: 12px; gap: 10px; }
+.flags.small .flag { width: 32px; box-shadow: 0 0 0 1px var(--line); }
+
+.b-scan-art { display: flex; justify-content: center; min-height: 0; }
+.scan-frame { position: relative; width: min(100%, 440px); aspect-ratio: 853 / 900; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,0.12); }
+.b-scan-art .scan-frame svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: none; }
+.scan-frame .wire { filter: drop-shadow(0 0 5px rgba(143,211,255,0.9)); }
+.scan-frame .chip { position: absolute; padding: 6px 12px; border-radius: 12px; background: rgba(20,17,30,0.82); border: 1px solid #8fd3ff; font-weight: 700; font-size: 15px; color: #fff; white-space: nowrap; }
+.scan-frame .chip.warn { border-color: #ffb067; } .scan-frame .chip.risk { border-color: #ff6f86; }
+
+.foot-word { font-size: clamp(48px, 9vw, 140px); letter-spacing: -0.03em; }
+
+@media (max-width: 900px) {
+  .hero-in { grid-template-columns: 1fr; padding-top: 112px; padding-bottom: 120px; }
+  .hero-visual { margin-bottom: 30px; }
+}
+@media (max-width: 560px) {
+  .hero h1 { font-size: 44px; }
+  .nav-mark span:last-child { font-size: 14px; }
+}
+.hero .pines { bottom: 9%; height: 8%; }
+.rot { background: none; color: #f6dcff; }

@@ -12,7 +12,7 @@
 <body>
 <header class="nav-wrap">
   <nav class="nav pill" aria-label="Main">
-    <a class="nav-mark" href="#top" aria-label="Everhome"><span class="orb" style="--s:38px"></span></a>
+    <a class="nav-mark" href="#top"><span class="orb" style="--s:34px"></span><span>Everhome</span></a>
     <a href="#how">How It Works</a>
     <a href="#home3d">See It In 3D</a>
     <a href="#film">Film</a>
@@ -23,35 +23,31 @@
 </header>
 
 <main id="top">
-  <!-- Hero: split like the reference, dusk lake left, the spotlight and Ever right -->
-  <section class="hero">
-    <div class="hero-l dusk">
-      <div class="streak" style="top:18%"></div><div class="streak" style="top:40%;opacity:.4"></div>
-      <span class="sun"></span>
-      <svg class="pines" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path fill="#2a2347" d="M0 140V96l18-30 14 22 16-48 18 44 12-20 20 36 16-60 18 52 14-24 18 40 22-70 20 62 14-26 18 34 16-56 20 50 16-22 22 44 18-64 18 58 14-30 20 38 16-50 18 46 16-18 20 30 18-58 20 54 14-24 18 36 22-66 18 60 16-28 20 40 16-52 18 48 14-20 20 34 18-62 20 56 16-26 18 38 22-58 18 52 14-22 20 30 16-54 20 50 16-24 18 42 20-60 18 56 16-30 22 40 16-48 18 44 14-18 20 34 18-56 20 52 16-26 18 38 22-64 18 58 16-28 20 36 16-50 18 46 14-22 20 32 18-60 20 54 16-24 18 40 22-56 18 50V140z"/></svg>
-      <div class="reflect"></div>
-      <div class="dotgrid" style="position:absolute;inset:0;opacity:.35"></div>
+  <!-- Hero: one open dusk scene; the copy breathes, the home floats on the right -->
+  <section class="hero dusk">
+    <div class="streak" style="top:16%"></div><div class="streak" style="top:38%;opacity:.4"></div>
+    <span class="sun"></span>
+    <svg class="pines" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path fill="#2a2347" d="M0 140V96l18-30 14 22 16-48 18 44 12-20 20 36 16-60 18 52 14-24 18 40 22-70 20 62 14-26 18 34 16-56 20 50 16-22 22 44 18-64 18 58 14-30 20 38 16-50 18 46 16-18 20 30 18-58 20 54 14-24 18 36 22-66 18 60 16-28 20 40 16-52 18 48 14-20 20 34 18-62 20 56 16-26 18 38 22-58 18 52 14-22 20 30 16-54 20 50 16-24 18 42 20-60 18 56 16-30 22 40 16-48 18 44 14-18 20 34 18-56 20 52 16-26 18 38 22-64 18 58 16-28 20 36 16-50 18 46 14-22 20 32 18-60 20 54 16-24 18 40 22-56 18 50V140z"/></svg>
+    <div class="reflect"></div>
+    <div class="dotgrid" style="position:absolute;inset:0;opacity:.3"></div>
+    <div class="hero-in">
       <div class="hero-copy">
         <p class="eyebrow light">Home safety for Minnesota seniors</p>
-        <h1>Find the fall risks before they find Mom.</h1>
+        <h1>Find the fall risks before they find <span class="rot" id="rot" aria-live="polite">Mom</span>.</h1>
         <p class="sub">Talk to Ever. We scan the home, a licensed OT checks every number, and three vetted local contractors quote the fixes.</p>
-        <div class="cta-row"><a class="btn btn-orb" href="app/index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk To Ever</a><a class="btn btn-glass" href="tel:+16515550142">Or Call 651-555-0142</a></div>
+        <div class="cta-row"><a class="btn btn-orb" href="app/index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk To Ever</a><span class="btn btn-glass">Or Call 651-555-0142</span></div>
       </div>
-      <span class="dots wordmark" aria-hidden="true">Everhome</span>
-    </div>
-    <div class="hero-r">
-      <div class="spot"></div>
-      <div class="hero-house" id="hero-house" aria-label="A 3D model of a scanned home with its fall risks marked"></div>
-      <div class="hero-pill pill"><span class="orb live" style="--s:46px"></span><span class="meta"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><b id="hero-who">Ever speaking</b><small id="hero-lang">Soomaali</small></span><span class="who" aria-hidden="true">KH</span></div>
+      <div class="hero-visual">
+        <div class="hero-house" id="hero-house" aria-label="Rendered model of a scanned home with its fall risks marked"></div>
+        <div class="hero-pill pill"><span class="orb live" style="--s:44px"></span><span class="meta"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><b>Ever speaking</b></span><span class="hero-flag" id="hero-flag"><svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Somali flag"><rect width="30" height="20" fill="#4189dd"/><polygon fill="#fff" points="15.00,5.00 16.21,8.73 20.14,8.73 16.96,11.04 18.17,14.77 15.00,12.46 11.83,14.77 13.04,11.04 9.86,8.73 13.79,8.73"/></svg></span></div>
+      </div>
     </div>
   </section>
 
   <!-- Languages -->
-  <section class="langs-band" aria-label="Languages">
-    <div class="lb-track">
-      <p><span lang="so">Ku hadal Soomaali.</span><span lang="es">Habla en español.</span><span>Or just talk in English.</span></p>
-      <p aria-hidden="true"><span lang="so">Ku hadal Soomaali.</span><span lang="es">Habla en español.</span><span>Or just talk in English.</span></p>
-    </div>
+  <section class="langs-band" aria-label="Languages Ever speaks">
+    <p>Ever speaks your language</p>
+    <ul class="flags"><li><svg class="flag" viewBox="0 0 38 20" role="img" aria-label="United States flag"><rect width="38" height="20" fill="#fff"/><g fill="#b22234"><rect y="0.00" width="38" height="1.54"/><rect y="3.08" width="38" height="1.54"/><rect y="6.15" width="38" height="1.54"/><rect y="9.23" width="38" height="1.54"/><rect y="12.31" width="38" height="1.54"/><rect y="15.38" width="38" height="1.54"/><rect y="18.46" width="38" height="1.54"/></g><rect width="15.2" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="1.30" cy="1.10" r="0.42"/><circle cx="3.80" cy="1.10" r="0.42"/><circle cx="6.30" cy="1.10" r="0.42"/><circle cx="8.80" cy="1.10" r="0.42"/><circle cx="11.30" cy="1.10" r="0.42"/><circle cx="2.55" cy="2.85" r="0.42"/><circle cx="5.05" cy="2.85" r="0.42"/><circle cx="7.55" cy="2.85" r="0.42"/><circle cx="10.05" cy="2.85" r="0.42"/><circle cx="12.55" cy="2.85" r="0.42"/><circle cx="1.30" cy="4.60" r="0.42"/><circle cx="3.80" cy="4.60" r="0.42"/><circle cx="6.30" cy="4.60" r="0.42"/><circle cx="8.80" cy="4.60" r="0.42"/><circle cx="11.30" cy="4.60" r="0.42"/><circle cx="2.55" cy="6.35" r="0.42"/><circle cx="5.05" cy="6.35" r="0.42"/><circle cx="7.55" cy="6.35" r="0.42"/><circle cx="10.05" cy="6.35" r="0.42"/><circle cx="12.55" cy="6.35" r="0.42"/><circle cx="1.30" cy="8.10" r="0.42"/><circle cx="3.80" cy="8.10" r="0.42"/><circle cx="6.30" cy="8.10" r="0.42"/><circle cx="8.80" cy="8.10" r="0.42"/><circle cx="11.30" cy="8.10" r="0.42"/><circle cx="2.55" cy="9.85" r="0.42"/><circle cx="5.05" cy="9.85" r="0.42"/><circle cx="7.55" cy="9.85" r="0.42"/><circle cx="10.05" cy="9.85" r="0.42"/><circle cx="12.55" cy="9.85" r="0.42"/></g></svg><span>English</span></li><li><svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Somali flag"><rect width="30" height="20" fill="#4189dd"/><polygon fill="#fff" points="15.00,5.00 16.21,8.73 20.14,8.73 16.96,11.04 18.17,14.77 15.00,12.46 11.83,14.77 13.04,11.04 9.86,8.73 13.79,8.73"/></svg><span lang="so">Soomaali</span></li><li><svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Spanish flag"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg><span lang="es">Español</span></li></ul>
   </section>
 
   <!-- How it works: bento like the reference board -->
@@ -66,7 +62,26 @@
       </article>
       <article class="b b-scan">
         <span class="dots big light">Scan</span>
-        <div class="b-scan-art" aria-hidden="true"><svg viewBox="0 0 400 260"><g fill="none" stroke="#8fd3ff" stroke-width="2"><polyline points="20,20 110,80 290,80 380,20"/><polyline points="20,250 110,190 290,190 380,250"/><line x1="110" y1="80" x2="110" y2="190"/><line x1="290" y1="80" x2="290" y2="190"/><polygon points="40,60 90,95 90,200 40,232"/><polygon points="200,170 290,165 360,215 260,235"/></g></svg><span class="chip warn">Door 29.5 in</span><span class="chip risk">Tub rim 17 in</span></div>
+        <div class="b-scan-art" aria-hidden="true">
+          <div class="scan-frame">
+            <svg viewBox="0 450 853 900" preserveAspectRatio="xMidYMid slice">
+              <image href="assets/img/bathroom.jpg" x="0" y="0" width="853" height="1844" preserveAspectRatio="none"/>
+              <rect x="0" y="450" width="853" height="900" fill="#0f0c18" opacity=".22"/>
+              <g class="wire" fill="none" stroke="#8fd3ff" stroke-width="2.5" stroke-linejoin="round">
+                <polygon points="222,406 682,406 682,1106 222,1106" vector-effect="non-scaling-stroke"/>
+                <polyline points="222,1106 26,1733" vector-effect="non-scaling-stroke"/>
+                <polygon points="26,249 154,452 154,1282 26,1623" vector-effect="non-scaling-stroke"/>
+                <polygon points="320,546 542,546 542,778 320,778" vector-effect="non-scaling-stroke"/>
+                <polyline points="853,931 516,940 768,1300 853,1300" vector-effect="non-scaling-stroke"/>
+                <polyline points="516,940 529,1097 600,1350" vector-effect="non-scaling-stroke"/>
+              </g>
+              <line x1="34" y1="1180" x2="145" y2="1070" stroke="#ffb067" stroke-width="3" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <span class="chip warn" style="left:3%;top:46%">Door 29.5 in</span>
+            <span class="chip" style="left:36%;top:6%">Mirror, re-check</span>
+            <span class="chip risk" style="left:56%;top:60%">Tub rim 17 in</span>
+          </div>
+        </div>
         <p class="b-txt light"><b>About a minute a room.</b> An assessor scans at the visit, or you scan and save $150. Doorways, steps and the tub are measured and flagged live.</p>
       </article>
       <article class="b b-fix">
@@ -146,10 +161,10 @@
 
 <footer class="foot">
   <div class="foot-top">
-    <div><p class="eyebrow">Everhome</p><p>Twin Cities and Dakota County first.<br>English, Somali and Spanish.</p></div>
+    <div><p class="eyebrow">Everhome</p><p>For families across Minnesota.</p><ul class="flags small" aria-label="Languages"><li><svg class="flag" viewBox="0 0 38 20" role="img" aria-label="United States flag"><rect width="38" height="20" fill="#fff"/><g fill="#b22234"><rect y="0.00" width="38" height="1.54"/><rect y="3.08" width="38" height="1.54"/><rect y="6.15" width="38" height="1.54"/><rect y="9.23" width="38" height="1.54"/><rect y="12.31" width="38" height="1.54"/><rect y="15.38" width="38" height="1.54"/><rect y="18.46" width="38" height="1.54"/></g><rect width="15.2" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="1.30" cy="1.10" r="0.42"/><circle cx="3.80" cy="1.10" r="0.42"/><circle cx="6.30" cy="1.10" r="0.42"/><circle cx="8.80" cy="1.10" r="0.42"/><circle cx="11.30" cy="1.10" r="0.42"/><circle cx="2.55" cy="2.85" r="0.42"/><circle cx="5.05" cy="2.85" r="0.42"/><circle cx="7.55" cy="2.85" r="0.42"/><circle cx="10.05" cy="2.85" r="0.42"/><circle cx="12.55" cy="2.85" r="0.42"/><circle cx="1.30" cy="4.60" r="0.42"/><circle cx="3.80" cy="4.60" r="0.42"/><circle cx="6.30" cy="4.60" r="0.42"/><circle cx="8.80" cy="4.60" r="0.42"/><circle cx="11.30" cy="4.60" r="0.42"/><circle cx="2.55" cy="6.35" r="0.42"/><circle cx="5.05" cy="6.35" r="0.42"/><circle cx="7.55" cy="6.35" r="0.42"/><circle cx="10.05" cy="6.35" r="0.42"/><circle cx="12.55" cy="6.35" r="0.42"/><circle cx="1.30" cy="8.10" r="0.42"/><circle cx="3.80" cy="8.10" r="0.42"/><circle cx="6.30" cy="8.10" r="0.42"/><circle cx="8.80" cy="8.10" r="0.42"/><circle cx="11.30" cy="8.10" r="0.42"/><circle cx="2.55" cy="9.85" r="0.42"/><circle cx="5.05" cy="9.85" r="0.42"/><circle cx="7.55" cy="9.85" r="0.42"/><circle cx="10.05" cy="9.85" r="0.42"/><circle cx="12.55" cy="9.85" r="0.42"/></g></svg></li><li><svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Somali flag"><rect width="30" height="20" fill="#4189dd"/><polygon fill="#fff" points="15.00,5.00 16.21,8.73 20.14,8.73 16.96,11.04 18.17,14.77 15.00,12.46 11.83,14.77 13.04,11.04 9.86,8.73 13.79,8.73"/></svg></li><li><svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Spanish flag"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg></li></ul></div>
     <nav aria-label="Footer"><a href="#how">How It Works</a><a href="#pricing">Pricing</a><a href="#vendors">For Contractors</a><a href="app/index.html">App Mockup</a></nav>
   </div>
-  <p class="dots foot-word" aria-hidden="true">Hi, Home</p>
+  <p class="dots foot-word">More years at home.</p>
   <p class="legal">Everhome is home safety consulting, not medical or therapy services. We are not a party to contracts between homeowners and contractors. People, homes and contractors shown are fictional.</p>
 </footer>
 <script type="module" src="assets/js/landing.js"></script>
