@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../assets/css/everhome.css">
+<style>
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#1f1a3a}
+.t{position:relative;width:1920px;height:1080px;overflow:hidden;color:#fff;font-family:var(--font);
+ background:linear-gradient(180deg,#1f1a3a 0%,#3f3275 38%,#7d63ad 70%,#c9a6d6 86%,#e9cfe0 91%,#6a5893 91.4%,#352c5c 100%)}
+.glow{position:absolute;right:120px;top:120px;width:1000px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(246,220,255,.55),transparent 65%);filter:blur(20px)}
+.copy{position:absolute;left:110px;top:150px;width:840px}
+.brand{display:flex;align-items:center;gap:20px;font-size:46px;font-weight:700;letter-spacing:-.01em}
+h1{font-size:128px;line-height:1;letter-spacing:-.03em;margin:56px 0 0;font-weight:800}
+h1 em{font-style:normal;color:#f6dcff}
+.img{position:absolute;right:90px;top:200px;width:900px;border-radius:36px;box-shadow:0 60px 120px -40px rgba(10,6,30,.85),0 0 0 2px rgba(255,255,255,.3)}
+.mk{position:absolute;width:40px;height:40px;border-radius:50%;background:#ff4d6a;box-shadow:0 0 0 7px rgba(255,255,255,.9),0 0 0 18px rgba(255,77,106,.35)}
+.flags{position:absolute;left:110px;bottom:120px;display:flex;gap:22px}
+.flags svg{width:96px;border-radius:10px;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+</style></head><body><div class="t">
+<div class="glow"></div>
+<div class="copy"><div class="brand"><span class="orb" style="--s:70px"></span>Everhome</div>
+<h1>Find the fall risks before they find <em>Mom.</em></h1></div>
+<img class="img" src="../assets/img/home-today.jpg" alt="">
+<i class="mk" style="left:1200px;top:418px"></i><i class="mk" style="left:975px;top:500px"></i><i class="mk" style="left:1452px;top:513px"></i>
+<div class="flags" id="flags"></div>
+</div>
+<script>fetch('../assets/js/landing.js').then(r=>r.text()).then(t=>{const m=t.match(/const FLAGS = (\{.*?\});/s);const f=JSON.parse(m[1]);document.getElementById('flags').innerHTML=f.us+f.so+f.es;});</script>
+</body></html>
