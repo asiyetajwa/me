@@ -1,10 +1,7 @@
-/* Everhome design system. Lavender dusk, frosted glass, dot-matrix display type.
-   Body type is Atkinson Hyperlegible Next (built for low vision readers); display is Doto. */
+/* Everhome design system. Lavender dusk and frosted glass.
+   Body type is Atkinson Hyperlegible Next (built for low vision readers), in a heavy weight for display. */
 @font-face { font-family: 'Atkinson'; src: url('../fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
 @font-face { font-family: 'Atkinson'; src: url('../fonts/atkinson-hyperlegible-next-latin-ext-wght-normal.woff2') format('woff2'); font-weight: 200 800; font-display: swap; unicode-range: U+0100-024F, U+1E00-1EFF; }
-@font-face { font-family: 'Doto'; src: url('../fonts/doto-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Doto'; src: url('../fonts/doto-latin-900-normal.woff2') format('woff2'); font-weight: 900; font-display: swap; }
-@font-face { font-family: 'Doto'; src: url('../fonts/doto-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-display: swap; }
 
 :root {
   --paper: #e6e5ea;
@@ -39,7 +36,7 @@
   --radius-m: 16px;
   --shadow-soft: 0 30px 60px -30px rgba(42, 35, 71, 0.35), 0 8px 20px -12px rgba(42, 35, 71, 0.2);
   --font: 'Atkinson', 'Segoe UI', system-ui, sans-serif;
-  --dots: 'Doto', 'Courier New', monospace;
+  --dots: 'Atkinson', 'Segoe UI', system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -65,7 +62,7 @@ a { color: inherit; }
 .dotgrid { background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1.2px); background-size: 9px 9px; }
 .dotgrid-ink { background-image: radial-gradient(rgba(23,21,31,0.09) 1px, transparent 1.2px); background-size: 10px 10px; }
 
-.dots { font-family: var(--dots); font-weight: 900; letter-spacing: 0.04em; line-height: 0.95; text-transform: uppercase; }
+.dots { font-family: var(--dots); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; }
 
 /* The Ever orb: the one living thing in the interface */
 .orb { --s: 56px; width: var(--s); height: var(--s); border-radius: 50%; position: relative; flex: none;

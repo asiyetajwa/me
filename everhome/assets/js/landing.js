@@ -1,10 +1,10 @@
 // Everhome landing: hero model, the interactive 3D section, and Ever cycling languages.
-import { mountHouse } from './house3d.js';
+import { mountHouse } from './homeview.js';
 
 const $ = (s) => document.querySelector(s);
 const lazy = (el, fn) => new IntersectionObserver((en, ob) => { if (en.some((e) => e.isIntersecting)) { fn(); ob.disconnect(); } }, { rootMargin: '200px' }).observe(el);
 
-// Hero: the model turns slowly, today's risks marked
+// Hero: today's render with the risks marked
 const hero = mountHouse($('#hero-house'), { labels: false, interactive: false, radius: innerWidth < 820 ? 21 : 26, phi: 0.92 });
 
 // Ever speaks each language in turn

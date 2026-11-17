@@ -52,4 +52,4 @@ python3 -m http.server 8000   # then open http://localhost:8000/everhome/
 
 The film is rendered from the real pages: `film/timeline.js` (scenes and cues), `film/render.js` (frame-by-frame on a virtual clock, 1920x1080 at 30 fps), `film/mix.py` (narration, ducked music, loudness) and `film/qa.py` (Whisper transcript check). The narration is recorded by the Dribble repo's `everhome-voiceover.yml` workflow using its ElevenLabs secret.
 
-Fonts: Atkinson Hyperlegible Next (designed for low-vision readers) and Doto, both SIL Open Font License. Music in the film: "Clean Soul" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0.
+Font: Atkinson Hyperlegible Next (designed for low-vision readers), SIL Open Font License. Music in the film: "Clean Soul" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0.

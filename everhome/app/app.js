@@ -1,5 +1,5 @@
 // Everhome app mockup: navigation, the scripted moments, 3D, and the film API (window.EH).
-import { mountHouse } from '../assets/js/house3d.js';
+import { mountHouse } from '../assets/js/homeview.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -51,8 +51,9 @@ const PLAY = {
   scan() {
     later(900, () => { $('[data-m="door"]').classList.add('in'); $('.cam .dim').classList.add('in'); });
     later(1900, () => $('[data-m="tub"]').classList.add('in'));
-    later(2700, () => { $('#tip').textContent = 'Slow down a little. Keep the door in frame.'; });
+    later(2700, () => { $('#tip').textContent = 'Mirror ahead. Slow down a little.'; });
     later(3300, () => { $('[data-m="turn"]').classList.add('in'); $('.cam .turn').classList.add('in'); });
+    later(4200, () => $('[data-m="mirror"]').classList.add('in'));
   },
   home() { later(2600, () => setMode('after')); },
   quotes() { $$('.q').forEach((q, i) => later(250 + i * 380, () => q.classList.add('in'))); },
@@ -85,7 +86,7 @@ function setMode(m) {
 }
 function ensureHouse() {
   if (house) return;
-  house = mountHouse($('#house'), { labels: false, radius: 14.6, phi: 0.86, focusRadius: 10.5, visible: () => current === 'home' && !document.body.classList.contains('show-console') });
+  house = mountHouse($('#house'), { labels: false, focusZoom: 1.9, visible: () => current === 'home' && !document.body.classList.contains('show-console') });
 }
 function focusHazard(id) { house?.focus(id); $$('#fixes li').forEach((li) => li.classList.toggle('hl', li.dataset.h === id)); }
 
@@ -119,7 +120,7 @@ document.addEventListener('click', (e) => {
 $('#turn-in').addEventListener('change', (e) => e.target.closest('tr').classList.replace('flag', 'edited'));
 
 // The OT console's 3D view mounts when it scrolls into view (or at once in the film)
-const mountOT = () => { if (!houseOT) houseOT = mountHouse($('#house-ot'), { labels: true, radius: 21, phi: 0.92, focusRadius: 12.5, visible: () => !FILM || document.body.classList.contains('show-console') }); };
+const mountOT = () => { if (!houseOT) houseOT = mountHouse($('#house-ot'), { labels: true, focusZoom: 1.8, visible: () => !FILM || document.body.classList.contains('show-console') }); };
 if (FILM) mountOT(); else new IntersectionObserver((en, ob) => { if (en.some((x) => x.isIntersecting)) { mountOT(); ob.disconnect(); } }, { rootMargin: '200px' }).observe($('#house-ot'));
 
 // Film stage extras: dusk backdrop and the big dot-matrix word beside the phone

@@ -93,43 +93,25 @@
         <!-- 5. Scan -->
         <section class="scr dark" data-s="scan" aria-label="Scanning the bathroom">
           <div class="cam">
-            <svg class="room" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <defs>
-                <linearGradient id="wallg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4a4262"/><stop offset="1" stop-color="#2f2a40"/></linearGradient>
-                <linearGradient id="floorg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3a3450"/><stop offset="1" stop-color="#1c1928"/></linearGradient>
-                <linearGradient id="sidel" x1="0" x2="1"><stop offset="0" stop-color="#2a2539"/><stop offset="1" stop-color="#3d3654"/></linearGradient>
-                <linearGradient id="sider" x1="1" x2="0"><stop offset="0" stop-color="#2a2539"/><stop offset="1" stop-color="#3d3654"/></linearGradient>
-              </defs>
-              <polygon points="0,0 390,0 285,210 105,210" fill="#2b2639"/>
-              <polygon points="0,0 105,210 105,450 0,844" fill="url(#sidel)"/>
-              <polygon points="390,0 285,210 285,450 390,844" fill="url(#sider)"/>
-              <rect x="105" y="210" width="180" height="240" fill="url(#wallg)"/>
-              <polygon points="105,450 285,450 390,844 0,844" fill="url(#floorg)"/>
-              <rect x="150" y="238" width="80" height="78" rx="6" fill="#8e9bb8" opacity=".55"/>
-              <rect x="152" y="342" width="76" height="22" rx="6" fill="#e8e5ef"/>
-              <rect x="186" y="364" width="10" height="86" fill="#bdb8c9"/>
-              <polygon points="30,161 85,223 85,525 30,731" fill="#1b1825"/>
-              <polygon points="85,223 92,232 92,515 85,525" fill="#4d4566"/>
-              <polygon points="215,402 285,397 390,512 300,556" fill="#f0eef5"/>
-              <polygon points="230,408 280,404 366,509 306,540" fill="#b6c9e3"/>
-              <polygon points="215,402 300,556 300,640 215,468" fill="#dcd8e6"/>
-              <polygon points="300,556 390,512 390,600 300,640" fill="#c7c2d4"/>
-              <g class="wire" fill="none" stroke="#8fd3ff" stroke-width="2.2" stroke-linejoin="round">
-                <polyline points="0,0 105,210 285,210 390,0"/>
-                <polyline points="0,844 105,450 285,450 390,844"/>
-                <line x1="105" y1="210" x2="105" y2="450"/><line x1="285" y1="210" x2="285" y2="450"/>
-                <polygon points="30,161 85,223 85,525 30,731"/>
-                <polygon points="215,402 285,397 390,512 300,556"/>
-                <polyline points="215,402 215,468 300,640 300,556"/>
-                <rect x="150" y="238" width="80" height="78" rx="6"/>
+            <img class="room-photo" src="../assets/img/bathroom.jpg" alt="">
+            <svg class="room" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <g class="wire" fill="none" stroke="#8fd3ff" stroke-width="2.2" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+                <polygon points="26,22 80,22 80,60 26,60" vector-effect="non-scaling-stroke"/>
+                <polyline points="0,6 26,22" vector-effect="non-scaling-stroke"/><polyline points="100,6 80,22" vector-effect="non-scaling-stroke"/>
+                <polyline points="26,60 3,94" vector-effect="non-scaling-stroke"/>
+                <polygon points="3,13.5 18,24.5 18,69.5 3,88" vector-effect="non-scaling-stroke"/>
+                <polygon points="37.5,29.6 63.5,29.6 63.5,42.2 37.5,42.2" vector-effect="non-scaling-stroke"/>
+                <polyline points="100,50.5 60.5,51 90,70.5 100,70.5" vector-effect="non-scaling-stroke"/>
+                <polyline points="60.5,51 62,59.5 81,93" vector-effect="non-scaling-stroke"/>
               </g>
-              <g class="dim" stroke="#ffb067" stroke-width="2" fill="none"><line x1="30" y1="600" x2="85" y2="460"/><circle cx="30" cy="600" r="4" fill="#ffb067"/><circle cx="85" cy="460" r="4" fill="#ffb067"/></g>
-              <ellipse class="turn" cx="170" cy="640" rx="110" ry="40" fill="none" stroke="#8fd3ff" stroke-width="2" stroke-dasharray="6 6"/>
+              <g class="dim" stroke="#ffb067" stroke-width="2.5" fill="none"><line x1="4" y1="64" x2="17" y2="58" vector-effect="non-scaling-stroke"/></g>
+              <ellipse class="turn" cx="40" cy="86" rx="22" ry="5" fill="none" stroke="#8fd3ff" stroke-width="2" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/>
             </svg>
             <div class="scan-sweep"></div>
-            <div class="mchip warn" data-m="door" style="left:18px;top:250px"><b>Door 29.5 in</b><span>Under 32 in</span></div>
-            <div class="mchip risk" data-m="tub" style="left:212px;top:318px"><b>Tub rim 17 in</b><span>No grab bars</span></div>
-            <div class="mchip" data-m="turn" style="left:110px;top:560px"><b>Turning space 54 in</b><span>Needs 60 in</span></div>
+            <div class="mchip" data-m="mirror" style="left:150px;top:205px"><b>Mirror</b><span>Re-check this wall</span></div>
+            <div class="mchip warn" data-m="door" style="left:14px;top:300px"><b>Door 29.5 in</b><span>Under 32 in</span></div>
+            <div class="mchip risk" data-m="tub" style="left:200px;top:470px"><b>Tub rim 17 in</b><span>No grab bars</span></div>
+            <div class="mchip" data-m="turn" style="left:60px;top:548px"><b>Turning space 54 in</b><span>Needs 60 in</span></div>
           </div>
           <div class="scan-top">
             <span class="glass-chip"><b>Bathroom</b> Room 3 of 6</span>
@@ -154,7 +136,7 @@
           <ol class="fixes" id="fixes">
             <li data-h="tub"><span class="n">1</span><span class="fx"><b>Grab bars and a walk-in shower</b><small>Bathroom · Bigger project · $5,800 to $7,500</small></span><span class="tag tag-risk">Now</span></li>
             <li data-h="stairs"><span class="n">2</span><span class="fx"><b>Second handrail on the stairs</b><small>Stairs · Handyman · $350 to $650</small></span><span class="tag tag-risk">Now</span></li>
-            <li data-h="rug"><span class="n">3</span><span class="fx"><b>Take up the living room rug</b><small>Living room · Do it today · Free</small></span><span class="tag tag-risk">Now</span></li>
+            <li data-h="rug"><span class="n">3</span><span class="fx"><b>Swap the thick rug for a flat one</b><small>Living room · Do it yourself · $80 to $150</small></span><span class="tag tag-risk">Now</span></li>
           </ol>
           <div class="dock"><button class="btn btn-primary grow" data-go="quotes">See 3 Quotes</button></div>
         </section>
