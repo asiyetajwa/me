@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everhome App</title>
+<meta name="description" content="Everhome app mockup: talk to Ever, scan the home, see the fixes in 3D, compare three vetted quotes.">
+<link rel="stylesheet" href="../assets/css/everhome.css">
+<link rel="stylesheet" href="app.css">
+<link rel="icon" href="../assets/favicon.svg">
+</head>
+<body>
+<header class="mhead">
+  <a class="brand" href="../index.html" aria-label="Everhome home"><span class="orb" style="--s:30px"></span><span class="dots">Everhome</span></a>
+  <nav class="mnav" aria-label="Mockup views">
+    <a href="#phone" class="on">Family App</a>
+    <a href="#console">Review Console</a>
+    <a href="../index.html">Landing Page</a>
+  </nav>
+</header>
+
+<main id="phone" class="wrap">
+  <div class="phone-col">
+    <div class="phone" aria-label="Everhome app on a phone">
+      <div class="screen" id="screen">
+        <div class="status"><b>9:41</b><span class="island"></span><span class="sb-icons" aria-hidden="true"><i></i><i></i><i></i><em></em></span></div>
+
+        <!-- 1. Language -->
+        <section class="scr" data-s="lang" aria-label="Choose a language">
+          <div class="lang-sky dotgrid"></div>
+          <div class="lang-top"><span class="dots wm">Everhome</span></div>
+          <div class="lang-orb"><span class="orb live" style="--s:118px"></span></div>
+          <h1 class="lang-h">Hello. Which language feels like home?</h1>
+          <div class="langs" role="list">
+            <button class="lang" data-lang="en" role="listitem"><b>English</b><span>Hello</span></button>
+            <button class="lang" data-lang="so" role="listitem"><b>Soomaali</b><span>Ku soo dhawoow</span></button>
+            <button class="lang" data-lang="hmn" role="listitem"><b>Hmoob</b><span>Nyob zoo</span></button>
+            <button class="lang" data-lang="es" role="listitem"><b>Español</b><span>Hola</span></button>
+          </div>
+          <p class="lang-call">No smartphone? Call Ever on <b>651-555-0142</b></p>
+        </section>
+
+        <!-- 2. Talk -->
+        <section class="scr" data-s="talk" aria-label="Talk to Ever">
+          <div class="talk-head">
+            <div class="pill"><span class="orb live" style="--s:40px"></span><span class="meta"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><b>Ever listening</b><small id="talk-clock">00:41</small></span><span class="who" aria-hidden="true">AM</span></div>
+          </div>
+          <div class="chat" id="chat" aria-live="polite">
+            <p class="bub me" data-i="0">Hi. I'd like a safety check for my mom. She's 81 and lives alone in Apple Valley.</p>
+            <p class="bub ever" data-i="1">Of course, Amina. Does she have stairs at home?</p>
+            <p class="bub me" data-i="2">Twelve stairs up to her bedroom. And the bathroom only has a tub.</p>
+            <p class="bub ever" data-i="3">Thank you. I've filled in the booking for you.</p>
+          </div>
+          <div class="fill card" id="fill">
+            <div class="fill-h"><span class="orb" style="--s:22px"></span><b>Filled in by Ever</b></div>
+            <ul>
+              <li data-i="0"><span>For</span><b>Khadra, 81</b></li>
+              <li data-i="1"><span>Home</span><b>Apple Valley, built 1974</b></li>
+              <li data-i="2"><span>Stairs</span><b>12, to the bedroom</b></li>
+              <li data-i="3"><span>Bathroom</span><b>Tub, no grab bars</b></li>
+              <li data-i="4"><span>Language</span><b>Somali for Khadra</b></li>
+            </ul>
+          </div>
+          <div class="dock"><button class="mic" aria-label="Hold to talk"><span class="orb" style="--s:64px"></span></button><button class="btn btn-primary grow" data-go="consent">Looks Right</button></div>
+        </section>
+
+        <!-- 3. Consent -->
+        <section class="scr" data-s="consent" aria-label="Consent">
+          <div class="pad">
+            <p class="eyebrow">Step 1 of 3</p>
+            <h2>Before we start</h2>
+            <p class="lede">Two separate choices. You can change them any time.</p>
+            <label class="consent card"><span class="c-txt"><b>Photos and a 3D scan of the home</b><span>Used only to plan the fixes. Never sold. Deleted when you ask.</span></span><span class="toggle" data-t="photo" role="switch" aria-checked="false" tabindex="0"><i></i></span></label>
+            <label class="consent card"><span class="c-txt"><b>Health and mobility details</b><span>Only what Khadra chooses to share. Kept apart from our terms.</span></span><span class="toggle" data-t="health" role="switch" aria-checked="false" tabindex="0"><i></i></span></label>
+            <div class="voice-sign card" id="vsign"><span class="orb" style="--s:30px"></span><span><b>Khadra agreed by voice, in Somali</b><small>Recorded 17 Nov, 10:42. Signed copy sent to both of you.</small></span></div>
+          </div>
+          <div class="dock"><button class="btn btn-primary grow" data-go="plan" id="agree">I Agree</button></div>
+        </section>
+
+        <!-- 4. Plan -->
+        <section class="scr" data-s="plan" aria-label="Choose how to scan">
+          <div class="pad">
+            <p class="eyebrow">Step 2 of 3</p>
+            <h2>Who scans the home?</h2>
+            <p class="lede">You don't have to scan anything.</p>
+            <button class="opt card on" data-opt="a"><span class="opt-top"><b>Esa scans it at the visit</b><span class="tag tag-good">Recommended</span></span><span class="opt-sub">Nothing to do. Includes the 3D model, a licensed OT review and 3 quotes.</span><span class="price"><b>$349</b> one-time</span></button>
+            <button class="opt card" data-opt="b"><span class="opt-top"><b>We'll scan it ourselves</b></span><span class="opt-sub">Save $150. Get stuck? Switch to Esa and pay only the difference.</span><span class="price"><b>$199</b> one-time</span></button>
+            <div class="when card"><span class="cal"><b>20</b><small>Nov</small></span><span><b>Thursday, 10:00</b><small>Esa, home safety assessor</small></span><span class="tag tag-good">Booked</span></div>
+          </div>
+          <div class="dock col"><button class="btn btn-primary grow" data-go="scan" id="pay">Pay $349 One-Time</button><small class="fine">Full refund until 48 hours before the visit.</small></div>
+        </section>
+
+        <!-- 5. Scan -->
+        <section class="scr dark" data-s="scan" aria-label="Scanning the bathroom">
+          <div class="cam">
+            <svg class="room" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="wallg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4a4262"/><stop offset="1" stop-color="#2f2a40"/></linearGradient>
+                <linearGradient id="floorg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3a3450"/><stop offset="1" stop-color="#1c1928"/></linearGradient>
+                <linearGradient id="sidel" x1="0" x2="1"><stop offset="0" stop-color="#2a2539"/><stop offset="1" stop-color="#3d3654"/></linearGradient>
+                <linearGradient id="sider" x1="1" x2="0"><stop offset="0" stop-color="#2a2539"/><stop offset="1" stop-color="#3d3654"/></linearGradient>
+              </defs>
+              <polygon points="0,0 390,0 285,210 105,210" fill="#2b2639"/>
+              <polygon points="0,0 105,210 105,450 0,844" fill="url(#sidel)"/>
+              <polygon points="390,0 285,210 285,450 390,844" fill="url(#sider)"/>
+              <rect x="105" y="210" width="180" height="240" fill="url(#wallg)"/>
+              <polygon points="105,450 285,450 390,844 0,844" fill="url(#floorg)"/>
+              <rect x="150" y="238" width="80" height="78" rx="6" fill="#8e9bb8" opacity=".55"/>
+              <rect x="152" y="342" width="76" height="22" rx="6" fill="#e8e5ef"/>
+              <rect x="186" y="364" width="10" height="86" fill="#bdb8c9"/>
+              <polygon points="30,161 85,223 85,525 30,731" fill="#1b1825"/>
+              <polygon points="85,223 92,232 92,515 85,525" fill="#4d4566"/>
+              <polygon points="215,402 285,397 390,512 300,556" fill="#f0eef5"/>
+              <polygon points="230,408 280,404 366,509 306,540" fill="#b6c9e3"/>
+              <polygon points="215,402 300,556 300,640 215,468" fill="#dcd8e6"/>
+              <polygon points="300,556 390,512 390,600 300,640" fill="#c7c2d4"/>
+              <g class="wire" fill="none" stroke="#8fd3ff" stroke-width="2.2" stroke-linejoin="round">
+                <polyline points="0,0 105,210 285,210 390,0"/>
+                <polyline points="0,844 105,450 285,450 390,844"/>
+                <line x1="105" y1="210" x2="105" y2="450"/><line x1="285" y1="210" x2="285" y2="450"/>
+                <polygon points="30,161 85,223 85,525 30,731"/>
+                <polygon points="215,402 285,397 390,512 300,556"/>
+                <polyline points="215,402 215,468 300,640 300,556"/>
+                <rect x="150" y="238" width="80" height="78" rx="6"/>
+              </g>
+              <g class="dim" stroke="#ffb067" stroke-width="2" fill="none"><line x1="30" y1="600" x2="85" y2="460"/><circle cx="30" cy="600" r="4" fill="#ffb067"/><circle cx="85" cy="460" r="4" fill="#ffb067"/></g>
+              <ellipse class="turn" cx="170" cy="640" rx="110" ry="40" fill="none" stroke="#8fd3ff" stroke-width="2" stroke-dasharray="6 6"/>
+            </svg>
+            <div class="scan-sweep"></div>
+            <div class="mchip warn" data-m="door" style="left:18px;top:250px"><b>Door 29.5 in</b><span>Under 32 in</span></div>
+            <div class="mchip risk" data-m="tub" style="left:212px;top:318px"><b>Tub rim 17 in</b><span>No grab bars</span></div>
+            <div class="mchip" data-m="turn" style="left:110px;top:560px"><b>Turning space 54 in</b><span>Needs 60 in</span></div>
+          </div>
+          <div class="scan-top">
+            <span class="glass-chip"><b>Bathroom</b> Room 3 of 6</span>
+            <span class="glass-chip ok">Scale set: front door 32 in</span>
+          </div>
+          <div class="scan-bottom">
+            <div class="tip"><span class="orb live" style="--s:28px"></span><span id="tip">Walk slowly around the room</span></div>
+            <div class="rooms" aria-label="Rooms scanned"><i class="d"></i><i class="d"></i><i class="a"></i><i></i><i></i><i></i></div>
+            <button class="shutter" aria-label="Finish room" data-go="home"><i></i></button>
+          </div>
+        </section>
+
+        <!-- 6. Home -->
+        <section class="scr" data-s="home" aria-label="Khadra's home in 3D">
+          <div class="pad tight">
+            <div class="home-h"><div><p class="eyebrow">Khadra's home</p><h2 class="h-sm">5 fall risks found</h2></div>
+              <div class="score" id="score" aria-label="Home Safety Score"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" class="sc-bg"/><circle cx="40" cy="40" r="34" class="sc-fg" id="sc-arc"/></svg><b id="score-n">58</b><small>Safety</small></div></div>
+            <div class="ot-badge"><span class="tag tag-good">Checked by a licensed OT</span><small>Jenna Lindqvist, OTR/L</small></div>
+          </div>
+          <div class="house" id="house"></div>
+          <div class="seg" role="tablist" aria-label="Show the home"><button role="tab" aria-selected="true" data-mode="today">Today</button><button role="tab" aria-selected="false" data-mode="after">After Fixes</button><i class="seg-knob"></i></div>
+          <ol class="fixes" id="fixes">
+            <li data-h="tub"><span class="n">1</span><span class="fx"><b>Grab bars and a walk-in shower</b><small>Bathroom · Bigger project · $5,800 to $7,500</small></span><span class="tag tag-risk">Now</span></li>
+            <li data-h="stairs"><span class="n">2</span><span class="fx"><b>Second handrail on the stairs</b><small>Stairs · Handyman · $350 to $650</small></span><span class="tag tag-risk">Now</span></li>
+            <li data-h="rug"><span class="n">3</span><span class="fx"><b>Take up the living room rug</b><small>Living room · Do it today · Free</small></span><span class="tag tag-risk">Now</span></li>
+          </ol>
+          <div class="dock"><button class="btn btn-primary grow" data-go="quotes">See 3 Quotes</button></div>
+        </section>
+
+        <!-- 7. Quotes -->
+        <section class="scr" data-s="quotes" aria-label="Three quotes">
+          <div class="pad tight">
+            <p class="eyebrow">Bathroom and stairs</p>
+            <h2 class="h-sm">3 vetted quotes</h2>
+            <div class="ever-says card"><span class="orb live" style="--s:34px"></span><p>All three are licensed, insured and include the permit. <b>Riverbend</b> costs least and can start 2 December.</p></div>
+          </div>
+          <div class="quotes" id="quotes">
+            <article class="q card best"><div class="q-top"><b>Riverbend Access Co.</b><span class="q-price">$6,450</span></div><p class="why">Licensed · 6 miles away · CAPS · 4.8 stars</p><div class="q-meta"><span>Starts 2 Dec</span><span>6 days</span><span>2-year warranty</span></div></article>
+            <article class="q card"><div class="q-top"><b>Prairie Pine Builders</b><span class="q-price">$7,100</span></div><p class="why">Licensed · 11 miles away · Lead-safe · 4.7 stars</p><div class="q-meta"><span>Starts 9 Dec</span><span>5 days</span><span>3-year warranty</span></div></article>
+            <article class="q card"><div class="q-top"><b>Loonlight Home Fit</b><span class="q-price">$7,980</span></div><p class="why">Licensed · 14 miles away · CAPS · 4.9 stars</p><div class="q-meta"><span>Starts 4 Dec</span><span>4 days</span><span>2-year warranty</span></div></article>
+          </div>
+          <div class="dock col"><button class="btn btn-primary grow" data-go="family" id="choose">Choose Riverbend</button><small class="fine">You hire and pay them directly. Everhome never holds your money.</small></div>
+        </section>
+
+        <!-- 8. Family -->
+        <section class="scr" data-s="family" aria-label="Family circle">
+          <div class="pad tight">
+            <p class="eyebrow">Family circle</p>
+            <h2 class="h-sm">Everyone sees the same plan</h2>
+            <div class="circle">
+              <span class="av" style="--h:24"><b>KH</b><small>Khadra · Home</small></span>
+              <span class="av" style="--h:270"><b>AM</b><small>Amina · Seattle</small></span>
+              <span class="av" style="--h:200"><b>HA</b><small>Hassan · Columbus</small></span>
+            </div>
+          </div>
+          <div class="listen card dusk-card">
+            <div class="pill"><span class="orb live" style="--s:40px"></span><span class="meta"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><b>Ever reading to Khadra</b><small id="listen-clock">01:12</small></span><span class="who" aria-hidden="true">KH</span></div>
+            <p class="so" lang="so">"Hooyo, guriga waxaa ku jira saddex shay oo hadda la hagaajinayo. Midka koowaad waa musqusha."</p>
+            <p class="tr">"Mom, there are three things in the house to fix now. The first is the bathroom."</p>
+          </div>
+          <ol class="tl">
+            <li class="done"><b>Esa's visit</b><span>Thu 20 Nov</span></li>
+            <li class="done"><b>OT approved the plan</b><span>Fri 21 Nov</span></li>
+            <li class="now"><b>Riverbend starts</b><span>Tue 2 Dec</span></li>
+            <li><b>Re-check visit, $75</b><span>Fri 12 Dec</span></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <aside class="steps" aria-label="App steps">
+    <p class="eyebrow">Family App · Tap Any Step</p>
+    <h1 class="steps-h">Booking a safety check should feel like a phone call with someone kind.</h1>
+    <ol id="steplist">
+      <li><button data-go="lang"><b>Choose a language</b><span>English, Somali, Hmong or Spanish. Big buttons, or just call.</span></button></li>
+      <li><button data-go="talk"><b>Talk to Ever</b><span>Say what's going on. Ever fills in the booking as you speak.</span></button></li>
+      <li><button data-go="consent"><b>Consent, in plain words</b><span>Photos and health details are separate choices. Signing by voice works.</span></button></li>
+      <li><button data-go="plan"><b>Pick who scans</b><span>Esa scans at the visit, or the family scans and saves $150.</span></button></li>
+      <li><button data-go="scan"><b>Scan each room in a minute</b><span>Doorways, steps and the tub rim, measured and flagged live.</span></button></li>
+      <li><button data-go="home"><b>See the home in 3D</b><span>Five risks ranked, then the same home after the fixes.</span></button></li>
+      <li><button data-go="quotes"><b>Compare 3 quotes</b><span>Vetted local contractors, with the reason each one was matched.</span></button></li>
+      <li><button data-go="family"><b>Keep the family together</b><span>Khadra hears her report in Somali. Everyone sees one plan.</span></button></li>
+    </ol>
+  </aside>
+</main>
+
+<section id="console" class="console-wrap" aria-label="Review console">
+  <div class="console-intro">
+    <p class="eyebrow">Review Console · For the OT and the Everhome team</p>
+    <h2>Nothing goes to a contractor until a licensed OT signs off every number.</h2>
+  </div>
+  <div class="window">
+    <div class="win-bar"><i></i><i></i><i></i><span>app.everhome.care / review / khadra-apple-valley</span></div>
+    <div class="win-body">
+      <nav class="side" aria-label="Console">
+        <span class="brand"><span class="orb" style="--s:26px"></span><span class="dots">Everhome</span></span>
+        <a class="on">Review Queue <em>3</em></a><a>Esa's Visits</a><a>Vendors <em>10</em></a><a>Compliance</a><a>Revenue</a>
+        <div class="gate card"><small>MDH gate</small><b><i class="dot ok"></i>Open</b><small>Pilot homes 3 of 5</small></div>
+      </nav>
+      <div class="main">
+        <div class="banner draft" id="banner"><b id="banner-t">Draft, not for quoting</b><span id="banner-s">Approve every measurement a fix depends on to release it.</span></div>
+        <div class="rev">
+          <div class="rev-3d" id="house-ot"></div>
+          <div class="rev-side">
+            <h3>Bathroom · 5 measurements</h3>
+            <table class="meas">
+              <thead><tr><th>Measurement</th><th>Scan</th><th>Sure</th><th></th></tr></thead>
+              <tbody id="meas">
+                <tr><td>Door clear width</td><td><input value="29.5 in" aria-label="Door clear width"></td><td>94%</td><td><i class="ck"></i></td></tr>
+                <tr><td>Tub rim height</td><td><input value="17.0 in" aria-label="Tub rim height"></td><td>97%</td><td><i class="ck"></i></td></tr>
+                <tr class="flag"><td>Turning space</td><td><input value="54 in" aria-label="Turning space" id="turn-in"></td><td>71%</td><td><i class="ck"></i></td></tr>
+                <tr><td>Threshold step</td><td><input value="0.8 in" aria-label="Threshold step"></td><td>89%</td><td><i class="ck"></i></td></tr>
+                <tr><td>Toilet seat height</td><td><input value="15 in" aria-label="Toilet seat height"></td><td>92%</td><td><i class="ck"></i></td></tr>
+              </tbody>
+            </table>
+            <p class="flagnote">Mirror on the east wall. Turning space is low confidence: Esa's tape says 52 in.</p>
+            <button class="btn btn-primary" id="approve">Approve 5 Measurements</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="mfoot"><p>Everhome is home safety consulting. It does not give medical advice or provide therapy. All people, homes and contractors in this mockup are fictional.</p></footer>
+
+<div id="cursor" aria-hidden="true"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
